@@ -9,9 +9,8 @@ const SkillsPage = () => {
     ];
 
     return (
-        <div className="flex flex-col min-h-screen rounded-lg px-20 py-16">
-            <h1 className="mb-10 text-3xl font-semibold">Skills</h1>
-
+        <div className="flex flex-col min-h-screen items-center rounded-lg px-20 py-16">
+            <h1 className="mb-10 text-5xl font-semibold">Skills</h1>
             <div className="flex gap-8">
                 {skills.map((skillCategory) => (
                     <div
