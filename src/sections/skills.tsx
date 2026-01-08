@@ -20,13 +20,13 @@ const SkillsPage = () => {
         {skills.map((skillCategory) => (
           <div
             key={skillCategory.name}
-            className="flex flex-col h-[50vh] w-[50vw] items-center gap-4"
+            className="flex flex-col h-[50vh] items-center gap-4"
           >
-            <div className="flex flex-col h-[50vh] w-[50vw] gap-4 items-center justify-center rounded-2xl p-20 bg-[#E8E0DD]">
+            <div className="flex flex-col h-[50vh] gap-4 items-center justify-center rounded-2xl p-20 bg-[#E8E0DD]">
               {skillCategory.items.map((item) => (
                 <div
                   key={item}
-                  className="flex justify-center font-bold rounded-lg"
+                  className="flex justify-center font-bold rounded-full"
                   style={{
                     backgroundColor: "#162A39",
                     width: "10vw",

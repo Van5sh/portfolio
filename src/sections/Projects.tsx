@@ -6,20 +6,26 @@ import Centre from "../../public/svgs/Centre";
 
 const Projects = () => {
   return (
-    <div className="flex flex-col items-center p-16 w-full">
-      <h1 className="text-3xl font-bold mb-12">Projects</h1>
+    <div className="flex flex-col items-center w-full px-16 py-20">
+      <h1 className="text-5xl font-bold mb-20 tracking-tight">Projects</h1>
 
-      <div className="relative w-full max-w-5xl h-[60vh]">
-        <div className="flex justify-between items-center">
-          <div className="flex flex-col items-end gap-6">
-            <Arrow4 className="top-10" />
+      <div className="relative w-full max-w-5xl h-[80vh]">
+        <div className="absolute inset-0 flex justify-between items-center px-28">
+          <div className="flex flex-col items-end gap-5">
+            <Arrow4 />
             <Arrow3 />
           </div>
-          <Centre />
-          <div className="flex flex-col items-start gap-6">
+
+          <div className="flex flex-col items-start gap-5 mr-6">
             <Arrow1 />
             <Arrow2 />
           </div>
+        </div>
+        <div
+          className="absolute top-1/2 left-1/2 z-10 transform -translate-x-1/2 -translate-y-1/2 
+                        hover:scale-[1.3] transition-transform duration-500 ease-out"
+        >
+          <Centre />
         </div>
       </div>
     </div>
