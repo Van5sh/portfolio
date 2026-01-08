@@ -1,4 +1,4 @@
-import Containers from "@/components/containers";
+import Containers from "@/components/ui/containers";
 
 const SkillsPage = () => {
     const skills = [
@@ -9,9 +9,9 @@ const SkillsPage = () => {
     ];
 
     return (
-        <div className="flex flex-col min-h-screen items-center rounded-lg px-20 py-16">
+        <div className="flex flex-col w-full h-full items-center rounded-lg ">
             <h1 className="mb-10 text-5xl font-semibold">Skills</h1>
-            <div className="flex gap-8">
+            <div className="flex w-full h-[80vh] items-center justify-center gap-8 bg-[#FC573B]">
                 {skills.map((skillCategory) => (
                     <div
                         key={skillCategory.name}
@@ -24,7 +24,7 @@ const SkillsPage = () => {
                                 ))}
                             </ul>
                         </Containers>
-                        <h2 className="text-lg font-medium">
+                        <h2 className="text-xl font-bold text-white">
                             {skillCategory.name}
                         </h2>
                     </div>

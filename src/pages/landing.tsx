@@ -1,5 +1,5 @@
 import Circle from "../../public/svgs/Ellipse 1.svg"
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/ui/Navbar";
 import Image from "next/image";
 
 const LandingPage = () => {
