@@ -1,9 +1,9 @@
-import AboutPage from "@/pages/about";
-import LandingPage from "@/pages/landing";
-import SkillsPage from "@/pages/skills";
+import AboutPage from "@/sections/about";
+import LandingPage from "@/sections/landing";
+import SkillsPage from "@/sections/skills";
 import Image from "next/image";
-import ExperiencePage from "@/pages/experience";
-import Projects from "@/pages/Projects";
+import ExperiencePage from "@/sections/experience";
+import Projects from "@/sections/Projects";
 
 export default function Home() {
   return (
