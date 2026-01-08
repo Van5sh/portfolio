@@ -1,7 +1,6 @@
 import AboutPage from "@/sections/about";
 import LandingPage from "@/sections/landing";
 import SkillsPage from "@/sections/skills";
-import Image from "next/image";
 import ExperiencePage from "@/sections/experience";
 import Projects from "@/sections/Projects";
 
