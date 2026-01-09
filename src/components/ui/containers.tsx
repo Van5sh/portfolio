@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import Card from "../../../public/svgs/card.svg";
+import FallingObject from "./FallingObject";
 
 interface ContainersProps {
   children: React.ReactNode;
@@ -17,7 +18,9 @@ const Containers: React.FC<ContainersProps> = ({ children }) => {
         className="object-cover absolute inset-0 z-0"
       />
       <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
-        {children}
+        <FallingObject count={1}>
+          {children}
+        </FallingObject>
       </div>
     </div>
   );
