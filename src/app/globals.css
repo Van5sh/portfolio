@@ -176,3 +176,31 @@
     opacity: 0;
   }
 }
+
+/* PULSE RIPPLE (timeline indicator) */
+.pulse-ripple {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pulse-ripple::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  border: 2px solid #FC573B;
+  animation: pulse-ripple-animation 1.6s infinite ease-out;
+}
+
+@keyframes pulse-ripple-animation {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
