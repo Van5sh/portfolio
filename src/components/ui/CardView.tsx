@@ -12,8 +12,8 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ title, description, image, link }) => {
   return (
-    <div className="flex justify-center items-center w-full h-full">
-      <div className="relative">
+    <div className="flex justify-center items-center w-full h-full z-10 text-white">
+      <div className="relative z-10">
         <Image
           src={CardView}
           alt="CardView"
@@ -21,15 +21,21 @@ const Card: React.FC<CardProps> = ({ title, description, image, link }) => {
           height={800}
           className="z-10"
         />
-        {/* <Image
+        <Image
           src={WhiteRectangle}
           alt="WhiteRectangle"
-          width={290}
-          height={290}
+          width={220}
+          height={220}
           className="absolute bottom-6 right-6 z-20"
-        /> */}
-        <div className="absolute top-1/8 right-8 z-30 cursor-pointer">
-          <SquareArrowOutUpRight size={32} color="white" />
+        />
+        <div className="flex flex-row gap-2">
+          <div className="flex flex-col gap-2 absolute top-1/8 left-8 z-30">
+            <h1 className="font-bold text-2xl">{title}</h1>
+            <p className="text-md leading-relaxed w-[330px]">{description}</p>
+          </div>
+          <div className="absolute top-1/8 right-8 z-30 cursor-pointer">
+            <SquareArrowOutUpRight size={24} color="white" />
+          </div>
         </div>
       </div>
     </div>
