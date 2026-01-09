@@ -10,17 +10,15 @@ const Projects = () => {
   return (
     <div className="flex flex-col items-center w-full px-20 py-20">
       <h1 className="text-5xl font-bold tracking-tight mb-25">Projects</h1>
-
       <div className="relative w-full max-w-5xl h-[80vh]">
         <div className="absolute inset-0 flex justify-between items-center px-28">
           <div className="flex flex-col items-end gap-8">
             <div className="relative flex items-center">
               <Arrow4 />
-              <div className="absolute cursor-pointer right-full -mt-15 hover:scale-[1.3] transition-transform duration-400 ease-out top-2.5">
+              <div className="absolute cursor-pointer right-[240px] -mt-15 hover:scale-[1.3] transition-transform duration-400 ease-out top-2.5">
                 <ProjectsCard>Maven Financial</ProjectsCard>
               </div>
             </div>
-
             <div className="relative">
               <Arrow3 />
               <div className="absolute right-full cursor-pointer hover:scale-[1.3] transition-transform duration-400 ease-out ">
@@ -31,11 +29,10 @@ const Projects = () => {
           <div className="flex flex-col items-start gap-8 mr-20">
             <div className="relative">
               <Arrow1 />
-              <div className="absolute cursor-pointer left-full -mt-15 hover:scale-[1.3] transition-transform duration-400 ease-out top-2.5">
+              <div className="absolute cursor-pointer left-[240px] -mt-15 hover:scale-[1.3] transition-transform duration-400 ease-out top-2.5">
                 <ProjectsCard>Apex Market</ProjectsCard>
               </div>
             </div>
-
             <div className="relative">
               <Arrow2 />
               <div className="absolute cursor-pointer left-full hover:scale-[1.3] transition-transform duration-400 ease-out ">
