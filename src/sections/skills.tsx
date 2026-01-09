@@ -1,4 +1,3 @@
-// SkillsPage.tsx
 import Containers from "../components/ui/containers";
 import FallingText from "@/components/FallingText";
 
@@ -19,7 +18,14 @@ const SkillsPage = () => {
     },
     {
       name: "Frameworks",
-      items: ["React", "Next.js", "Node.js", "GoFiber", "NestJS"],
+      items: [
+        "React",
+        "Next.js",
+        "Node.js",
+        "GoFiber",
+        "NestJS",
+        "React Native",
+      ],
     },
     { name: "Databases", items: ["MongoDB", "PostgreSQL", "MySQL", "Prisma"] },
     {
@@ -40,7 +46,7 @@ const SkillsPage = () => {
           >
             <Containers>
               <FallingText
-                text={skillCategory.items.join(" ")}
+                text={skillCategory.items.join("|")}
                 highlightWords={skillCategory.items}
                 trigger="auto"
                 gravity={0.8}

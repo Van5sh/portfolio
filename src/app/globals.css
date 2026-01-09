@@ -204,3 +204,13 @@
     opacity: 0;
   }
 }
+
+.contact-item {
+  background-color: #162A39;
+  color: #FC573B;
+  font-weight: bold;
+  font-size: 0.85rem;
+  padding: 8px 16px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}

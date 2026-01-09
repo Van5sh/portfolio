@@ -1,9 +1,10 @@
-import AboutPage from "@/sections/about";
-import LandingPage from "@/sections/landing";
-import SkillsPage from "@/sections/skills";
-import ExperiencePage from "@/sections/experience";
+import AboutPage from "@/sections/About";
+import LandingPage from "@/sections/Landing";
+import SkillsPage from "@/sections/Skills";
+import ExperiencePage from "@/sections/Experience";
 import Projects from "@/sections/Projects";
 import Extracurricular from "@/sections/Extracurricular";
+import Contacts from "@/sections/Contact";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <ExperiencePage />
       <Projects />
       <Extracurricular />
+      <Contacts />
     </div>
   );
 }
