@@ -5,11 +5,11 @@ import ProjectsCard from "@/components/ui/ProjectsCard";
 import useMounted from "@/lib/mount";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 
-import Arrow1 from "../../public/svgs/Arrow1";
-import Arrow2 from "../../public/svgs/Arrow2";
-import Arrow3 from "../../public/svgs/Arrow3";
-import Arrow4 from "../../public/svgs/Arrow4";
-import Centre from "../../public/svgs/Centre";
+import Arrow1 from "../../public/svgs/codes/Arrow1";
+import Arrow2 from "../../public/svgs/codes/Arrow2";
+import Arrow3 from "../../public/svgs/codes/Arrow3";
+import Arrow4 from "../../public/svgs/codes/Arrow4";
+import Centre from "../../public/svgs/codes/Centre";
 
 import CardView from "../components/ui/CardView";
 

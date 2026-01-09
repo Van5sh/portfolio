@@ -1,5 +1,5 @@
 // SkillsPage.tsx
-import Containers from "@/components/ui/Containers";
+import Containers from "../components/ui/containers";
 import FallingText from "@/components/FallingText";
 
 const SkillsPage = () => {

@@ -1,7 +1,14 @@
+"use client";
+
 import React from "react";
-import BlackCircle from "../../public/svgs/BlackCircle";
+import BlackCircle from "../../public/svgs/codes/BlackCircle";
+import { motion } from "framer-motion";
+import useMounted from "@/lib/mount";
 
 const ExperiencePage = () => {
+  const mounted = useMounted();
+  if (!mounted) return null; // ✅ hydration fix
+
   const experienceData = [
     {
       company: "AI Core Solutions",
@@ -22,17 +29,16 @@ const ExperiencePage = () => {
       ],
     },
   ];
-  ``
+
   return (
     <div className="flex flex-col items-center w-full px-20 py-16">
       <h1 className="text-5xl font-bold mb-12">Experience</h1>
 
       <div className="flex flex-col gap-10 w-full max-w-4xl">
         {experienceData.map((experience, index) => (
-          <div
+          <motion.div
             key={index}
-            className="flex items-center cursor-pointer hover:scale-105 transition-all duration-300
-            gap-6 w-full p-6 rounded-full"
+            className="flex items-center cursor-pointer hover:scale-105 transition-all duration-300 gap-6 w-full p-6 rounded-full"
           >
             <div className="pt-2">
               <BlackCircle />
@@ -41,7 +47,7 @@ const ExperiencePage = () => {
               <h2 className="text-6xl font-semibold">{experience.company}</h2>
               <span className="text-3xl text-gray-600">{experience.role}</span>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

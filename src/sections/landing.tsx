@@ -11,7 +11,7 @@ const LandingPage = () => {
         <div className="flex flex-col items-center gap-10">
           <div className="relative flex flex-col items-center">
             <h1 className="text-3xl font-semibold text-[#162A39]">VANSH</h1>
-            <h1 className="text-9xl font-bold text-[#162A39] font-stretch-75% leading-none">
+            <h1 className="text-9xl font-semibold text-[#162A39] letter-spacing-[2px] leading-none">
               DHIR
             </h1>
             <Image
