@@ -16,13 +16,13 @@ const SkillsPage = () => {
     <div className="flex flex-col w-full h-full items-center rounded-lg">
       <h1 className="mb-10 text-5xl font-semibold">Skills</h1>
 
-      <div className="flex w-full h-[80vh] items-center justify-center gap-8 bg-[#FC573B]">
+      <div className="flex flex-row w-full h-[90vh] items-center justify-center gap-8 bg-[#FC573B]">
         {skills.map((skillCategory) => (
           <div
             key={skillCategory.name}
-            className="flex flex-col h-[50vh] items-center gap-4"
+            className="flex flex-col items-center gap-4"
           >
-            <div className="flex flex-col h-[50vh] gap-4 items-center justify-center rounded-2xl p-20 bg-[#E8E0DD]">
+            <Containers>
               {skillCategory.items.map((item) => (
                 <div
                   key={item}
@@ -37,8 +37,7 @@ const SkillsPage = () => {
                   <h1>{item}</h1>
                 </div>
               ))}
-            </div>
-
+            </Containers>
             <h2 className="text-2xl font-bold text-white">
               {skillCategory.name}
             </h2>
