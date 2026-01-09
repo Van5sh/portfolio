@@ -123,3 +123,56 @@
     @apply bg-background text-foreground;
   }
 }
+
+.ripple-button {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: black;
+  border-radius: 9999px;
+  color: white;
+  padding: 0.75rem 2.5rem;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+  border: none;
+}
+
+.ripple-button:hover {
+  background-color: #162A39;
+  color: #f97316;
+}
+
+.ripple-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: rgba(22, 42, 57, 0.6);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ripple-button:active::before {
+  width: 300px;
+  height: 300px;
+  transition: width 0s, height 0s;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(22, 42, 57, 0.6);
+  transform: scale(0);
+  animation: ripple-animation 0.6s ease-out;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}

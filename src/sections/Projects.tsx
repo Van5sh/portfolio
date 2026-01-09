@@ -4,6 +4,7 @@ import Arrow2 from "../../public/svgs/Arrow2";
 import Arrow3 from "../../public/svgs/Arrow3";
 import Arrow4 from "../../public/svgs/Arrow4";
 import Centre from "../../public/svgs/Centre";
+import CardView from "../components/ui/CardView";
 
 const Projects = () => {
   return (

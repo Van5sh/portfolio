@@ -27,9 +27,7 @@ const LandingPage = () => {
 
       <div className="flex flex-col items-center gap-6 mb-10">
         <h1 className="text-4xl font-bold">Full Stack Developer</h1>
-        <button className="cursor-pointer hover:bg-[#162A39] bg-black rounded-full text-white hover:text-orange-500 px-10 py-3 font-bold transition-colors duration-300">
-          Let&apos;s Connect
-        </button>
+        <button className="ripple-button ">Let&apos;s Connect</button>
       </div>
     </div>
   );

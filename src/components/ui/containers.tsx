@@ -9,7 +9,7 @@ interface ContainersProps {
 
 const Containers: React.FC<ContainersProps> = ({ children }) => {
   return (
-    <div className="relative flex flex-col h-[400px] w-[260px] items-center justify-center rounded-2xl px-2 py-2 overflow-hidden">
+    <div className="relative flex flex-col h-[400px] w-[260px] items-center justify-center rounded-2xl px-2 py-2w overflow-hidden">
       <Image
         src={Card}
         alt="Card"
