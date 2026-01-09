@@ -9,16 +9,21 @@ interface FallingObjectProps {
 }
 
 const FallingObject = ({ count, children }: FallingObjectProps) => {
-  const [objects, setObjects] = useState<
-    { id: number; left: string; duration: string; delay: string }[]
-  >([]);
+  const [objects, setObjects] = useState([
+    {
+      id: 0,
+      left: "",
+      duration: "",
+      delay: "",
+    },
+  ]);
 
   useEffect(() => {
     const newObjects = Array.from({ length: count }).map((_, index) => ({
       id: index,
       left: `${Math.random() * 70 + 15}%`,
-      duration: `${Math.random() * 4 + 6}s`,
-      delay: `${Math.random() * 3}s`,
+      duration: `${Math.random() * 2 + 2}s`, // 2-4 seconds
+      delay: `${index * 0.3}s`, // Staggered delays
     }));
     setObjects(newObjects);
   }, [count]);

@@ -1,3 +1,4 @@
+/* FallingText.css */
 .falling-text-container {
   position: relative;
   z-index: 1;
@@ -5,7 +6,7 @@
   height: 100%;
   cursor: pointer;
   text-align: center;
-  padding-top: 2em;
+  padding-top: 1em;
 }
 
 .falling-text-target {
@@ -14,13 +15,21 @@
 
 .word {
   display: inline-block;
-  margin: 0 2px;
+  margin: 0 4px;
   user-select: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
 }
 
-.highlighted {
-  color: cyan;
+.skill-item {
+  background-color: #162A39;
+  color: #FC573B;
   font-weight: bold;
+  font-size: 0.85rem;
+  padding: 8px 16px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .falling-text-canvas {
@@ -28,4 +37,5 @@
   top: 0;
   left: 0;
   z-index: 0;
+  pointer-events: none;
 }

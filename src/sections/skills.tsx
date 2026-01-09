@@ -1,16 +1,31 @@
+// SkillsPage.tsx
 import Containers from "@/components/ui/containers";
-import ItemsContainer from "@/components/ui/ItemsContainer";
-import FallingObject from "@/components/ui/FallingObject";
+import FallingText from "@/components/FallingText";
 
 const SkillsPage = () => {
   const skills = [
     {
       name: "Languages",
-      items: ["JavaScript", "TypeScript", "Python", "Java"],
+      items: [
+        "C",
+        "CSS",
+        "Java",
+        "Python",
+        "JavaScript",
+        "TypeScript",
+        "SQL",
+        "GoLang",
+      ],
     },
-    { name: "Frameworks", items: ["React", "Next.js", "Node.js", "Express"] },
-    { name: "Databases", items: ["MongoDB", "PostgreSQL", "MySQL"] },
-    { name: "Tools", items: ["Git", "Docker", "Jenkins"] },
+    {
+      name: "Frameworks",
+      items: ["React", "Next.js", "Node.js", "GoFiber", "NestJS"],
+    },
+    { name: "Databases", items: ["MongoDB", "PostgreSQL", "MySQL", "Prisma"] },
+    {
+      name: "Tools",
+      items: ["Git", "GitHub", "Docker", "Firebase", "Postman"],
+    },
   ];
 
   return (
@@ -23,7 +38,19 @@ const SkillsPage = () => {
             key={skillCategory.name}
             className="flex flex-col items-center gap-4"
           >
-            <Containers>{skillCategory.name}</Containers>
+            <Containers>
+              <FallingText
+                text={skillCategory.items.join(" ")}
+                highlightWords={skillCategory.items}
+                trigger="auto"
+                gravity={0.8}
+                wireframes={false}
+                backgroundColor="transparent"
+                fontSize="0.9rem"
+                mouseConstraintStiffness={0.1}
+                highlightClass="skill-item"
+              />
+            </Containers>
             <h2 className="text-2xl font-bold text-white">
               {skillCategory.name}
             </h2>
