@@ -52,13 +52,17 @@ const TRANSITIONS: Record<VariantName, (delay: number) => Transition> = {
   }),
 };
 
+// ✅ allow px + % mixed
+type InViewUnit = `${number}px` | `${number}%`;
+type InViewMargin = `${InViewUnit} ${InViewUnit} ${InViewUnit} ${InViewUnit}`;
+
 type ScrollSpringProps = {
   as?: keyof typeof MOTION_ELEMENTS;
   className?: string;
   delay?: number;
   variant?: VariantName;
   once?: boolean;
-  margin?: string;
+  margin?: InViewMargin;
 };
 
 const ScrollSpring = ({
@@ -68,9 +72,10 @@ const ScrollSpring = ({
   delay = 0,
   variant = "spring",
   once = true,
-  margin = "-10% 0px",
+  margin = "-10% 0px -10% 0px",
 }: PropsWithChildren<ScrollSpringProps>) => {
   const ref = useRef<HTMLElement | null>(null);
+
   const inView = useInView(ref, { once, margin });
   const controls = useAnimation();
 
@@ -82,7 +87,7 @@ const ScrollSpring = ({
 
   return (
     <MotionEl
-      ref={ref}
+      ref={ref as React.RefObject<HTMLDivElement>}
       className={cn(className)}
       variants={VARIANTS[variant]}
       initial="hidden"
