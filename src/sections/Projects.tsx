@@ -54,6 +54,7 @@ function reducer(state: State, action: Action): State {
   }
 }
 
+/* ✅ Modal animation */
 const iosOpen: Variants = {
   hidden: { opacity: 0, scale: 0.92, y: 25 },
   visible: {
@@ -72,6 +73,44 @@ const iosOpen: Variants = {
     scale: 0.95,
     y: 30,
     transition: { duration: 0.2, ease: "easeInOut" },
+  },
+};
+
+/* ✅ Scroll reveal animations */
+const centreVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.85 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { type: "spring", stiffness: 240, damping: 18 },
+  },
+};
+
+const arrowFromCentreRight: Variants = {
+  hidden: { opacity: 0, scaleX: 0 },
+  visible: {
+    opacity: 1,
+    scaleX: 1,
+    transition: { duration: 0.75, ease: "easeOut" },
+  },
+};
+
+const arrowFromCentreLeft: Variants = {
+  hidden: { opacity: 0, scaleX: 0 },
+  visible: {
+    opacity: 1,
+    scaleX: 1,
+    transition: { duration: 0.75, ease: "easeOut" },
+  },
+};
+
+const cardPop: Variants = {
+  hidden: { opacity: 0, y: 12, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: "spring", stiffness: 260, damping: 18 },
   },
 };
 
@@ -124,65 +163,115 @@ const Projects = () => {
       <h1 className="text-5xl font-bold tracking-tight mb-25">Projects</h1>
 
       <div className="relative w-full max-w-5xl h-[80vh]">
-        <div className="absolute inset-0 flex justify-between items-center px-28">
+        {/* ✅ CENTRE POPS FIRST */}
+        <motion.div
+          variants={centreVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.45 }}
+          className="absolute top-1/2 left-1/2 z-10 
+                     -translate-x-1/2 -translate-y-1/2
+                     hover:scale-[1.3] transition-transform duration-500 ease-out"
+        >
+          <Centre />
+        </motion.div>
+
+        {/* ✅ ARROWS REVEAL FROM CENTRE */}
+        <motion.div
+          className="absolute inset-0 z-0 flex justify-between items-center px-28"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.35 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                delayChildren: 0.25,
+                staggerChildren: 0.18,
+              },
+            },
+          }}
+        >
+          {/* RIGHT SIDE */}
           <div className="flex flex-col items-end gap-8">
-            <div className="relative flex items-center">
+            {/* Maven */}
+            <motion.div
+              variants={arrowFromCentreRight}
+              style={{ transformOrigin: "left center" }}
+              className="relative flex items-center"
+            >
               <Arrow4 />
-              <div
+              <motion.div
+                variants={cardPop}
                 className="absolute cursor-pointer right-[240px] -mt-15 hover:scale-[1.3] transition-transform duration-400 ease-out top-2.5"
                 onClick={() =>
                   dispatch({ type: "TOGGLE_PROJECT", payload: "maven" })
                 }
               >
                 <ProjectsCard>Maven Financial</ProjectsCard>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
-            <div className="relative">
+            {/* Cryptic */}
+            <motion.div
+              variants={arrowFromCentreRight}
+              style={{ transformOrigin: "left center" }}
+              className="relative"
+            >
               <Arrow3 />
-              <div
+              <motion.div
+                variants={cardPop}
                 className="absolute right-full cursor-pointer hover:scale-[1.3] transition-transform duration-400 ease-out"
                 onClick={() =>
                   dispatch({ type: "TOGGLE_PROJECT", payload: "cryptic" })
                 }
               >
                 <ProjectsCard>Cryptic Hunt</ProjectsCard>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
+
+          {/* LEFT SIDE */}
           <div className="flex flex-col items-start gap-8 mr-20">
-            <div className="relative">
+            {/* Apex */}
+            <motion.div
+              variants={arrowFromCentreLeft}
+              style={{ transformOrigin: "right center" }}
+              className="relative"
+            >
               <Arrow1 />
-              <div
+              <motion.div
+                variants={cardPop}
                 className="absolute cursor-pointer left-[240px] -mt-15 hover:scale-[1.3] transition-transform duration-400 ease-out top-2.5"
                 onClick={() =>
                   dispatch({ type: "TOGGLE_PROJECT", payload: "apex" })
                 }
               >
                 <ProjectsCard>Apex Market</ProjectsCard>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
-            <div className="relative">
+            {/* ACM */}
+            <motion.div
+              variants={arrowFromCentreLeft}
+              style={{ transformOrigin: "right center" }}
+              className="relative"
+            >
               <Arrow2 />
-              <div
+              <motion.div
+                variants={cardPop}
                 className="absolute cursor-pointer left-full hover:scale-[1.3] transition-transform duration-400 ease-out"
                 onClick={() =>
                   dispatch({ type: "TOGGLE_PROJECT", payload: "acm" })
                 }
               >
                 <ProjectsCard>ACMOne-APP</ProjectsCard>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
-        </div>
-        <div
-          className="absolute top-1/2 left-1/2 z-10 
-                     -translate-x-1/2 -translate-y-1/2
-                     hover:scale-[1.3] transition-transform duration-500 ease-out"
-        >
-          <Centre />
-        </div>
+        </motion.div>
+
+        {/* ✅ MODAL POPUP SAME AS BEFORE */}
         <AnimatePresence>
           {activeProject && (
             <>
@@ -194,6 +283,7 @@ const Projects = () => {
                 className="fixed inset-0 z-40 backdrop-blur-2xl bg-gray-900/50"
                 onClick={() => dispatch({ type: "CLOSE_PROJECT" })}
               />
+
               <motion.div
                 key={activeProject.id}
                 variants={iosOpen}

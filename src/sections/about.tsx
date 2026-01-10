@@ -1,11 +1,23 @@
+"use client";
+
+import ScrollSpring from "@/components/ScrollSpring";
+
 const AboutPage = () => {
   return (
     <div className="flex flex-col w-full min-h-screen">
-      <h1 className="text-5xl font-semibold mb-10 items-start ml-10">
+      {/* ✅ Animated Heading */}
+      <ScrollSpring
+        as="h1"
+        className="text-5xl font-semibold mb-10 items-start ml-10"
+      >
         About Me
-      </h1>
+      </ScrollSpring>
 
-      <div className="flex flex-row items-center justify-center">
+      {/* ✅ Animated Content Block */}
+      <ScrollSpring
+        className="flex flex-row items-center justify-center"
+        delay={0.12}
+      >
         <p className="text-justify leading-relaxed max-w-xl">
           I am a Full Stack Developer with a passion for creating engaging and
           interactive user interfaces. I have experience in both frontend and
@@ -16,10 +28,11 @@ const AboutPage = () => {
           finding creative solutions to complex problems. Currently I am a
           strong
         </p>
+
         <div className="ml-20">
           <div className="h-[70vh] w-[42vh] bg-[#FC573B] rounded-2xl" />
         </div>
-      </div>
+      </ScrollSpring>
     </div>
   );
 };

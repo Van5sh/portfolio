@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { FaGithub, FaLinkedinIn, FaMailBulk, FaPhone } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
+import ScrollSpring from "@/components/ScrollSpring";
 
 const Contacts = () => {
   const [copied, setCopied] = useState(false);
@@ -18,16 +19,19 @@ const Contacts = () => {
 
   return (
     <div className="flex flex-col items-center gap-10 justify-center w-full px-20 py-16 mb-[200px]">
-      <h1 className="mb-10 text-5xl font-semibold">Contacts</h1>
-
-      <div className="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-6">
-        {/* Email */}
+      <ScrollSpring as="h1" className="mb-10 text-5xl font-semibold">
+        Contacts
+      </ScrollSpring>
+      <ScrollSpring
+        className="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-6"
+        delay={0.12}
+      >
+      
         <a href="mailto:vansh05dhir@gmail.com" className={itemClass}>
           <FaMailBulk className="text-lg" />
           <span>vansh05dhir@gmail.com</span>
         </a>
 
-        {/* GitHub */}
         <a
           href="https://github.com/Van5sh"
           target="_blank"
@@ -38,13 +42,11 @@ const Contacts = () => {
           <span>Van5sh</span>
         </a>
 
-        {/* Phone Copy */}
         <button onClick={CopytoClipboard} className={itemClass} type="button">
           <FaPhone className="text-lg" />
           <span>{copied ? "Copied!" : "+91 9818654570"}</span>
         </button>
 
-        {/* LinkedIn */}
         <a
           href="https://www.linkedin.com/in/vansh-dhir-686b5028b"
           target="_blank"
@@ -55,7 +57,6 @@ const Contacts = () => {
           <span>Vansh Dhir</span>
         </a>
 
-        {/* LeetCode */}
         <a
           href="https://leetcode.com/u/VanshDhir/"
           target="_blank"
@@ -65,7 +66,7 @@ const Contacts = () => {
           <SiLeetcode className="text-lg" />
           <span>Vansh Dhir</span>
         </a>
-      </div>
+      </ScrollSpring>
     </div>
   );
 };

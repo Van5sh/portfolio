@@ -4,9 +4,10 @@ import React, { useState } from "react";
 import BlackCircle from "../../public/svgs/codes/BlackCircle";
 import { motion, Variants } from "framer-motion";
 import useMounted from "@/lib/mount";
+import ScrollSpring from "@/components/ScrollSpring";
 
 const ExperiencePage = () => {
-  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const experienceData = [
     {
@@ -53,11 +54,16 @@ const ExperiencePage = () => {
 
   return (
     <div className="flex flex-col items-center w-full px-20 py-16">
-      <h1 className="text-5xl font-bold mb-12">Experience</h1>
+      <ScrollSpring as="h1" className="text-5xl font-bold mb-12">
+        Experience
+      </ScrollSpring>
 
-      <div className="flex flex-col gap-10 w-full max-w-4xl">
+      <ScrollSpring
+        className="flex flex-col gap-10 w-full max-w-4xl"
+        delay={0.12}
+      >
         {experienceData.map((experience, index) => {
-          const expanded = hoverIndex === index;
+          const expanded = activeIndex === index;
 
           return (
             <motion.div
@@ -66,27 +72,29 @@ const ExperiencePage = () => {
               variants={cardVariants}
               initial="hidden"
               animate="visible"
-              whileHover={{ scale: 1.03 }}
-              onMouseEnter={() => setHoverIndex(index)}
-              onMouseLeave={() => setHoverIndex(null)}
-              className={`relative cursor-pointer w-full p-8 rounded-3xl transition-colors duration-300 ${
+              whileTap={{ scale: 0.99 }}
+              onClick={() =>
+                setActiveIndex((prev) => (prev === index ? null : index))
+              }
+              className={`relative cursor-pointer w-full p-8 rounded-3xl transition-colors duration-300 origin-top ${
                 expanded
                   ? "bg-[#FC573B] text-white"
                   : "bg-transparent text-black"
               }`}
             >
               <div className="flex items-center gap-6">
-                {expanded ? " " : <BlackCircle />}
+                {!expanded && <BlackCircle className="right-10" />}
 
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-[calc(100%-230px)]">
                   <div
                     className={`flex ${
-                      expanded ? "flex-row" : "flex-col"
-                    }  gap-2 ${expanded ? "justify-end" : "justify-start"}`}
+                      expanded ? "flex-row items-center" : "flex-col justify-start"
+                    } gap-2`}
                   >
                     <h2 className="text-5xl font-semibold">
                       {experience.company}
                     </h2>
+
                     {expanded ? (
                       <span className="absolute top-6 right-8 text-xl text-white/90">
                         {experience.role}
@@ -121,7 +129,7 @@ const ExperiencePage = () => {
             </motion.div>
           );
         })}
-      </div>
+      </ScrollSpring>
     </div>
   );
 };

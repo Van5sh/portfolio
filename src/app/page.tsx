@@ -10,13 +10,13 @@ import Contacts from "@/sections/Contact";
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen items-center justify-center text-black">
-      <LandingPage />
-      <AboutPage />
-      <SkillsPage />
-      <ExperiencePage />
-      <Projects />
-      <Extracurricular />
-      <Contacts />
+        <LandingPage />
+        <AboutPage />
+        <SkillsPage />
+        <ExperiencePage />
+        <Projects />
+        <Extracurricular />
+        <Contacts />
     </div>
   );
 }

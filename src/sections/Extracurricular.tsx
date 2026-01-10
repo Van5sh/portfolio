@@ -1,5 +1,8 @@
+"use client";
+
 import OrangeCircle from "../../public/svgs/codes/CircleOrange";
 import Lines from "../../public/svgs/codes/Lines";
+import ScrollSpring from "@/components/ScrollSpring";
 
 const Extracurricular = () => {
   const data = [
@@ -13,15 +16,19 @@ const Extracurricular = () => {
       designation: "Project Lead",
       date: "2025-Preset",
       content:
-        "Worked as a Project Lead of ACM where got he oppurtunity of leading projects. Improved on my interpersonal skills and team management skills. ",
+        "Worked as a Project Lead of ACM where got he oppurtunity of leading projects. Improved on my interpersonal skills and team management skills.",
     },
   ];
 
   return (
     <div className="flex flex-col items-center w-full px-20 py-16">
-      <h1 className="text-5xl font-semibold mb-10">Extracurricular</h1>
+      {/* ✅ animated heading */}
+      <ScrollSpring as="h1" className="text-5xl font-semibold mb-10">
+        Extracurricular
+      </ScrollSpring>
 
-      <div className="flex w-full max-w-4xl gap-10">
+      {/* ✅ animated block */}
+      <ScrollSpring className="flex w-full max-w-4xl gap-10" delay={0.12}>
         <div className="flex flex-col gap-4">
           <h2 className="text-3xl font-semibold">
             Association for Computing Machinery (ACM)
@@ -30,22 +37,24 @@ const Extracurricular = () => {
           <p className="text-gray-600 text-lg">
             Worked on events, hackathons, and tech communities.
           </p>
+
           <div className="relative mt-6">
             <div className="absolute left-[23px] top-[26px] bottom-[26px]">
               <div className="w-[4px] h-[200px] bg-[#FC573B]" />
             </div>
 
             <div className="flex flex-col gap-6">
-              {data.reverse().map((item, index) => (
+              {[...data].reverse().map((item, index) => (
                 <div
                   key={index}
                   className="relative flex gap-4 items-start py-6"
                 >
                   <div className="relative z-10">
-                    <div className={index == 0 ? "pulse-ripple" : ""}>
+                    <div className={index === 0 ? "pulse-ripple" : ""}>
                       <OrangeCircle />
                     </div>
                   </div>
+
                   <div>
                     <h3 className="text-2xl font-semibold">
                       {item.designation}
@@ -57,7 +66,7 @@ const Extracurricular = () => {
             </div>
           </div>
         </div>
-      </div>
+      </ScrollSpring>
     </div>
   );
 };
