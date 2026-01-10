@@ -1,3 +1,4 @@
+"use client";
 import AboutPage from "@/sections/about";
 import LandingPage from "@/sections/landing";
 import SkillsPage from "@/sections/skills";
