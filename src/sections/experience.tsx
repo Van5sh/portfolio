@@ -69,7 +69,7 @@ const ExperiencePage = () => {
               whileHover={{ scale: 1.03 }}
               onMouseEnter={() => setHoverIndex(index)}
               onMouseLeave={() => setHoverIndex(null)}
-              className={`cursor-pointer w-full p-8 rounded-3xl transition-colors duration-300 ${
+              className={`relative cursor-pointer w-full p-8 rounded-3xl transition-colors duration-300 ${
                 expanded
                   ? "bg-[#FC573B] text-white"
                   : "bg-transparent text-black"
@@ -79,17 +79,24 @@ const ExperiencePage = () => {
                 {expanded ? " " : <BlackCircle />}
 
                 <div className="flex flex-col gap-2">
-                  <h2 className="text-4xl font-semibold">
-                    {experience.company}
-                  </h2>
-
-                  <span
-                    className={`text-xl ${
-                      expanded ? "text-white/90" : "text-gray-600"
-                    }`}
+                  <div
+                    className={`flex ${
+                      expanded ? "flex-row" : "flex-col"
+                    }  gap-2 ${expanded ? "justify-end" : "justify-start"}`}
                   >
-                    {experience.role}
-                  </span>
+                    <h2 className="text-5xl font-semibold">
+                      {experience.company}
+                    </h2>
+                    {expanded ? (
+                      <span className="absolute top-6 right-8 text-xl text-white/90">
+                        {experience.role}
+                      </span>
+                    ) : (
+                      <span className="text-xl text-gray-600">
+                        {experience.role}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
 
