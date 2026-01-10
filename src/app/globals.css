@@ -206,11 +206,22 @@
 }
 
 .contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+
   background-color: #162A39;
   color: #FC573B;
+
   font-weight: bold;
-  font-size: 0.85rem;
-  padding: 8px 16px;
-  border-radius: 20px;
+  font-size: 0.9rem;
+
+  padding: 10px 18px;
+  border-radius: 9999px;
+
+  min-height: 44px;
+  width: 100%;
+
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }

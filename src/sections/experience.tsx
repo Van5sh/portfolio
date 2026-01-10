@@ -1,13 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import BlackCircle from "../../public/svgs/codes/BlackCircle";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import useMounted from "@/lib/mount";
 
 const ExperiencePage = () => {
-  const mounted = useMounted();
-  if (!mounted) return null; // ✅ hydration fix
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
   const experienceData = [
     {
@@ -30,25 +29,91 @@ const ExperiencePage = () => {
     },
   ];
 
+  const mounted = useMounted();
+  if (!mounted) return null;
+
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.2, duration: 0.5 },
+    }),
+  };
+
+  const descriptionVariants: Variants = {
+    collapsed: { height: 0, opacity: 0, marginTop: 0 },
+    expanded: {
+      height: "auto",
+      opacity: 1,
+      marginTop: 16,
+      transition: { duration: 0.3, ease: "easeInOut" },
+    },
+  };
+
   return (
     <div className="flex flex-col items-center w-full px-20 py-16">
       <h1 className="text-5xl font-bold mb-12">Experience</h1>
 
       <div className="flex flex-col gap-10 w-full max-w-4xl">
-        {experienceData.map((experience, index) => (
-          <motion.div
-            key={index}
-            className="flex items-center cursor-pointer hover:scale-105 transition-all duration-300 gap-6 w-full p-6 rounded-full"
-          >
-            <div className="pt-2">
-              <BlackCircle />
-            </div>
-            <div className="flex flex-col gap-2">
-              <h2 className="text-6xl font-semibold">{experience.company}</h2>
-              <span className="text-3xl text-gray-600">{experience.role}</span>
-            </div>
-          </motion.div>
-        ))}
+        {experienceData.map((experience, index) => {
+          const expanded = hoverIndex === index;
+
+          return (
+            <motion.div
+              key={index}
+              custom={index}
+              variants={cardVariants}
+              initial="hidden"
+              animate="visible"
+              whileHover={{ scale: 1.03 }}
+              onMouseEnter={() => setHoverIndex(index)}
+              onMouseLeave={() => setHoverIndex(null)}
+              className={`cursor-pointer w-full p-8 rounded-3xl transition-colors duration-300 ${
+                expanded
+                  ? "bg-[#FC573B] text-white"
+                  : "bg-transparent text-black"
+              }`}
+            >
+              <div className="flex items-center gap-6">
+                {expanded ? " " : <BlackCircle />}
+
+                <div className="flex flex-col gap-2">
+                  <h2 className="text-4xl font-semibold">
+                    {experience.company}
+                  </h2>
+
+                  <span
+                    className={`text-xl ${
+                      expanded ? "text-white/90" : "text-gray-600"
+                    }`}
+                  >
+                    {experience.role}
+                  </span>
+                </div>
+              </div>
+
+              <motion.div
+                variants={descriptionVariants}
+                initial="collapsed"
+                animate={expanded ? "expanded" : "collapsed"}
+                className="overflow-hidden"
+              >
+                <ul
+                  className={`list-disc list-inside space-y-2 mt-2 ${
+                    expanded ? "text-white/90" : "text-gray-700"
+                  }`}
+                >
+                  {experience.description.map((desc, i) => (
+                    <li key={i} className="text-sm leading-relaxed">
+                      {desc}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );

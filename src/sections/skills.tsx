@@ -30,7 +30,14 @@ const SkillsPage = () => {
     { name: "Databases", items: ["MongoDB", "PostgreSQL", "MySQL", "Prisma"] },
     {
       name: "Tools",
-      items: ["Git", "GitHub", "Docker", "Firebase", "Postman"],
+      items: [
+        "Git",
+        "GitHub",
+        "Docker",
+        "Firebase",
+        "Postman",
+        "Android Studio",
+      ],
     },
   ];
 
