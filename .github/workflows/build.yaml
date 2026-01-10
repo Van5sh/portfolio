@@ -1,0 +1,38 @@
+name: Build Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run build
+        run: npm run build
+
+      - name: Run tests
+        run: npm test
+      
+      - name: Vercel Deploy
+        uses: vercel/actions/deploy@v2
+        with:
+          apiToken: ${{ secrets.VERCEL_API_TOKEN }}
+          scope: ${{ secrets.VERCEL_SCOPE }}
+          project: ${{ secrets.VERCEL_PROJECT }}
