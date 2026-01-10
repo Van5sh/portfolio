@@ -225,3 +225,10 @@
 
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
+
+.inversion-lens {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  overflow: hidden;
+}
