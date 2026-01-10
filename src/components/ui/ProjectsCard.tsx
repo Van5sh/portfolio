@@ -1,4 +1,3 @@
-// ProjectsCard.tsx
 import React from "react";
 
 interface ProjectsCardProps {

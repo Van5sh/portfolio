@@ -9,17 +9,20 @@ import ScrollSpring from "@/components/ScrollSpring";
 
 const LandingPage = () => {
   const [hovered, setHovered] = useState(false);
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
-    <div className="flex flex-col min-h-screen px-20 py-10 items-center">
-      {/* ✅ Navbar reveal */}
+    <div className="flex flex-col min-h-screen px-20 gap-3 justify-center py-10 items-center">
       <ScrollSpring className="w-full" delay={0}>
         <Navbar />
       </ScrollSpring>
-
-      {/* ✅ Center reveal */}
       <ScrollSpring
-        className="flex flex-1 items-center justify-center"
+        className="fle flex-1 items-center justify-center"
         delay={0.12}
       >
         <div className="flex flex-col items-center gap-10">
@@ -59,13 +62,17 @@ const LandingPage = () => {
         </div>
       </ScrollSpring>
 
-      {/* ✅ Bottom reveal */}
       <ScrollSpring
         className="flex flex-col items-center gap-6 mb-10"
         delay={0.24}
       >
         <h1 className="text-4xl font-bold">Full Stack Developer</h1>
-        <button className="ripple-button">Let&apos;s Connect</button>
+        <button
+          onClick={() => scrollToSection("contact")}
+          className="ripple-button"
+        >
+          Let&apos;s Connect
+        </button>
       </ScrollSpring>
     </div>
   );

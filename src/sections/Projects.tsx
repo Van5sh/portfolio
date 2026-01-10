@@ -4,14 +4,16 @@ import React, { useReducer } from "react";
 import ProjectsCard from "@/components/ui/ProjectsCard";
 import useMounted from "@/lib/mount";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-
 import Arrow1 from "../../public/svgs/codes/Arrow1";
 import Arrow2 from "../../public/svgs/codes/Arrow2";
 import Arrow3 from "../../public/svgs/codes/Arrow3";
 import Arrow4 from "../../public/svgs/codes/Arrow4";
 import Centre from "../../public/svgs/codes/Centre";
-
+import apex from "../../public/png/images.jpg";
+import acm from "../../public/png/acm.png";
+import cryptic from "../../public/png/Splash.png";
 import CardView from "../components/ui/CardView";
+import { StaticImageData } from "next/image";
 
 type State = {
   activeProjectId: string | null;
@@ -26,8 +28,11 @@ type Project = {
   id: string;
   title: string;
   position: "left" | "right";
-  image: string;
+  image: StaticImageData;
+  imageClass: string;
   link: string;
+  link2?: string;
+  techStack: string[];
   description: string;
 };
 
@@ -54,7 +59,6 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-/* ✅ Modal animation */
 const iosOpen: Variants = {
   hidden: { opacity: 0, scale: 0.92, y: 25 },
   visible: {
@@ -76,7 +80,6 @@ const iosOpen: Variants = {
   },
 };
 
-/* ✅ Scroll reveal animations */
 const centreVariants: Variants = {
   hidden: { opacity: 0, scale: 0.85 },
   visible: {
@@ -119,40 +122,79 @@ const Projects = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   if (!mounted) return null;
-
   const projects: Project[] = [
     {
       id: "maven",
       title: "Maven Financial",
+      imageClass: "w-[90vw]",
       position: "right",
-      image: "",
-      link: "",
+      image: apex,
+      link: "https://github.com/Van5sh/money-matrix",
+      techStack: [
+        "Next.js",
+        "TypeScript",
+        "MongoDB",
+        "Socket.io",
+        "Firebase Auth",
+        "Node.js",
+      ],
       description:
-        "Maven Financial is a full stack web application that allows users to manage their transactions and view account balance.",
+        "Maven Financial is a full-stack financial community platform designed to deliver fast, reliable, and secure user experiences. Built using Next.js with server-side rendering, the platform ensures optimal performance and SEO. It features real-time community chat powered by Socket.io, curated financial blogs, and authenticated user flows using Firebase Authentication. MongoDB is used for flexible data modeling and scalability, while the architecture emphasizes maintainability, responsiveness, and user trust—core principles for modern digital commerce platforms.",
     },
     {
       id: "cryptic",
       title: "Cryptic Hunt",
       position: "right",
-      image: "",
-      link: "",
-      description: "A gamified cryptic hunt platform with puzzle progression.",
+      image: cryptic,
+      imageClass: "object-contain",
+      link: "https://play.google.com/store/apps/details?id=com.acmvit.cryptic_hunt",
+      techStack: [
+        "React Native",
+        "TypeScript",
+        "Go",
+        "GoFiber",
+        "Firebase Auth",
+        "Firebase Cloud Messaging",
+      ],
+      description:
+        "Cryptic Hunt is an innovative treasure-hunt application that merges digital gameplay with real-world interaction using NFC technology. The app is powered by a high-performance Go backend built with Fiber, optimized for low-latency request handling and concurrent users. Real-time push notifications drive player engagement, while Firebase Authentication ensures secure access. The system was designed to be event-driven, responsive, and resilient—delivering smooth gameplay experiences even under high activity.",
     },
     {
       id: "apex",
       title: "Apex Market",
       position: "left",
-      image: "",
-      link: "",
-      description: "E-commerce marketplace with modern UI and cart features.",
+      image: apex,
+      imageClass: "object-contain rounded-lg mr-2",
+      link: "https://github.com/Van5sh/store",
+      link2: "https://github.com/Van5sh/store-backend",
+      techStack: [
+        "NestJS",
+        "TypeScript",
+        "Prisma",
+        "PostgreSQL",
+        "Next.js",
+        "JWT",
+      ],
+      description:
+        "Apex Market is a scalable e-commerce marketplace built with a clean, modular backend architecture using NestJS and Prisma ORM. The platform implements role-based REST APIs and JWT-based authentication to ensure secure access control. A modern Next.js frontend leverages Server Actions for efficient server-side data mutations, reducing client-side complexity. The project focuses on scalability, security, and maintainable system design—key requirements for production-grade commerce platforms.",
     },
     {
       id: "acm",
-      title: "ACMOne-APP",
+      title: "ACMOne App",
       position: "left",
-      image: "",
-      link: "",
-      description: "Club management app for ACM events, members and updates.",
+      image: acm,
+      imageClass: "object-contain rounded-lg",
+      link: "https://play.google.com/store/apps/details?id=com.acmvit.acmone",
+      techStack: [
+        "React Native",
+        "TypeScript",
+        "NestJS",
+        "Firebase Auth",
+        "REST APIs",
+        "Docker",
+      ],
+      description:
+        "ACMOne is the official mobile application for ACM VIT, successfully released on both the Play Store and App Store. The app supports event management and community engagement for 100+ active users, featuring secure authentication via Firebase and a polished, accessible UI/UX. I led cross-platform development, integrated complex REST APIs, and collaborated with stakeholders to deliver a production-ready application. The project emphasizes reliability, usability, and real-world deployment at scale.",
     },
   ];
 
@@ -163,7 +205,6 @@ const Projects = () => {
       <h1 className="text-5xl font-bold tracking-tight mb-25">Projects</h1>
 
       <div className="relative w-full max-w-5xl h-[80vh]">
-        {/* ✅ CENTRE POPS FIRST */}
         <motion.div
           variants={centreVariants}
           initial="hidden"
@@ -175,8 +216,6 @@ const Projects = () => {
         >
           <Centre />
         </motion.div>
-
-        {/* ✅ ARROWS REVEAL FROM CENTRE */}
         <motion.div
           className="absolute inset-0 z-0 flex justify-between items-center px-28"
           initial="hidden"
@@ -231,9 +270,7 @@ const Projects = () => {
             </motion.div>
           </div>
 
-          {/* LEFT SIDE */}
           <div className="flex flex-col items-start gap-8 mr-20">
-            {/* Apex */}
             <motion.div
               variants={arrowFromCentreLeft}
               style={{ transformOrigin: "right center" }}
@@ -271,7 +308,6 @@ const Projects = () => {
           </div>
         </motion.div>
 
-        {/* ✅ MODAL POPUP SAME AS BEFORE */}
         <AnimatePresence>
           {activeProject && (
             <>
@@ -298,8 +334,11 @@ const Projects = () => {
                 <CardView
                   title={activeProject.title}
                   description={activeProject.description}
+                  imageClass={activeProject.imageClass}
                   image={activeProject.image}
                   link={activeProject.link}
+                  techStack={activeProject.techStack}
+                  link2={activeProject.link2}
                 />
               </motion.div>
             </>

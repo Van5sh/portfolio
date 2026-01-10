@@ -14,18 +14,20 @@ const ExperiencePage = () => {
       company: "AI Core Solutions",
       role: "SDE Intern",
       description: [
-        "Developed the app from scratch using React Native and integrated it with backend services. Add the native features like sharing files, notifications and easy access",
-        "Built a user-friendly interface which could be used to upload the videos and summarize them as pdf",
-        "Integrated AI/ML APIs to improve user interaction and data visualization.",
+        "Developed a full-stack mobile application from scratch using React Native, featuring automated video-to-PDF summarization.",
+        "Integrated AI/ML APIs to facilitate intelligent content analysis and real-time data visualization for enhanced user interaction.",
+        "Architected and implemented high-performance, interactive UI components using TypeScript, leading to a more seamless and engaging user experience.",
+        "Collaborated on backend integration to ensure secure and scalable data handling for user-uploaded media.",
       ],
     },
     {
       company: "Zeepty",
       role: "App Developer Intern",
       description: [
-        "Collaborated with a team of developers to design and implement new features for the mobile application using React Native.",
-        "Optimized app performance by identifying and resolving bottlenecks, resulting in a 20% increase in speed and responsiveness.",
-        "Conducted thorough testing and debugging to ensure a seamless user experience across different devices and platforms.",
+        "Spearheaded the development of core mobile features including content sharing, push notifications, and advanced UI enhancements using React Native.",
+        "Optimized application performance by 20% through rigorous state management tuning and code refactoring, significantly reducing app latency.",
+        "Built and maintained automated CI/CD pipelines to streamline the build, testing, and deployment processes across iOS and Android.",
+        "Conducted extensive debugging and performance profiling to identify and resolve critical bottlenecks, ensuring cross-device stability.",
       ],
     },
   ];
@@ -88,7 +90,9 @@ const ExperiencePage = () => {
                 <div className="flex flex-col gap-2 w-[calc(100%-230px)]">
                   <div
                     className={`flex ${
-                      expanded ? "flex-row items-center" : "flex-col justify-start"
+                      expanded
+                        ? "flex-row items-center"
+                        : "flex-col justify-start"
                     } gap-2`}
                   >
                     <h2 className="text-5xl font-semibold">
