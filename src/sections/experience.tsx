@@ -1,18 +1,29 @@
 "use client";
 
 import React, { useState } from "react";
-import BlackCircle from "../../public/svgs/codes/BlackCircle";
 import { motion, Variants } from "framer-motion";
 import useMounted from "@/lib/mount";
 import ScrollSpring from "@/components/ScrollSpring";
+import Image, { StaticImageData } from "next/image";
+
+import zeepty from "../../public/png/intern1.png";
+import ai from "../../public/png/ai.png";
+
+type Experience = {
+  company: string;
+  role: string;
+  image?: StaticImageData;
+  description: string[];
+};
 
 const ExperiencePage = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const experienceData = [
+  const experienceData: Experience[] = [
     {
       company: "AI Core Solutions",
       role: "SDE Intern",
+      image: ai,
       description: [
         "Developed a full-stack mobile application from scratch using React Native, featuring automated video-to-PDF summarization.",
         "Integrated AI/ML APIs to facilitate intelligent content analysis and real-time data visualization for enhanced user interaction.",
@@ -23,6 +34,7 @@ const ExperiencePage = () => {
     {
       company: "Zeepty",
       role: "App Developer Intern",
+      image: zeepty,
       description: [
         "Spearheaded the development of core mobile features including content sharing, push notifications, and advanced UI enhancements using React Native.",
         "Optimized application performance by 20% through rigorous state management tuning and code refactoring, significantly reducing app latency.",
@@ -85,8 +97,15 @@ const ExperiencePage = () => {
               }`}
             >
               <div className="flex items-center gap-6">
-                {!expanded && <BlackCircle className="right-10" />}
-
+                {!expanded && experience.image && (
+                  <Image
+                    src={experience.image}
+                    alt={experience.company}
+                    width={100}
+                    height={100}
+                    className="rounded-full"
+                  />
+                )}
                 <div className="flex flex-col gap-2 w-[calc(100%-230px)]">
                   <div
                     className={`flex ${

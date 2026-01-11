@@ -47,7 +47,7 @@ const LandingPage = () => {
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10"
             />
 
-            <h1 className="text-9xl font-semibold mt-1 text-[#162A39] tracking-[2px] leading-none">
+            <h1 className="text-9xl font-trap font-semibold mt-1 text-[#162A39] tracking-[2px] leading-none">
               DHIR
             </h1>
 
@@ -66,7 +66,7 @@ const LandingPage = () => {
         className="flex flex-col items-center gap-6 mb-10"
         delay={0.24}
       >
-        <h1 className="text-4xl font-bold">Full Stack Developer</h1>
+        <h1 className="text-4xl font-bold font-trap">Full Stack Developer</h1>
         <button
           onClick={() => scrollToSection("contact")}
           className="ripple-button"

@@ -17,14 +17,14 @@ const AboutPage = () => {
         delay={0.12}
       >
         <div className="flex flex-col gap-4 max-w-xl text-justify leading-relaxed">
-          <p>
+          <p className="font-trap">
             I am Vansh Dhir, a Computer Science undergraduate at Vellore
             Institute of Technology with a strong passion for full-stack
             development. I specialize in building scalable, interactive
             applications using modern technologies like Next.js, React Native,
             NestJS, and Golang.
           </p>
-          <p>
+          <p className="font-trap">
             My experience includes interning as an SDE at AI Core Solutions and
             App Developer at Zeepty, where I focused on optimizing performance
             and integrating advanced features. Currently, as the Projects Lead
