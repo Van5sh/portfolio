@@ -15,18 +15,20 @@ const Contacts = () => {
   };
 
   const itemClass =
-    "contact-item flex items-center gap-2 transition-all duration-300 ease-out hover:scale-[1.08] hover:-translate-y-1 hover:shadow-[10px_10px_0px_#FC573B]";
+    "contact-item flex items-center gap-2 transition-all duration-300 ease-out hover:scale-[1.05] hover:-translate-y-1 hover:shadow-[10px_10px_0px_#FC573B]";
 
   return (
-    <div className="flex flex-col items-center gap-10 justify-center w-full px-20 py-16 mb-[200px]">
-      <ScrollSpring as="h1" className="mb-10 text-5xl font-semibold">
-        Contacts
-      </ScrollSpring>
-      <ScrollSpring
-        className="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-6"
-        delay={0.12}
-      >
-      
+    <div className="section-wrap mb-[140px]">
+      <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-3">
+          <span className="section-kicker">Contact</span>
+          <h1 className="section-title">Let&apos;s Build Something</h1>
+        </div>
+
+        <ScrollSpring
+          className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6"
+          delay={0.12}
+        >
         <a href="mailto:vansh05dhir@gmail.com" className={itemClass}>
           <FaMailBulk className="text-lg" />
           <span>vansh05dhir@gmail.com</span>
@@ -66,7 +68,8 @@ const Contacts = () => {
           <SiLeetcode className="text-lg" />
           <span>Vansh Dhir</span>
         </a>
-      </ScrollSpring>
+        </ScrollSpring>
+      </div>
     </div>
   );
 };

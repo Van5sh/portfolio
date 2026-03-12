@@ -10,51 +10,48 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex items-center w-full h-0.5 mb-16 p-2 ">
-      <h1
-        className="absolute left-4 text-2xl font-bold text-black cursor-pointer"
-        onClick={() => scrollToSection("home")}
-      >
-        VD
-      </h1>
-      <nav className="flex items-center justify-center">
-        <ul className="flex gap-8 text-2xl font-medium text-black">
-          <li
-            className="cursor-pointer hover:text-orange-500 font-semibold"
-            onClick={() => scrollToSection("about")}
-          >
-            About
-          </li>
-          <li
-            className="cursor-pointer hover:text-orange-500 font-semibold"
-            onClick={() => scrollToSection("skills")}
-          >
-            Skills
-          </li>
-          <li
-            className="cursor-pointer hover:text-orange-500 font-semibold"
-            onClick={() => scrollToSection("projects")}
-          >
-            Projects
-          </li>
-          <li
-            className="cursor-pointer hover:text-orange-500 font-semibold"
-            onClick={() => scrollToSection("experience")}
-          >
-            Experience
-          </li>
-          <li
-            className="cursor-pointer hover:text-orange-500 font-semibold"
-            onClick={() => scrollToSection("contact")}
-          >
-            Contact
-          </li>
+    <div className="flex flex-col gap-4 w-full py-4 md:flex-row md:items-center md:justify-between">
+      <div className="flex items-center justify-between w-full md:w-auto">
+        <h1
+          className="text-2xl font-bold text-[color:var(--theme-ink)] cursor-pointer"
+          onClick={() => scrollToSection("home")}
+        >
+          VD
+        </h1>
+        <button
+          type="button"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--theme-ink)] hover:text-[color:var(--theme-accent-strong)] md:hidden"
+          onClick={() => window.open("../../../MyResume.pdf", "_blank")}
+        >
+          Resume
+          <Download size={18} />
+        </button>
+      </div>
+
+      <nav className="flex items-center justify-center w-full md:w-auto">
+        <ul className="flex flex-wrap justify-center gap-4 md:gap-6 text-base md:text-lg font-medium text-[color:var(--theme-ink)]">
+          {["about", "skills", "projects", "experience", "contact"].map(
+            (section) => (
+              <li
+                key={section}
+                className="cursor-pointer hover:text-[color:var(--theme-accent-strong)] font-semibold"
+                onClick={() => scrollToSection(section)}
+              >
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+              </li>
+            )
+          )}
         </ul>
       </nav>
-      <Download
-        className="absolute right-4 text-2xl font-bold text-black cursor-pointer"
+
+      <button
+        type="button"
+        className="hidden md:inline-flex items-center gap-2 text-base font-semibold text-[color:var(--theme-ink)] hover:text-[color:var(--theme-accent-strong)]"
         onClick={() => window.open("../../../MyResume.pdf", "_blank")}
-      />
+      >
+        Resume
+        <Download size={20} />
+      </button>
     </div>
   );
 };

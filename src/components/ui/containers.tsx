@@ -1,15 +1,22 @@
 // Containers.tsx
 import React from "react";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 import Card from "../../../public/svgs/card.svg";
 
 interface ContainersProps {
   children: React.ReactNode;
+  className?: string;
 }
 
-const Containers: React.FC<ContainersProps> = ({ children }) => {
+const Containers: React.FC<ContainersProps> = ({ children, className }) => {
   return (
-    <div className="relative flex flex-col h-[400px] w-[260px] items-center justify-center rounded-2xl p-4 overflow-hidden">
+    <div
+      className={cn(
+        "relative flex flex-col h-[400px] w-[260px] items-center justify-center rounded-2xl p-4 overflow-hidden",
+        className
+      )}
+    >
       <Image
         src={Card}
         alt="Card"

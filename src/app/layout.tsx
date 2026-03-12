@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import Image from "next/image";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -69,18 +68,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${trap.variable} font-trap antialiased relative`}
-        style={{
-          backgroundColor: "#E8E0DD",
-        }}
       >
-        <Image
-          src="/svgs/Vector.svg"
-          alt="Background decoration"
-          width={1440}
-          height={100}
-          priority
-          className="fixed top-0 left-0 w-full h-auto -z-10 pointer-events-none"
-        />
         {children}
       </body>
     </html>

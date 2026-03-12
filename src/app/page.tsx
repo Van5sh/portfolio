@@ -9,7 +9,7 @@ import Contacts from "@/sections/Contact";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen items-center justify-center text-black">
+    <div className="page-shell flex flex-col min-h-screen items-center justify-start text-[color:var(--theme-ink)]">
       <section
         id="home"
         className="w-full h-full flex items-center justify-center"

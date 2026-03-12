@@ -13,7 +13,7 @@ import apex from "../../public/png/images.jpg";
 import acm from "../../public/png/acm.png";
 import cryptic from "../../public/png/Splash.png";
 import CardView from "../components/ui/CardView";
-import { StaticImageData } from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 type State = {
   activeProjectId: string | null;
@@ -201,112 +201,145 @@ const Projects = () => {
   const activeProject = projects.find((p) => p.id === state.activeProjectId);
 
   return (
-    <div className="flex flex-col items-center w-full px-20 py-20 relative">
-      <h1 className="text-5xl font-bold tracking-tight mb-25">Projects</h1>
+    <div className="section-wrap relative">
+      <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-3">
+          <span className="section-kicker">Projects</span>
+          <h1 className="section-title">Selected Builds & Launches</h1>
+        </div>
 
-      <div className="relative w-full max-w-5xl h-[80vh]">
-        <motion.div
-          variants={centreVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.45 }}
-          className="absolute top-1/2 left-1/2 z-10 
-                     -translate-x-1/2 -translate-y-1/2
-                     hover:scale-[1.3] transition-transform duration-500 ease-out"
-        >
-          <Centre />
-        </motion.div>
-        <motion.div
-          className="absolute inset-0 z-0 flex justify-between items-center px-28"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.35 }}
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                delayChildren: 0.25,
-                staggerChildren: 0.18,
+        <div className="grid gap-6 lg:hidden">
+          {projects.map((project) => (
+            <button
+              key={project.id}
+              type="button"
+              className="glass-panel rounded-3xl p-6 text-left transition hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(15,29,34,0.18)]"
+              onClick={() =>
+                dispatch({ type: "TOGGLE_PROJECT", payload: project.id })
+              }
+            >
+              <div className="flex items-center gap-4">
+                <div className="relative h-20 w-20 overflow-hidden rounded-2xl bg-white/60">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <h2 className="text-xl font-semibold text-[color:var(--theme-ink)]">
+                    {project.title}
+                  </h2>
+                  <p className="text-sm text-[color:var(--theme-ink-soft)]">
+                    {project.techStack.slice(0, 3).join(" • ")}
+                  </p>
+                </div>
+              </div>
+            </button>
+          ))}
+        </div>
+
+        <div className="relative hidden w-full max-w-5xl h-[80vh] mx-auto lg:block">
+          <motion.div
+            variants={centreVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.45 }}
+            className="absolute top-1/2 left-1/2 z-10 
+                       -translate-x-1/2 -translate-y-1/2
+                       hover:scale-[1.3] transition-transform duration-500 ease-out"
+          >
+            <Centre />
+          </motion.div>
+          <motion.div
+            className="absolute inset-0 z-0 flex justify-between items-center px-28"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.35 }}
+            variants={{
+              hidden: {},
+              visible: {
+                transition: {
+                  delayChildren: 0.25,
+                  staggerChildren: 0.18,
+                },
               },
-            },
-          }}
-        >
-          {/* RIGHT SIDE */}
-          <div className="flex flex-col items-end gap-8">
-            {/* Maven */}
-            <motion.div
-              variants={arrowFromCentreRight}
-              style={{ transformOrigin: "left center" }}
-              className="relative flex items-center"
-            >
-              <Arrow4 />
+            }}
+          >
+            <div className="flex flex-col items-end gap-8">
               <motion.div
-                variants={cardPop}
-                className="absolute cursor-pointer right-[240px] -mt-15 hover:scale-[1.3] transition-transform duration-400 ease-out top-2.5"
-                onClick={() =>
-                  dispatch({ type: "TOGGLE_PROJECT", payload: "maven" })
-                }
+                variants={arrowFromCentreRight}
+                style={{ transformOrigin: "left center" }}
+                className="relative flex items-center"
               >
-                <ProjectsCard>Maven Financial</ProjectsCard>
+                <Arrow4 />
+                <motion.div
+                  variants={cardPop}
+                  className="absolute cursor-pointer right-[240px] -mt-15 hover:scale-[1.3] transition-transform duration-400 ease-out top-2.5"
+                  onClick={() =>
+                    dispatch({ type: "TOGGLE_PROJECT", payload: "maven" })
+                  }
+                >
+                  <ProjectsCard>Maven Financial</ProjectsCard>
+                </motion.div>
               </motion.div>
-            </motion.div>
 
-            {/* Cryptic */}
-            <motion.div
-              variants={arrowFromCentreRight}
-              style={{ transformOrigin: "left center" }}
-              className="relative"
-            >
-              <Arrow3 />
               <motion.div
-                variants={cardPop}
-                className="absolute right-full cursor-pointer hover:scale-[1.3] transition-transform duration-400 ease-out"
-                onClick={() =>
-                  dispatch({ type: "TOGGLE_PROJECT", payload: "cryptic" })
-                }
+                variants={arrowFromCentreRight}
+                style={{ transformOrigin: "left center" }}
+                className="relative"
               >
-                <ProjectsCard>Cryptic Hunt</ProjectsCard>
+                <Arrow3 />
+                <motion.div
+                  variants={cardPop}
+                  className="absolute right-full cursor-pointer hover:scale-[1.3] transition-transform duration-400 ease-out"
+                  onClick={() =>
+                    dispatch({ type: "TOGGLE_PROJECT", payload: "cryptic" })
+                  }
+                >
+                  <ProjectsCard>Cryptic Hunt</ProjectsCard>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          </div>
+            </div>
 
-          <div className="flex flex-col items-start gap-8 mr-20">
-            <motion.div
-              variants={arrowFromCentreLeft}
-              style={{ transformOrigin: "right center" }}
-              className="relative"
-            >
-              <Arrow1 />
+            <div className="flex flex-col items-start gap-8 mr-20">
               <motion.div
-                variants={cardPop}
-                className="absolute cursor-pointer left-[240px] -mt-15 hover:scale-[1.3] transition-transform duration-400 ease-out top-2.5"
-                onClick={() =>
-                  dispatch({ type: "TOGGLE_PROJECT", payload: "apex" })
-                }
+                variants={arrowFromCentreLeft}
+                style={{ transformOrigin: "right center" }}
+                className="relative"
               >
-                <ProjectsCard>Apex Market</ProjectsCard>
+                <Arrow1 />
+                <motion.div
+                  variants={cardPop}
+                  className="absolute cursor-pointer left-[240px] -mt-15 hover:scale-[1.3] transition-transform duration-400 ease-out top-2.5"
+                  onClick={() =>
+                    dispatch({ type: "TOGGLE_PROJECT", payload: "apex" })
+                  }
+                >
+                  <ProjectsCard>Apex Market</ProjectsCard>
+                </motion.div>
               </motion.div>
-            </motion.div>
 
-            {/* ACM */}
-            <motion.div
-              variants={arrowFromCentreLeft}
-              style={{ transformOrigin: "right center" }}
-              className="relative"
-            >
-              <Arrow2 />
               <motion.div
-                variants={cardPop}
-                className="absolute cursor-pointer left-full hover:scale-[1.3] transition-transform duration-400 ease-out"
-                onClick={() =>
-                  dispatch({ type: "TOGGLE_PROJECT", payload: "acm" })
-                }
+                variants={arrowFromCentreLeft}
+                style={{ transformOrigin: "right center" }}
+                className="relative"
               >
-                <ProjectsCard>ACMOne-APP</ProjectsCard>
+                <Arrow2 />
+                <motion.div
+                  variants={cardPop}
+                  className="absolute cursor-pointer left-full hover:scale-[1.3] transition-transform duration-400 ease-out"
+                  onClick={() =>
+                    dispatch({ type: "TOGGLE_PROJECT", payload: "acm" })
+                  }
+                >
+                  <ProjectsCard>ACMOne-APP</ProjectsCard>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          </div>
-        </motion.div>
+            </div>
+          </motion.div>
+        </div>
 
         <AnimatePresence>
           {activeProject && (

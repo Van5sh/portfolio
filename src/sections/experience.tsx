@@ -67,92 +67,90 @@ const ExperiencePage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center w-full px-20 py-16">
-      <ScrollSpring as="h1" className="text-5xl font-bold mb-12">
-        Experience
-      </ScrollSpring>
+    <div className="section-wrap">
+      <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-3">
+          <span className="section-kicker">Experience</span>
+          <h1 className="section-title">Building Products in the Real World</h1>
+        </div>
 
-      <ScrollSpring
-        className="flex flex-col gap-10 w-full max-w-4xl"
-        delay={0.12}
-      >
-        {experienceData.map((experience, index) => {
-          const expanded = activeIndex === index;
+        <ScrollSpring
+          className="flex flex-col gap-6 w-full"
+          delay={0.12}
+        >
+          {experienceData.map((experience, index) => {
+            const expanded = activeIndex === index;
 
-          return (
-            <motion.div
-              key={index}
-              custom={index}
-              variants={cardVariants}
-              initial="hidden"
-              animate="visible"
-              whileTap={{ scale: 0.99 }}
-              onClick={() =>
-                setActiveIndex((prev) => (prev === index ? null : index))
-              }
-              className={`relative cursor-pointer w-full p-8 rounded-3xl transition-colors duration-300 origin-top ${
-                expanded
-                  ? "bg-[#FC573B] text-white"
-                  : "bg-transparent text-black"
-              }`}
-            >
-              <div className="flex items-center gap-6">
-                {!expanded && experience.image && (
-                  <Image
-                    src={experience.image}
-                    alt={experience.company}
-                    width={140}
-                    height={140}
-                    className="rounded-full"
-                  />
-                )}
-                <div className="flex flex-col gap-2 w-[calc(100%-230px)]">
-                  <div
-                    className={`flex ${
-                      expanded
-                        ? "flex-row items-center"
-                        : "flex-col justify-start"
-                    } gap-2`}
-                  >
-                    <h2 className="text-5xl font-semibold">
-                      {experience.company}
-                    </h2>
-
-                    {expanded ? (
-                      <span className="absolute top-6 right-8 text-xl text-white/90">
+            return (
+              <motion.div
+                key={index}
+                custom={index}
+                variants={cardVariants}
+                initial="hidden"
+                animate="visible"
+                whileTap={{ scale: 0.99 }}
+                onClick={() =>
+                  setActiveIndex((prev) => (prev === index ? null : index))
+                }
+                className={`relative cursor-pointer w-full rounded-3xl border border-white/40 p-6 md:p-8 transition-colors duration-300 origin-top ${
+                  expanded
+                    ? "bg-[#FC573B] text-white shadow-[0_24px_60px_rgba(252,87,59,0.35)]"
+                    : "glass-panel text-[color:var(--theme-ink)]"
+                }`}
+              >
+                <div className="flex flex-col gap-6 md:flex-row md:items-center">
+                  {experience.image && (
+                    <Image
+                      src={experience.image}
+                      alt={experience.company}
+                      width={120}
+                      height={120}
+                      className={`rounded-full border-4 ${
+                        expanded
+                          ? "border-white/50"
+                          : "border-[color:var(--theme-canvas-strong)]"
+                      }`}
+                    />
+                  )}
+                  <div className="flex flex-1 flex-col gap-3">
+                    <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                      <h2 className="text-3xl md:text-4xl font-semibold">
+                        {experience.company}
+                      </h2>
+                      <span
+                        className={`text-base font-semibold ${
+                          expanded ? "text-white/90" : "text-[color:var(--theme-ink-soft)]"
+                        }`}
+                      >
                         {experience.role}
                       </span>
-                    ) : (
-                      <span className="text-xl text-gray-600">
-                        {experience.role}
-                      </span>
-                    )}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <motion.div
-                variants={descriptionVariants}
-                initial="collapsed"
-                animate={expanded ? "expanded" : "collapsed"}
-                className="overflow-hidden"
-              >
-                <ul
-                  className={`list-disc list-inside space-y-2 mt-2 ${
-                    expanded ? "text-white/90" : "text-gray-700"
-                  }`}
+                <motion.div
+                  variants={descriptionVariants}
+                  initial="collapsed"
+                  animate={expanded ? "expanded" : "collapsed"}
+                  className="overflow-hidden"
                 >
-                  {experience.description.map((desc, i) => (
-                    <li key={i} className="text-sm leading-relaxed">
-                      {desc}
-                    </li>
-                  ))}
-                </ul>
+                  <ul
+                    className={`list-disc list-inside space-y-2 mt-4 ${
+                      expanded ? "text-white/90" : "text-[color:var(--theme-ink-soft)]"
+                    }`}
+                  >
+                    {experience.description.map((desc, i) => (
+                      <li key={i} className="text-sm leading-relaxed">
+                        {desc}
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          );
-        })}
-      </ScrollSpring>
+            );
+          })}
+        </ScrollSpring>
+      </div>
     </div>
   );
 };
