@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#55e3ff",
+                        "error-container": "#9f0519",
+                        "secondary": "#00dcfc",
+                        "inverse-surface": "#fcf8f9",
+                        "inverse-primary": "#006a71",
+                        "outline": "#767576",
+                        "on-error": "#490006",
+                        "surface-variant": "#262627",
+                        "on-primary-fixed": "#003f43",
+                        "on-primary-fixed-variant": "#005e64",
+                        "error": "#ff716c",
+                        "on-surface-variant": "#adaaab",
+                        "on-error-container": "#ffa8a3",
+                        "tertiary-container": "#4aa2f9",
+                        "on-background": "#ffffff",
+                        "surface-tint": "#8ff5ff",
+                        "on-tertiary": "#002e52",
+                        "on-tertiary-fixed-variant": "#003b68",
+                        "surface": "#0e0e0f",
+                        "primary": "#8ff5ff",
+                        "error-dim": "#d7383b",
+                        "tertiary-fixed": "#72b5ff",
+                        "tertiary-dim": "#4aa2f9",
+                        "surface-container-highest": "#262627",
+                        "outline-variant": "#484849",
+                        "surface-container-low": "#131314",
+                        "surface-container-high": "#201f21",
+                        "surface-container": "#1a191b",
+                        "surface-dim": "#0e0e0f",
+                        "inverse-on-surface": "#565556",
+                        "secondary-fixed-dim": "#00d6f5",
+                        "secondary-container": "#006878",
+                        "surface-bright": "#2c2c2d",
+                        "on-primary-container": "#005359",
+                        "primary-dim": "#00deec",
+                        "on-surface": "#ffffff",
+                        "primary-fixed": "#00eefc",
+                        "on-primary": "#005d63",
+                        "on-secondary": "#004955",
+                        "on-secondary-container": "#ebfbff",
+                        "surface-container-lowest": "#000000",
+                        "background": "#0e0e0f",
+                        "on-secondary-fixed": "#003a44",
+                        "on-tertiary-container": "#00213e",
+                        "primary-fixed-dim": "#00deec",
+                        "primary-container": "#00eefc",
+                        "on-tertiary-fixed": "#001930",
+                        "tertiary-fixed-dim": "#51a7fe",
+                        "on-secondary-fixed-variant": "#005967",
+                        "secondary-dim": "#00cdeb",
+                        "tertiary": "#65afff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Space Grotesk"]
+                    },
+                    "animation": {
+                        "mesh-flow": "mesh-flow 20s ease infinite",
+                        "typewriter": "typewriter 3s steps(40) forwards",
+                        "blink": "blink 1s infinite"
+                    },
+                    "keyframes": {
+                        "mesh-flow": {
+                            "0%": { transform: "translate(0, 0) scale(1)" },
+                            "33%": { transform: "translate(5%, 5%) scale(1.1)" },
+                            "66%": { transform: "translate(-5%, 10%) scale(0.9)" },
+                            "100%": { transform: "translate(0, 0) scale(1)" }
+                        },
+                        "typewriter": {
+                            "from": { width: "0" },
+                            "to": { width: "100%" }
+                        },
+                        "blink": {
+                            "50%": { borderColor: "transparent" }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+        }
+        .cyan-text-glow {
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
+        
+        /* Reveal Animations matching SCREEN_47 */
+        @keyframes reveal-up {
+            from { opacity: 0; transform: translateY(30px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+        .reveal-up { 
+            opacity: 0;
+            animation: reveal-up 1s cubic-bezier(0.23, 1, 0.32, 1) forwards; 
+        }
+        .stagger-1 { animation-delay: 0.2s; }
+        .stagger-2 { animation-delay: 0.4s; }
+        .stagger-3 { animation-delay: 0.6s; }
+
+        .typewriter-container {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #8ff5ff;
+            animation: typewriter 2s steps(40) 1s forwards, blink 1s infinite;
+        }
+
+        .social-expand {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .social-expand:hover {
+            transform: scale(1.2);
+            background: rgba(143, 245, 255, 0.15);
+            box-shadow: 0 0 20px rgba(143, 245, 255, 0.4);
+            color: #8ff5ff;
+        }
+
+        .bg-mesh {
+            background: 
+                radial-gradient(at 0% 0%, rgba(143, 245, 255, 0.08) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(101, 175, 255, 0.08) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(0, 220, 252, 0.08) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(143, 245, 255, 0.08) 0px, transparent 50%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary selection:text-on-primary relative overflow-x-hidden">
+<!-- Pulsing Background Elements -->
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] animate-mesh-flow"></div>
+<div class="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[120px] animate-mesh-flow" style="animation-delay: -5s;"></div>
+<div class="absolute inset-0 bg-mesh opacity-40 animate-mesh-flow" style="animation-duration: 30s;"></div>
+</div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-neutral-950/60 backdrop-blur-xl flex justify-between items-center px-12 py-6 shadow-[0_0_20px_rgba(0,240,255,0.05)] font-['Space_Grotesk'] tracking-tight">
+<div class="text-2xl font-bold text-cyan-400 uppercase tracking-tighter">DevVoid</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-neutral-400 hover:text-cyan-300 transition-colors duration-300 active:scale-95" href="#">Hero</a>
+<a class="text-neutral-400 hover:text-cyan-300 transition-colors duration-300 active:scale-95" href="#">About</a>
+<a class="text-neutral-400 hover:text-cyan-300 transition-colors duration-300 active:scale-95" href="#">Skills</a>
+<a class="text-neutral-400 hover:text-cyan-300 transition-colors duration-300 active:scale-95" href="#">Experience</a>
+<a class="text-neutral-400 hover:text-cyan-300 transition-colors duration-300 active:scale-95" href="#">Projects</a>
+<a class="text-cyan-400 border-b border-cyan-400 pb-1 hover:text-cyan-300 transition-colors duration-300 active:scale-95" href="#">Contact</a>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-lg font-medium active:scale-95 transition-all">Connect</button>
+</nav>
+<!-- SideNavBar (Desktop Only) -->
+<aside class="fixed left-0 top-0 h-full w-20 bg-neutral-950/80 backdrop-blur-2xl flex flex-col items-center py-10 z-40 hidden md:flex">
+<div class="flex flex-col gap-12 mt-20">
+<div class="flex flex-col items-center gap-2 group cursor-pointer text-neutral-600 hover:text-cyan-200 transition-all duration-300">
+<span class="material-symbols-outlined">token</span>
+<span class="font-['Space_Grotesk'] text-xs uppercase">Home</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer text-neutral-600 hover:text-cyan-200 transition-all duration-300">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Space_Grotesk'] text-xs uppercase">Bio</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer text-neutral-600 hover:text-cyan-200 transition-all duration-300">
+<span class="material-symbols-outlined">terminal</span>
+<span class="font-['Space_Grotesk'] text-xs uppercase">Stack</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer text-neutral-600 hover:text-cyan-200 transition-all duration-300">
+<span class="material-symbols-outlined">layers</span>
+<span class="font-['Space_Grotesk'] text-xs uppercase">History</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer text-neutral-600 hover:text-cyan-200 transition-all duration-300">
+<span class="material-symbols-outlined">code</span>
+<span class="font-['Space_Grotesk'] text-xs uppercase">Works</span>
+</div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer text-cyan-400 bg-cyan-500/10 border-r-2 border-cyan-400 px-4 py-2 transition-all duration-300">
+<span class="material-symbols-outlined">alternate_email</span>
+<span class="font-['Space_Grotesk'] text-xs uppercase">Mail</span>
+</div>
+</div>
+</aside>
+<main class="relative z-10 min-h-screen pt-32 pb-20 px-8 md:pl-32 md:pr-12 lg:pr-24">
+<!-- Section Title -->
+<div class="mb-16 reveal-up">
+<h2 class="font-headline text-5xl md:text-7xl font-bold tracking-tighter text-on-surface mb-4">
+<span class="typewriter-container">THE FINAL <span class="text-primary italic">NODE.</span></span>
+</h2>
+<div class="h-1 w-24 bg-primary rounded-full"></div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 max-w-7xl mx-auto">
+<!-- Leadership Highlight Column -->
+<div class="md:col-span-8 flex flex-col gap-6">
+<!-- Main Leadership Card -->
+<div class="bg-surface-container-low p-8 md:p-12 rounded-xl relative overflow-hidden group reveal-up stagger-1">
+<div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent opacity-50"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-3 text-primary mb-6">
+<span class="material-symbols-outlined">verified</span>
+<span class="font-headline uppercase tracking-widest text-sm font-bold">Leadership Overview</span>
+</div>
+<h3 class="font-headline text-3xl md:text-5xl font-bold text-on-surface mb-6 leading-tight">
+                        Projects Lead at <span class="text-primary">ACM-VIT</span>
+</h3>
+<p class="font-body text-on-surface-variant text-lg max-w-2xl mb-12 leading-relaxed">
+                        Orchestrating high-impact technical initiatives for India's premier student technical chapter. Steering a multidisciplinary team towards engineering excellence and community-driven innovation.
+                    </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+<div class="flex flex-col">
+<span class="font-headline text-6xl md:text-7xl font-extrabold text-primary cyan-text-glow leading-none">50+</span>
+<span class="font-headline text-on-surface-variant uppercase tracking-widest text-sm mt-2 font-medium">Team Members Led</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline text-6xl md:text-7xl font-extrabold text-primary cyan-text-glow leading-none">10K+</span>
+<span class="font-headline text-on-surface-variant uppercase tracking-widest text-sm mt-2 font-medium">Active Users Impacted</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Experience Tiles -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-surface-container-high p-6 rounded-xl border border-white/5 glow-hover transition-all duration-300 reveal-up stagger-2">
+<span class="material-symbols-outlined text-primary mb-4" data-weight="fill">hub</span>
+<h4 class="font-headline text-xl font-bold mb-2">Systems Architect</h4>
+<p class="text-on-surface-variant text-sm font-body">Designing scalable microservice architectures and cloud-native solutions for modern distributed systems.</p>
+</div>
+<div class="bg-surface-container-high p-6 rounded-xl border border-white/5 glow-hover transition-all duration-300 reveal-up stagger-2">
+<span class="material-symbols-outlined text-primary mb-4" data-weight="fill">terminal</span>
+<h4 class="font-headline text-xl font-bold mb-2">Open Source Advocate</h4>
+<p class="text-on-surface-variant text-sm font-body">Contributing to core infrastructure projects and fostering a culture of collaborative development.</p>
+</div>
+</div>
+</div>
+<!-- Contact Panel Column -->
+<div class="md:col-span-4 flex flex-col gap-6">
+<!-- Quick Connect Card -->
+<div class="bg-surface-container-highest p-8 rounded-xl border-l-2 border-primary reveal-up stagger-2">
+<h3 class="font-headline text-2xl font-bold mb-8">Direct Access</h3>
+<div class="space-y-6">
+<a class="flex items-center gap-4 group" href="tel:+919818654570">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-on-primary">call</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-xs uppercase font-headline">Phone</p>
+<p class="text-on-surface font-medium">+91 9818654570</p>
+</div>
+</a>
+<a class="flex items-center gap-4 group" href="mailto:vansh05dhir@gmail.com">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-on-primary">alternate_email</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-xs uppercase font-headline">Email</p>
+<p class="text-on-surface font-medium">vansh05dhir@gmail.com</p>
+</div>
+</a>
+</div>
+<div class="mt-10 pt-10 border-t border-outline-variant/20 flex gap-4">
+<a class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center social-expand" href="#">
+<span class="material-symbols-outlined text-lg">share</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center social-expand" href="#">
+<span class="material-symbols-outlined text-lg">code</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center social-expand" href="#">
+<span class="material-symbols-outlined text-lg">link</span>
+</a>
+</div>
+</div>
+<!-- Compact Message Form -->
+<div class="bg-surface-container-low p-8 rounded-xl reveal-up stagger-3">
+<h3 class="font-headline text-xl font-bold mb-6">Send Signal</h3>
+<form class="space-y-4" onsubmit="return false">
+<div class="space-y-1">
+<label class="font-headline text-[10px] uppercase text-on-surface-variant tracking-widest px-1">Identity</label>
+<input class="w-full bg-surface-container border-b border-outline-variant focus:border-primary focus:ring-0 transition-all text-sm py-3 px-1 text-on-surface placeholder:text-neutral-600" placeholder="Your Name" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="font-headline text-[10px] uppercase text-on-surface-variant tracking-widest px-1">Message</label>
+<textarea class="w-full bg-surface-container border-b border-outline-variant focus:border-primary focus:ring-0 transition-all text-sm py-3 px-1 text-on-surface placeholder:text-neutral-600 resize-none" placeholder="Brief project outline..." rows="3"></textarea>
+</div>
+<button class="w-full bg-gradient-to-br from-primary to-secondary text-on-primary font-headline font-bold py-3 rounded-lg flex items-center justify-center gap-2 mt-4 active:scale-95 transition-all shadow-lg shadow-primary/10 hover:shadow-[0_0_30px_rgba(143,245,255,0.4)]">
+                        TRANSMIT
+                        <span class="material-symbols-outlined text-sm">send</span>
+</button>
+</form>
+</div>
+</div>
+</div>
+<!-- Signature Visual -->
+<div class="mt-24 w-full h-[300px] rounded-2xl overflow-hidden relative grayscale opacity-40 hover:grayscale-0 hover:opacity-80 transition-all duration-700 reveal-up stagger-3">
+<img class="w-full h-full object-cover" data-alt="Futuristic technical motherboard circuitry with glowing cyan data streams and obsidian black background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPBbhksbV6S9IVnRScH_0dyT-NPKfi3KTxn0iRGxIafggDU7lBK_0_A7ihWdLg5Sy_RUr-sMYNXP-tLatA_Zaahzbjhzd3LO-bN6YOcnpiIrrKpGmJH6oCt1tGXik_L3grJhiXBcEwRjJ9dnCzplr5hk7BY-fOfhYWlpaCQPg9pZjjdAvXXllnbojQ_7P_uKSaCubjR27A1XCgdas4EgRIDJzahDlWt2piM6uC_Fx4qETE7hx1w8CbUopTK7BdXl83KvDC2lPwf1kw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8">
+<p class="font-headline text-primary text-sm tracking-[0.5em] font-bold uppercase">System Status: Optimal</p>
+<p class="font-headline text-4xl font-bold text-on-surface">Vansh Dhir</p>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-12 mt-auto bg-neutral-950 flex flex-col md:flex-row justify-between items-center font-['Manrope'] text-sm relative z-10">
+<div class="text-neutral-500 mb-6 md:mb-0">
+        © 2024 Obsidian Architect. Built for the void.
+    </div>
+<div class="flex gap-8">
+<a class="text-neutral-500 hover:text-cyan-400 transition-all opacity-80 hover:opacity-100" href="#">GitHub</a>
+<a class="text-neutral-500 hover:text-cyan-400 transition-all opacity-80 hover:opacity-100" href="#">LinkedIn</a>
+<a class="text-neutral-500 hover:text-cyan-400 transition-all opacity-80 hover:opacity-100" href="#">Twitter</a>
+<a class="text-neutral-500 hover:text-cyan-400 transition-all opacity-80 hover:opacity-100" href="#">ReadCV</a>
+</div>
+</footer>
+</body></html>

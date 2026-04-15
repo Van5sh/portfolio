@@ -1,39 +1,42 @@
 "use client";
-import AboutPage from "@/sections/about";
-import LandingPage from "@/sections/landing";
-import SkillsPage from "@/sections/skills";
-import ExperiencePage from "@/sections/experience";
-import Projects from "@/sections/Projects";
-import Extracurricular from "@/sections/Extracurricular";
-import Contacts from "@/sections/Contact";
+
+import Navbar from "@/ui-components/Navbar";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { useScrollSpy } from "@/ui-components/scroll-spy";
+import { ArrowRight, Download, Sparkles } from "lucide-react";
 
 export default function Home() {
+
   return (
-    <div className="page-shell flex flex-col min-h-screen items-center justify-start text-[color:var(--theme-ink)]">
-      <section
-        id="home"
-        className="w-full h-full flex items-center justify-center"
-      >
-        <LandingPage />
+    <main className="page-shell">
+      <Navbar />
+
+      <section id="home" data-spy>
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-7">
+            <div className="section-kicker mb-5">
+              <span className="inline-flex size-8 items-center justify-center rounded-full border border-white/10 bg-white/5">
+                <Sparkles className="size-4 text-[#00F0FF]" />
+              </span>
+              Full Stack Developer
+            </div>
+
+            <h1 className="hero-title">
+              Vansh{" "}
+              <span className="text-[#00F0FF] drop-shadow-[0_0_24px_rgba(0,240,255,0.35)]">
+                Dhir
+              </span>
+            </h1>
+
+            <p className="section-lead mt-6">
+              I build fast, modern web apps with clean UI, smooth animations, and
+              solid engineering—focused on performance and great UX.
+            </p>
+          </div>
+          <div></div>
+        </div>
       </section>
-      <section id="about" className="w-full">
-        <AboutPage />
-      </section>
-      <section id="skills" className="w-full">
-        <SkillsPage />
-      </section>
-      <section id="experience" className="w-full">
-        <ExperiencePage />
-      </section>
-      <section id="projects" className="w-full">
-        <Projects />
-      </section>
-      <section id="extracurricular" className="w-full">
-        <Extracurricular />
-      </section>
-      <section id="contact" className="w-full">
-        <Contacts />
-      </section>
-    </div>
+    </main>
   );
 }
