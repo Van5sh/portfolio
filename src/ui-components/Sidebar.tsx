@@ -29,7 +29,6 @@ export default function Sidebar() {
     if (!target) return
     target.scrollIntoView({ behavior: "smooth", block: "start" })
   }, [])
-
   return (
     <aside className="fixed hidden h-dvh w-20 p-4 backdrop-blur-lg lg:block">
       <nav className="mt-8">

@@ -13,8 +13,7 @@ export default function Home() {
       <Navbar />
 
       <section id="home" data-spy>
-        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-7">
+        <div className="flex flex-col items-start gap-12 ">
             <div className="section-kicker mb-5">
               <span className="inline-flex size-8 items-center justify-center rounded-full border border-white/10 bg-white/5">
                 <Sparkles className="size-4 text-[#00F0FF]" />
@@ -23,7 +22,7 @@ export default function Home() {
             </div>
 
             <h1 className="hero-title">
-              Vansh{" "}
+              Vansh{" "}<br/>
               <span className="text-[#00F0FF] drop-shadow-[0_0_24px_rgba(0,240,255,0.35)]">
                 Dhir
               </span>
@@ -34,8 +33,6 @@ export default function Home() {
               solid engineering—focused on performance and great UX.
             </p>
           </div>
-          <div></div>
-        </div>
       </section>
     </main>
   );
