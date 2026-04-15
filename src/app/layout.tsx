@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Space_Grotesk } from "next/font/google";
-import localFont from "next/font/local";
+import Navbar from "@/ui-components/Navbar";
 import "./globals.css";
 import AppShell from "@/ui-components/AppShell";
+import Footer from "@/ui-components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +30,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${spaceGrotesk.variable} font-space-grotesk antialiased relative`}
       >
+        <Navbar />
         <AppShell>{children}</AppShell>
+        <Footer/>
       </body>
     </html>
   );

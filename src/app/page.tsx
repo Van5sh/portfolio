@@ -1,36 +1,17 @@
 "use client";
 
-import Navbar from "@/ui-components/Navbar";
-import { Sparkles } from "lucide-react";
+
+import Landing  from "@/app/(sections)/Landing/Landing";
+import { LandPlot, Sparkles } from "lucide-react";
+import AboutPage from "./(sections)/About/About";
+import Project from "./(sections)/Project/Project";
 
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col">
-      <Navbar />
-
-      <section
-        id="home"
-        className="flex flex-1 items-center justify-center px-4"
-      >
-        <div className="max-w-2xl flex flex-col items-center text-center gap-8">
-          
-          <p className="text-sm text-white/60 tracking-wide">
-            Full Stack Developer
-          </p>
-
-          <h1 className="hero-title leading-tight">
-              VANSH <br />
-            <span className="text-[#00F0FF] drop-shadow-[0_0_24px_rgba(0,240,255,0.35)]">
-              DHIR
-            </span>
-          </h1>
-
-          <p className="section-lead">
-            I build fast, modern web apps with clean UI, smooth animations, and
-            solid engineering—focused on performance and great UX.
-          </p>
-        </div>
-      </section>
+      {/* <Landing /> */}
+      {/* <AboutPage/> */}
+      <Project/>
     </main>
   );
 }
