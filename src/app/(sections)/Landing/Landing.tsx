@@ -14,6 +14,10 @@ export default function Home() {
       >
         <div className="max-w-2xl flex flex-col items-center text-center gap-8">
           
+          <span className="inline-flex items-center justify-center size-10 rounded-full border border-white/10 bg-white/5">
+            <Sparkles className="size-5 text-[#00F0FF]" />
+          </span>
+
           <p className="text-sm text-white/60 tracking-wide">
             Full Stack Developer
           </p>

@@ -29,10 +29,36 @@ export default function Sidebar() {
     if (!target) return
     target.scrollIntoView({ behavior: "smooth", block: "start" })
   }, [])
+
   return (
-    <aside className="fixed hidden h-dvh w-20 p-4 backdrop-blur-lg lg:block">
-      <nav className="mt-8">
-        <ul className="space-y-2">
+    <aside className="fixed left-4 top-1/2 z-50 hidden -translate-y-1/2 lg:block">
+      <nav className="rounded-2xl p-3 backdrop-blur-xl shadow-lg">
+        <ul className="flex flex-col items-center gap-3">
+          {NAV_ITEMS.map((item) => {
+            const Icon = item.icon
+            const isActive = activeSectionId === item.id
+
+            return (
+              <li key={item.id} className="relative group">
+                <button
+                  onClick={() => onNavClick(item.id)}
+                  className={cn(
+                    "flex h-11 w-11 items-center justify-center rounded-xl transition-all duration-200",
+                    "hover:bg-white/10 hover:scale-105",
+                    isActive
+                      ? "bg-white text-black shadow-md"
+                      : "text-white/60 hover:text-white"
+                  )}
+                >
+                  <Icon className="h-5 w-5" />
+                </button>
+
+                <span className="absolute left-14 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-md bg-black px-2 py-1 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100">
+                  {item.label}
+                </span>
+              </li>
+            )
+          })}
         </ul>
       </nav>
     </aside>
