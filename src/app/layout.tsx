@@ -1,39 +1,33 @@
 import type { Metadata } from "next";
-import { Geist, Space_Grotesk } from "next/font/google";
-import Navbar from "@/ui-components/Navbar";
+import { Syne, Courier_Prime } from "next/font/google";
 import "./globals.css";
-import AppShell from "@/ui-components/AppShell";
-import Footer from "@/ui-components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const syne = Syne({
+  variable: "--font-syne",
   subsets: ["latin"],
+  weight: ["700", "800"],
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const courierPrime = Courier_Prime({
+  variable: "--font-courier-prime",
   subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
-  title: "Hire Vansh Dhir",
-  description: "My portfolio website",
+  title: "VANSH. — a hack-shaped portfolio",
+  description: "Full Stack Developer · Cricket Enthusiast · Builder",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${spaceGrotesk.variable} font-space-grotesk antialiased relative`}
-      >
-        <Navbar />
-        <AppShell>{children}</AppShell>
-        <Footer/>
-      </body>
+    <html lang="en" className={`${syne.variable} ${courierPrime.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }
