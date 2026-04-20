@@ -1,88 +1,33 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import localFont from "next/font/local";
+import { Syne, Courier_Prime } from "next/font/google";
 import "./globals.css";
-import Image from "next/image";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const syne = Syne({
+  variable: "--font-syne",
   subsets: ["latin"],
+  weight: ["700", "800"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const courierPrime = Courier_Prime({
+  variable: "--font-courier-prime",
   subsets: ["latin"],
-});
-
-const trap = localFont({
-  src: [
-    {
-      path: "../../public/fonts/Trap-Regular.otf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/Trap-Medium.otf",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/Trap-SemiBold.otf",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/Trap-Bold.otf",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/Trap-ExtraBold.otf",
-      weight: "800",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/Trap-Black.otf",
-      weight: "900",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/Trap-Light.otf",
-      weight: "300",
-      style: "normal",
-    },
-  ],
-  variable: "--font-trap",
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
-  title: "Hire Vansh Dhir",
-  description: "My portfolio website",
+  title: "VANSH. — a hack-shaped portfolio",
+  description: "Full Stack Developer · Cricket Enthusiast · Builder",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${trap.variable} font-trap antialiased relative`}
-        style={{
-          backgroundColor: "#E8E0DD",
-        }}
-      >
-        <Image
-          src="/svgs/Vector.svg"
-          alt="Background decoration"
-          width={1440}
-          height={100}
-          priority
-          className="fixed top-0 left-0 w-full h-auto -z-10 pointer-events-none"
-        />
-        {children}
-      </body>
+    <html lang="en" className={`${syne.variable} ${courierPrime.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }
