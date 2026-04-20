@@ -42,7 +42,15 @@ export default function SceneFinal() {
             color: INK,
           }}
         >
-          vansh@dev.io · github.com/vansh · @vanshdev
+          <a href="mailto:vansh05dhir@gmail.com" target="_blank" rel="noopener noreferrer">
+            vansh05dhir@gmail.com
+          </a>{"  "}
+          <a href="https://github.com/Van5sh" target="_blank" rel="noopener noreferrer">
+            Van5sh
+          </a>{"  "}
+          <a href="https://linkedin.com/in/vansh05dhir" target="_blank" rel="noopener noreferrer">
+            Vansh
+          </a>
         </p>
         <div
           style={{
