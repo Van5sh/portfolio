@@ -2,8 +2,7 @@
 
 import { Project, NAV_ITEMS } from "@/lib/data";
 
-const INK = "#3B0D12";
-const BG = "#F7F2E3";
+const INK = "var(--ink)";
 
 interface ProjectModalProps {
   project: Project;
@@ -65,10 +64,10 @@ export function MenuModal({ onClose, onNavigate }: MenuModalProps) {
     <div className="overlay" onClick={onClose}>
       <div className="receipt" onClick={e => e.stopPropagation()}>
         <div style={{ textAlign: "center", marginBottom: 4 }}>
-          <div style={{ fontWeight: 700, letterSpacing: "0.05em" }}>VANSH SHARMA</div>
-          <div style={{ opacity: 0.45, fontSize: 11 }}>vansh@dev.io</div>
+          <div style={{ fontWeight: 700, letterSpacing: "0.05em" }}>VANSH DHIR</div>
+          <div style={{ opacity: 0.45, fontSize: 11 }}>Van5sh</div>
         </div>
-        <hr style={{ border: "none", borderTop: "1px solid rgba(247,242,227,0.28)", margin: "10px 0" }} />
+        <hr style={{ border: "none", borderTop: "1px solid rgb(var(--bg-rgb) / 0.28)", margin: "10px 0" }} />
         <div style={{ fontSize: 11, opacity: 0.4, display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
           <span>Session #001</span>
           <span>Logged In</span>
@@ -85,7 +84,7 @@ export function MenuModal({ onClose, onNavigate }: MenuModalProps) {
             {item.label}
           </div>
         ))}
-        <hr style={{ border: "none", borderTop: "1px dashed rgba(247,242,227,0.25)", margin: "12px 0" }} />
+        <hr style={{ border: "none", borderTop: "1px dashed rgb(var(--bg-rgb) / 0.25)", margin: "12px 0" }} />
         <div style={{ textAlign: "center", fontSize: 11 }}>
           <div style={{ letterSpacing: "0.12em", opacity: 0.75 }}>BUILT WITH ♥ AND CRICKET</div>
           <div style={{ opacity: 0.35, marginTop: 4 }}>VANSH. 2025</div>

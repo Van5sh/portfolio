@@ -1,7 +1,7 @@
 import { Plant, FloorLine } from "@/components/SvgPrimitives";
 
-const INK = "#3B0D12";
-const BG = "#F7F2E3";
+const INK = "var(--ink)";
+const BG = "var(--bg)";
 const SW = 2.2;
 
 export default function SceneSideQuests() {

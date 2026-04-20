@@ -1,7 +1,7 @@
-import { Desk, Monitor, Keyboard, Mug, Plant, CricketBall } from "@/components/SvgPrimitives";
+import { Monitor, Keyboard, Mug, Plant, CricketBall } from "@/components/SvgPrimitives";
 import { Project } from "@/lib/data";
 
-const INK = "#3B0D12";
+const INK = "var(--ink)";
 const SW = 2.2;
 
 interface Props {
@@ -18,7 +18,7 @@ export default function SceneHackstation({ projects, onProjectClick }: Props) {
         viewBox="0 0 1400 315"
         preserveAspectRatio="xMidYMax meet"
       >
-        <Desk x={0} y={218} w={1400} />
+        {/* <Desk x={0} y={218} w={1400} /> */}
         <Plant x={42} y={88} scale={0.85} />
         <Monitor x={175} y={72} w={210} h={132}
           label={projects[0].name} sublabel={projects[0].tech[0]}
@@ -35,7 +35,6 @@ export default function SceneHackstation({ projects, onProjectClick }: Props) {
         <Keyboard x={488} y={208} w={210} h={54} />
         <Mug x={1218} y={160} scale={0.68} />
         <CricketBall x={1335} y={213} r={14} />
-        {/* lamp */}
         <g transform="translate(1128,76)">
           <line x1={0} y1={0} x2={0} y2={140} stroke={INK} strokeWidth={SW} />
           <path d="M-30,0 Q0,-12 30,0" fill="none" stroke={INK} strokeWidth={SW} />

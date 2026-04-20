@@ -1,6 +1,6 @@
 import { Cloud } from "@/components/SvgPrimitives";
 
-const INK = "#3B0D12";
+const INK = "var(--ink)";
 
 export default function SceneWelcome() {
   return (

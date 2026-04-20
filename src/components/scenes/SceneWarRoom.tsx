@@ -1,6 +1,6 @@
 import { Whiteboard, Chair, Mug, Monitor, Keyboard, Plant, FloorLine } from "@/components/SvgPrimitives";
 
-const INK = "#3B0D12";
+const INK = "var(--ink)";
 const SW = 2.2;
 
 export default function SceneWarRoom() {

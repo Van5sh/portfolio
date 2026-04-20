@@ -13,7 +13,8 @@ import SceneFinal from "@/components/scenes/SceneFinal";
 import { ProjectModal, MenuModal } from "@/components/Modals";
 import { PROJECTS, SCENE_NAMES, Project } from "@/lib/data";
 
-const INK = "#3B0D12";
+const INK = "var(--ink)";
+const BG = "var(--bg)";
 
 export default function Portfolio() {
   const [cur, setCur] = useState(0);
@@ -36,7 +37,10 @@ export default function Portfolio() {
   useEffect(() => {
     try {
       const s = localStorage.getItem("vansh-scene");
-      if (s !== null) setCur(Math.min(parseInt(s), TOTAL - 1));
+      if (s !== null) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setCur(Math.min(parseInt(s), TOTAL - 1));
+      }
     } catch {}
   }, []);
 
@@ -96,7 +100,7 @@ export default function Portfolio() {
   return (
     <div
       style={{
-        background: "#F7F2E3",
+        background: BG,
         width: "100%",
         height: isMobile ? "auto" : "100vh",
         overflow: isMobile ? "visible" : "hidden",
@@ -172,16 +176,16 @@ export default function Portfolio() {
             display: "flex",
             justifyContent: "center",
             padding: "12px 0 20px",
-            background: "rgba(247,242,227,0.9)",
+            background: "rgb(var(--bg-rgb) / 0.9)",
             backdropFilter: "blur(8px)",
-            borderTop: `1px solid rgba(59,13,18,0.1)`,
+            borderTop: "1px solid rgb(var(--ink-rgb) / 0.1)",
           }}
         >
           <button
             onClick={() => setMenu(true)}
             style={{
               background: INK,
-              color: "#F7F2E3",
+              color: BG,
               border: "none",
               borderRadius: 100,
               padding: "8px 28px",

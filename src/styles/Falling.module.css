@@ -14,8 +14,8 @@
   top: -50px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #ffffff;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  color: var(--ink);
+  text-shadow: 0 2px 8px rgb(var(--ink-rgb) / 0.28);
   animation-name: fallText;
   animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   animation-iteration-count: 1;

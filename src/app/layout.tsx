@@ -16,7 +16,7 @@ const courierPrime = Courier_Prime({
 });
 
 export const metadata: Metadata = {
-  title: "VANSH. — a hack-shaped portfolio",
+  title: "HIRE ME — VANSH DHIR",
   description: "Full Stack Developer · Cricket Enthusiast · Builder",
 };
 

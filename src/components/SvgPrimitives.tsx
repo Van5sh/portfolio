@@ -1,5 +1,5 @@
-const INK = "#3B0D12";
-const BG = "#F7F2E3";
+const INK = "var(--ink)";
+const BG = "var(--bg)";
 const SW = 2.2;
 
 export function Cloud({ x = 0, y = 0, scale = 1 }: { x?: number; y?: number; scale?: number }) {

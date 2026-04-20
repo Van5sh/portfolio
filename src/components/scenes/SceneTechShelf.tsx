@@ -1,6 +1,6 @@
 import { Book, Plant, CricketBat, ServerRack, FloorLine } from "@/components/SvgPrimitives";
 
-const INK = "#3B0D12";
+const INK = "var(--ink)";
 const SW = 2.2;
 
 const books = ["React", "Next.js", "Node.js", "TypeScript", "Python", "PostgreSQL", "MongoDB", "Docker", "AWS", "GraphQL"];

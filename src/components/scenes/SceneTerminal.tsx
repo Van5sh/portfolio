@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { Plant, Keyboard, FloorLine } from "@/components/SvgPrimitives";
 
-const INK = "#3B0D12";
-const BG = "#F7F2E3";
+const INK = "var(--ink)";
+const BG = "var(--bg)";
 
 export default function SceneTerminal() {
   const [name, setName] = useState("");
@@ -70,7 +70,7 @@ export default function SceneTerminal() {
                   width: "100%",
                   background: "transparent",
                   border: "none",
-                  borderBottom: "1px solid rgba(247,242,227,0.28)",
+                  borderBottom: "1px solid rgb(var(--bg-rgb) / 0.28)",
                   color: BG,
                   fontFamily: "var(--font-courier-prime), monospace",
                   fontSize: 13,
