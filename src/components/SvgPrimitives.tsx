@@ -17,6 +17,43 @@ export function Cloud({ x = 0, y = 0, scale = 1 }: { x?: number; y?: number; sca
   );
 }
 
+export function Paper({ x, y, scale = 1 }: { x?: number; y?: number; scale?: number }) {
+  const s = scale;
+  return (
+    <g transform={`translate(${x},${y}) scale(${s})`}>
+      {/* Body with top-right dog-ear */}
+      <path
+        d="M0,0 L52,0 L62,10 L62,82 L0,82 Z"
+        fill={BG}
+        stroke={INK}
+        strokeWidth={SW}
+        strokeLinejoin="round"
+      />
+      {/* Dog-ear fold triangle */}
+      <path
+        d="M52,0 L52,10 L62,10"
+        fill="none"
+        stroke={INK}
+        strokeWidth={SW}
+        strokeLinejoin="round"
+      />
+      {/* Ruled lines */}
+      {[20, 30, 40, 50, 60, 70].map((ly) => (
+        <line
+          key={ly}
+          x1={8}
+          y1={ly}
+          x2={54}
+          y2={ly}
+          stroke={INK}
+          strokeWidth={1.1}
+          opacity={0.45}
+        />
+      ))}
+    </g>
+  );
+}
+
 export function Desk({ x = 0, y = 0, w = 1400 }: { x?: number; y?: number; w?: number }) {
   const n = Math.floor(w / 30);
   return (
