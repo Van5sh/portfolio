@@ -38,73 +38,54 @@ export function Desk({ x = 0, y = 0, w = 1400 }: { x?: number; y?: number; w?: n
   );
 }
 
-export function Monitor({
-  x, y, w = 190, h = 125, label = "", sublabel = "", onClick,
+export function MonitorSVG({
+  x, y, w, h, standX, label, sublabel, blinkDelay, onClick,
 }: {
-  x: number; y: number; w?: number; h?: number;
-  label?: string; sublabel?: string; onClick?: () => void;
+  x: number; y: number; w: number; h: number; standX: number;
+  label: string; sublabel: string; blinkDelay: string;
+  onClick: () => void;
 }) {
+  const cx = x + w / 2;
   return (
-    <g onClick={onClick} style={{ cursor: onClick ? "pointer" : "default" }}>
-      {onClick && (
-        <rect
-          x={x - 4} y={y - 4} width={w + 8} height={h + 8} rx={6}
-          fill="none" stroke={INK} strokeWidth={1} strokeDasharray="5,4" opacity={0.3}
-        />
-      )}
-      <rect x={x} y={y} width={w} height={h} rx={4} fill={BG} stroke={INK} strokeWidth={SW} />
-      <rect x={x} y={y} width={w} height={24} rx={4} fill="none" stroke={INK} strokeWidth={SW} />
-      <line x1={x} y1={y + 24} x2={x + w} y2={y + 24} stroke={INK} strokeWidth={SW} />
-      <circle cx={x + 11} cy={y + 12} r={3.5} fill="none" stroke={INK} strokeWidth={1.6} />
-      <circle cx={x + 23} cy={y + 12} r={3.5} fill="none" stroke={INK} strokeWidth={1.6} />
-      <circle cx={x + 35} cy={y + 12} r={3.5} fill="none" stroke={INK} strokeWidth={1.6} />
-      <line x1={x + 12} y1={y + 38} x2={x + w - 12} y2={y + 38} stroke={INK} strokeWidth={2} />
-      <line x1={x + 12} y1={y + 48} x2={x + w * 0.62} y2={y + 48} stroke={INK} strokeWidth={2} />
-      <line x1={x + 12} y1={y + 58} x2={x + w * 0.82} y2={y + 58} stroke={INK} strokeWidth={2} />
-      <line x1={x + 12} y1={y + 68} x2={x + w * 0.52} y2={y + 68} stroke={INK} strokeWidth={2} />
-      {label && (
-        <text
-          x={x + w / 2} y={y + h - 22} textAnchor="middle"
-          fill={INK} fontFamily="var(--font-courier-prime), monospace"
-          fontSize="11" fontWeight="bold" letterSpacing=".05em"
-        >
-          {label}
-        </text>
-      )}
-      {sublabel && (
-        <text
-          x={x + w / 2} y={y + h - 8} textAnchor="middle"
-          fill={INK} fontFamily="var(--font-courier-prime), monospace"
-          fontSize="9" opacity={0.55}
-        >
-          {sublabel}
-        </text>
-      )}
-      <line x1={x + w / 2} y1={y + h} x2={x + w / 2} y2={y + h + 20} stroke={INK} strokeWidth={SW} />
-      <line
-        x1={x + w / 2 - 28} y1={y + h + 20}
-        x2={x + w / 2 + 28} y2={y + h + 20}
-        stroke={INK} strokeWidth={SW}
-      />
+    <g onClick={onClick} style={{ cursor: "pointer" }}>
+      <rect x={x} y={y} width={w} height={h} rx={4} fill="var(--bg,#fff)" stroke={INK} strokeWidth={SW} />
+      <rect x={x} y={y} width={w} height={26} rx={4} fill="none" stroke={INK} strokeWidth={SW} />
+      <line x1={x} y1={y + 26} x2={x + w} y2={y + 26} stroke={INK} strokeWidth={SW} />
+      <circle cx={x + 14} cy={y + 13} r={4} fill="none" stroke={INK} strokeWidth={1.6} />
+      <circle cx={x + 27} cy={y + 13} r={4} fill="none" stroke={INK} strokeWidth={1.6} />
+      <circle cx={x + 40} cy={y + 13} r={4} fill="none" stroke={INK} strokeWidth={1.6} />
+      <line x1={x + 15} y1={y + 40} x2={x + w - 15} y2={y + 40} stroke={INK} strokeWidth={2} />
+      <line x1={x + 15} y1={y + 51} x2={x + w * 0.62} y2={y + 51} stroke={INK} strokeWidth={2} />
+      <line x1={x + 15} y1={y + 62} x2={x + w * 0.82} y2={y + 62} stroke={INK} strokeWidth={2} />
+      <line x1={x + 15} y1={y + 73} x2={x + w * 0.52} y2={y + 73} stroke={INK} strokeWidth={2} />
+      <text x={cx} y={y + h - 22} textAnchor="middle" fill={INK}
+        fontFamily="monospace" fontSize={11} fontWeight="bold" letterSpacing=".05em">
+        {label}
+      </text>
+      <text x={cx} y={y + h - 8} textAnchor="middle" fill={INK}
+        fontFamily="monospace" fontSize={9} opacity={0.55}>
+        {sublabel}
+      </text>
+      <line x1={standX} y1={y + h} x2={standX} y2={220} stroke={INK} strokeWidth={SW} />
+      <line x1={standX - 28} y1={220} x2={standX + 28} y2={220} stroke={INK} strokeWidth={SW} />
+      <circle cx={standX} cy={y} r={4.5} fill={INK}
+        style={{ animation: `blink 1.1s ease-in-out infinite ${blinkDelay}` }} />
     </g>
   );
 }
 
 export function Keyboard({ x, y, w = 220, h = 60 }: { x: number; y: number; w?: number; h?: number }) {
   return (
-    <g>
-      <rect x={x} y={y} width={w} height={h} rx={8} fill="none" stroke={INK} strokeWidth={SW} />
-      {[0, 1, 2].map(row =>
-        Array.from({ length: 11 }).map((_, col) => {
-          const kx = x + 9 + col * 18;
-          const ky = y + 9 + row * 16;
-          return (
-            <rect key={`${row}-${col}`} x={kx} y={ky} width={15} height={12} rx={2}
-              fill="none" stroke={INK} strokeWidth={1.2} />
-          );
-        })
+    <g transform="translate(478,252)">
+      <rect x={0} y={-4} width={248} height={68} rx={8} fill="none" stroke={INK} strokeWidth={SW} />
+      {[4, 20, 36].map(rowY =>
+        Array.from({ length: rowY === 36 ? 9 : 12 }).map((_, col) => (
+          <rect key={`${rowY}-${col}`}
+            x={9 + col * 20} y={rowY} width={17} height={13} rx={2}
+            fill="none" stroke={INK} strokeWidth={1.2} />
+        ))
       )}
-      <rect x={x + 55} y={y + h - 15} width={w - 110} height={9} rx={2} fill="none" stroke={INK} strokeWidth={1.2} />
+      <rect x={59} y={52} width={128} height={10} rx={2} fill="none" stroke={INK} strokeWidth={1.2} />
     </g>
   );
 }
@@ -160,16 +141,14 @@ export function CricketBat({ x, y, angle = -12 }: { x: number; y: number; angle?
 
 export function CricketBall({ x, y, r = 22 }: { x: number; y: number; r?: number }) {
   return (
-    <g transform={`translate(${x},${y})`}>
-      <circle cx={0} cy={0} r={r} fill="none" stroke={INK} strokeWidth={SW} />
-      <path d={`M${-r},0 Q${-r * 0.5},${-r * 0.5} 0,0 Q${r * 0.5},${r * 0.5} ${r},0`}
-        fill="none" stroke={INK} strokeWidth={1.6} />
-      <path d={`M${-r},0 Q${-r * 0.5},${r * 0.5} 0,0 Q${r * 0.5},${-r * 0.5} ${r},0`}
-        fill="none" stroke={INK} strokeWidth={1.6} />
-      {[-8, -4, 0, 4, 8].map(dx => (
-        <circle key={dx} cx={dx} cy={dx > 0 ? -3 : 3} r={1.2} fill={INK} />
-      ))}
-    </g>
+    <g transform="translate(1290,220)">
+          <circle cx={0} cy={0} r={16} fill="none" stroke={INK} strokeWidth={SW} />
+          <path d="M-16,0 Q-8,-8 0,0 Q8,8 16,0" fill="none" stroke={INK} strokeWidth={1.6} />
+          <path d="M-16,0 Q-8,8 0,0 Q8,-8 16,0" fill="none" stroke={INK} strokeWidth={1.6} />
+          <circle cx={-5} cy={-2} r={1.2} fill={INK} />
+          <circle cx={0} cy={2} r={1.2} fill={INK} />
+          <circle cx={5} cy={-2} r={1.2} fill={INK} />
+        </g>
   );
 }
 

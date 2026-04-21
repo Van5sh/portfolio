@@ -1,4 +1,4 @@
-import { Whiteboard, Chair, Mug, Monitor, Keyboard, Plant, FloorLine } from "@/components/SvgPrimitives";
+import { Whiteboard, Chair, Mug, MonitorSVG, Keyboard, Plant, FloorLine } from "@/components/SvgPrimitives";
 
 const INK = "var(--ink)";
 const SW = 2.2;
@@ -29,7 +29,7 @@ export default function SceneWarRoom() {
         <line x1={170} y1={212} x2={155} y2={310} stroke={INK} strokeWidth={SW} />
         <line x1={320} y1={212} x2={335} y2={310} stroke={INK} strokeWidth={SW} />
         <Mug x={198} y={162} scale={0.62} />
-        <Monitor x={1090} y={115} w={195} h={125} />
+        <MonitorSVG x={1090} y={115} w={195} h={125} standX={1190} label="Monitor" sublabel="Tech Stack" blinkDelay="0s" onClick={() => {}} />
         <Keyboard x={1082} y={202} w={212} h={50} />
         <Plant x={1335} y={185} scale={0.62} />
         <FloorLine />

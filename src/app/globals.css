@@ -93,7 +93,7 @@ a:hover {
   cursor: pointer;
   opacity: 0.75;
   border-radius: 100px;
-  transition: opacity 0.18s, background 0.18s;
+  transition: opacity 0.18s,background 0.18s;
   display: flex;
   align-items: center;
   justify-content: center;

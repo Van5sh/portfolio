@@ -1,53 +1,92 @@
-import { Monitor, Keyboard, Mug, Plant, CricketBall } from "@/components/SvgPrimitives";
-import { Project } from "@/lib/data";
+import { Plant, Mug, Keyboard, Desk, CricketBall, MonitorSVG } from "@/components/SvgPrimitives";
 
 const INK = "var(--ink)";
 const SW = 2.2;
+
+interface Project {
+  name: string;
+  tech: string[];
+}
 
 interface Props {
   projects: Project[];
   onProjectClick: (p: Project) => void;
 }
 
+const MONITORS = [
+  { x: 148, y: 62, w: 198, h: 136, standX: 247 },
+  { x: 392, y: 48, w: 216, h: 150, standX: 500 },
+  { x: 670, y: 58, w: 200, h: 140, standX: 770 },
+  { x: 924, y: 64, w: 190, h: 134, standX: 1019 },
+];
+
+const CABLE_PATHS = [
+  "M247,220 L247,232 L490,232 L490,248",
+  "M500,220 L500,228 L570,228 L570,248",
+  "M770,220 L770,228 L636,228 L636,248",
+  "M1019,220 L1019,232 L726,232 L726,248",
+];
+
+const BLINK_DELAYS = ["0s", "0.28s", "0.56s", "0.84s"];
+const CABLE_DELAYS = ["0s", "-0.25s", "-0.5s", "-0.75s"];
+
 export default function SceneHackstation({ projects, onProjectClick }: Props) {
+
+  // ✅ dynamically center keyboard under monitor layout
+  const KEYBOARD_X =
+    (MONITORS[0].x + MONITORS[3].x + MONITORS[3].w) / 2 - 120;
+
   return (
     <div className="scene">
-      <p className="slabel">● EACH SCREEN IS A PROJECT. CLICK TO RUN.</p>
+      <style>{`
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
+        @keyframes flow  { from{stroke-dashoffset:24} to{stroke-dashoffset:0} }
+        .flow-line { stroke-dasharray:6 4; animation: flow 0.7s linear infinite; }
+      `}</style>
+
       <svg
-        style={{ position: "absolute", bottom: 54, left: 0, width: "100%", overflow: "visible" }}
-        viewBox="0 0 1400 315"
+        style={{
+          position: "absolute",
+          top:"28%",
+          left: 0,
+          width: "100%",
+          overflow: "visible"
+        }}
+        className="justify-center items-center"
+        viewBox="0 0 1400 340"
         preserveAspectRatio="xMidYMax meet"
       >
-        {/* <Desk x={0} y={218} w={1400} /> */}
-        <Plant x={42} y={88} scale={0.85} />
-        <Monitor x={175} y={72} w={210} h={132}
-          label={projects[0].name} sublabel={projects[0].tech[0]}
-          onClick={() => onProjectClick(projects[0])} />
-        <Monitor x={435} y={62} w={228} h={142}
-          label={projects[1].name} sublabel={projects[1].tech[0]}
-          onClick={() => onProjectClick(projects[1])} />
-        <Monitor x={715} y={72} w={210} h={132}
-          label={projects[2].name} sublabel={projects[2].tech[0]}
-          onClick={() => onProjectClick(projects[2])} />
-        <Monitor x={985} y={78} w={198} h={126}
-          label={projects[3].name} sublabel={projects[3].tech[0]}
-          onClick={() => onProjectClick(projects[3])} />
-        <Keyboard x={488} y={208} w={210} h={54} />
-        <Mug x={1218} y={160} scale={0.68} />
-        <CricketBall x={1335} y={213} r={14} />
-        <g transform="translate(1128,76)">
-          <line x1={0} y1={0} x2={0} y2={140} stroke={INK} strokeWidth={SW} />
-          <path d="M-30,0 Q0,-12 30,0" fill="none" stroke={INK} strokeWidth={SW} />
-          <path d="M-28,0 L-36,26 Q0,32 36,26 L28,0 Z" fill="none" stroke={INK} strokeWidth={SW} />
-          <line x1={-22} y1={140} x2={22} y2={140} stroke={INK} strokeWidth={SW} />
-        </g>
-        {/* rubber duck */}
-        <g transform="translate(902,210)">
-          <ellipse cx={0} cy={10} rx={14} ry={9} fill="none" stroke={INK} strokeWidth={SW} />
-          <circle cx={0} cy={0} r={9} fill="none" stroke={INK} strokeWidth={SW} />
-          <path d="M7,-2 Q14,-6 16,1" fill="none" stroke={INK} strokeWidth={1.8} strokeLinecap="round" />
-          <circle cx={4} cy={-2} r={1.5} fill={INK} />
-        </g>
+        <Plant x={20} y={200} />
+        <Desk x={0} y={320} />
+        {MONITORS.map((m, i) => (
+          <MonitorSVG
+            key={i}
+            x={m.x}
+            y={m.y}
+            w={m.w}
+            h={m.h}
+            standX={m.standX}
+            label={projects[i]?.name ?? ""}
+            sublabel={projects[i]?.tech[0] ?? ""}
+            blinkDelay={BLINK_DELAYS[i]}
+            onClick={() => onProjectClick(projects[i])}
+          />
+        ))}
+        <Plant x={1220} y={200} />
+        <Keyboard x={KEYBOARD_X} y={228} />
+        {CABLE_PATHS.map((d, i) => (
+          <path
+            key={i}
+            className="flow-line"
+            d={d}
+            fill="none"
+            stroke={INK}
+            strokeWidth={1.6}
+            opacity={0.55}
+            style={{ animationDelay: CABLE_DELAYS[i] }}
+          />
+        ))}
+        <Mug x={1080} y={280} scale={0.72} />
       </svg>
     </div>
   );
