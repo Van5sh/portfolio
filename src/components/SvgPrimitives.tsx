@@ -255,6 +255,42 @@ export function Book({ x, y, h = 80, w = 28, label = "" }: {
   );
 }
 
+export function FlatBook({
+  x,
+  y,
+  w,
+  h,
+  label,
+  fontSize = 13,
+}: {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  label: string;
+  fontSize?: number;
+}) {
+  return (
+    <g>
+      <rect x={x} y={y} width={w} height={h} rx={2} fill="none" stroke={INK} strokeWidth={2} />
+      {/* spine line along top edge */}
+      <line x1={x} y1={y + 8} x2={x + w} y2={y + 8} stroke={INK} strokeWidth={1.2} />
+      <text
+        x={x + w / 2}
+        y={y + h / 2 + 5}
+        fontFamily="monospace"
+        fontSize={fontSize}
+        fontWeight="bold"
+        fill={INK}
+        textAnchor="middle"
+        letterSpacing="0.08em"
+      >
+        {label}
+      </text>
+    </g>
+  );
+}
+
 export function ServerRack({ x, y, w = 110, h = 220 }: { x: number; y: number; w?: number; h?: number }) {
   return (
     <g>

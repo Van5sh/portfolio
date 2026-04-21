@@ -72,8 +72,6 @@ export default function Portfolio() {
     if (Math.abs(dx) > 48) goTo(cur + (dx < 0 ? 1 : -1));
     touchStartX.current = null;
   };
-
-  // Autoplay
   const playRef = useRef<ReturnType<typeof setInterval> | null>(null);
   useEffect(() => {
     if (playRef.current) clearInterval(playRef.current);
@@ -88,7 +86,9 @@ export default function Portfolio() {
   const scenes = [
     <SceneHero key={0} />,
     <SceneWelcome key={1} />,
-    <SceneHackstation key={2} projects={PROJECTS} onProjectClick={setProj} />,
+    <SceneHackstation key={2} projects={PROJECTS} 
+      onProjectClick={(p: Project) => setProj(p)} 
+    />,
     <SceneTechShelf key={3} />,
     <SceneWarRoom key={4} />,
     <SceneCricketCorner key={5} />,
@@ -112,7 +112,7 @@ export default function Portfolio() {
       {/* Top Nav */}
       <nav className="t-nav">
         <span className="t-nav-logo" onClick={() => goTo(0)}>VANSH.</span>
-        <span className="t-nav-sub">(a hack-shaped portfolio)</span>
+        {/* <span className="t-nav-sub">(a hack-shaped portfolio)</span> */}
       </nav>
 
       {/* Scenes track */}

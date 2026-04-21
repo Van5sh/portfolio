@@ -1,41 +1,95 @@
-import { Book, Plant, CricketBat, ServerRack, FloorLine } from "@/components/SvgPrimitives";
+import { FlatBook, Plant, Mug, CricketBat } from "../SvgPrimitives";
 
 const INK = "var(--ink)";
 const SW = 2.2;
 
-const books = ["React", "Next.js", "Node.js", "TypeScript", "Python", "PostgreSQL", "MongoDB", "Docker", "AWS", "GraphQL"];
+function CricketBall({ x, y }: { x: number; y: number }) {
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <circle cx={0} cy={0} r={15} fill="none" stroke={INK} strokeWidth={SW} />
+      <path d="M-15,0 Q-7,-7 0,0 Q7,7 15,0" fill="none" stroke={INK} strokeWidth={1.6} />    
+    </g>
+  );
+}
+
+function ServerRack({ x, y, w = 120, h = 240 }: { x: number; y: number; w?: number; h?: number }) {
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <rect x={0} y={0} width={w} height={h} rx={4} fill="none" stroke={INK} strokeWidth={SW} />
+      {Array.from({ length: 7 }).map((_, i) => (
+        <rect key={i} x={10} y={14 + i * 30} width={w - 20} height={20} rx={2} fill="none" stroke={INK} strokeWidth={1.2} />
+      ))}
+    </g>
+  );
+}
+
+function FloorLine({ w = 1400 }: { w?: number }) {
+  return (
+    <>
+      <line x1={0} y1={310} x2={w} y2={310} stroke={INK} strokeWidth={2} />
+      <rect x={0} y={308} width={w} height={7} fill={INK} />
+    </>
+  );
+}
+
+const BOOKS_TOP = ["React", "Next.js", "Node.js", "TypeScript"];
+const BOOKS_BOT = ["Python", "PostgreSQL", "MongoDB", "Docker"];
+const BOOKS_EXTRA = ["AWS", "GraphQL", "Redis"];
 
 export default function SceneTechShelf() {
+  const shelfX = 220;
+  const shelfW = 700;
+  const shelfY = 10;
+  const shelfH = 300;
+  const midY = shelfY + shelfH / 2 - 5;
+
+  const EDGE = 8;
+  const BAR = 8;
+
+  const padding = 20;
+  const gap = 10;
+
+  const bw = shelfW / 2 - padding * 2 - gap / 2;
+  const bh = 56;
+
+  const col1X = shelfX + padding;
+  const col2X = shelfX + padding + bw + gap;
+
+  const topRow1Y = shelfY + padding;
+  const topRow2Y = topRow1Y + bh + gap;
+
+  const botRow1Y = midY + padding;
+  const botRow2Y = botRow1Y + bh + gap;
+
+  const topBooks = [
+    { label: BOOKS_TOP[0], x: col1X, y: topRow1Y },
+    { label: BOOKS_TOP[1], x: col1X, y: topRow2Y },
+    { label: BOOKS_TOP[2], x: col2X, y: topRow1Y },
+    { label: BOOKS_TOP[3], x: col2X, y: topRow2Y },
+  ];
+
+  const botBooks = [
+    { label: BOOKS_BOT[0], x: col1X, y: botRow1Y },
+    { label: BOOKS_BOT[1], x: col1X, y: botRow2Y },
+    { label: BOOKS_BOT[2], x: col2X, y: botRow1Y },
+    { label: BOOKS_BOT[3], x: col2X, y: botRow2Y },
+  ];
+
+  const extraX = shelfX + shelfW + 20;
+
   return (
-    <div className="scene">
-      <p className="slabel">THE STACK — WHAT I BUILD WITH</p>
+    <div className="scene" style={{ position: "relative", width: "100%", paddingBottom: 54 }}>
       <svg
         style={{ position: "absolute", bottom: 54, left: 0, width: "100%", overflow: "visible" }}
         viewBox="0 0 1400 315"
         preserveAspectRatio="xMidYMax meet"
       >
-        {/* Bookcase frame */}
-        <rect x={280} y={28} width={520} height={282} fill="none" stroke={INK} strokeWidth={SW} />
-        {/* shelves */}
-        <rect x={280} y={36} width={520} height={10} fill={INK} />
-        <rect x={280} y={172} width={520} height={10} fill={INK} />
-        <rect x={280} y={310} width={520} height={10} fill={INK} />
-        {/* top row books */}
-        {books.slice(0, 5).map((b, i) => (
-          <Book key={b} x={295 + i * 96} y={170} h={118} w={78} label={b} />
-        ))}
-        {/* bottom row books */}
-        {books.slice(5, 10).map((b, i) => (
-          <Book key={b} x={295 + i * 98} y={308} h={118} w={80} label={b} />
-        ))}
-        {/* small plant on top shelf */}
-        <Plant x={808} y={50} scale={0.48} />
-        {/* cricket bat leaning */}
-        <CricketBat x={875} y={245} angle={14} />
-        {/* server rack */}
-        <ServerRack x={1030} y={85} w={118} h={225} />
-        {/* side plant */}
-        <Plant x={170} y={108} scale={0.78} />
+        <Plant x={112} y={178} />
+        {/* <Mug x={58} y={238} /> */}
+        <CricketBat x={1030} y={220} angle={14} />
+        <CricketBall x={50} y={280} />
+        <ServerRack x={1085} y={74} />
+        <Plant x={1140} y={9} scale={0.52} />
         <FloorLine />
       </svg>
     </div>

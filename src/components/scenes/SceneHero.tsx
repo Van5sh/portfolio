@@ -18,7 +18,7 @@ export default function SceneHero() {
         >
           VANSH.
         </h1>
-        <p
+        {/* <p
           style={{
             fontFamily: "var(--font-courier-prime), monospace",
             fontSize: 14,
@@ -29,16 +29,15 @@ export default function SceneHero() {
           }}
         >
           (a hack-shaped portfolio)
-        </p>
+        </p> */}
         <p
           style={{
             fontFamily: "var(--font-courier-prime), monospace",
-            fontSize: 11,
             color: INK,
-            opacity: 0.3,
             marginTop: 28,
             letterSpacing: "0.08em",
           }}
+          className="font-2xl"
         >
           navigate with arrows or ← → keys
         </p>
