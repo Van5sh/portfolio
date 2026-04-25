@@ -7,17 +7,17 @@
 }
 
 :root {
-  /* Warm Ivory palette */
-  --bg: #F6F1E6;
-  --ink: #1F2937;
-  --primary: #2563EB;
-  --accent: #F97316;
-  --muted: #6B7280;
-  --border: #E5E7EB;
+  /* Blue + Red + Orange + Butter palette (from provided image) */
+  --bg: #FFF3A6;
+  --ink: #1A1B45;
+  --primary: #3E45B2;
+  --accent: #FF8A3E;
+  --muted: #D63E2B;
+  --border: #FFD27A;
 
   /* For alpha blends (CSS Color 4) */
-  --bg-rgb: 246 241 230;
-  --ink-rgb: 31 41 55;
+  --bg-rgb: 255 243 166;
+  --ink-rgb: 26 27 69;
 }
 
 html, body {

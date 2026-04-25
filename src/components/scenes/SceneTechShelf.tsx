@@ -1,16 +1,8 @@
-import { FlatBook, Plant, Mug, CricketBat } from "../SvgPrimitives";
+import { FlatBook, Plant, Mug, CricketBat, CricketBall } from "../SvgPrimitives";
 
 const INK = "var(--ink)";
 const SW = 2.2;
 
-function CricketBall({ x, y }: { x: number; y: number }) {
-  return (
-    <g transform={`translate(${x},${y})`}>
-      <circle cx={0} cy={0} r={15} fill="none" stroke={INK} strokeWidth={SW} />
-      <path d="M-15,0 Q-7,-7 0,0 Q7,7 15,0" fill="none" stroke={INK} strokeWidth={1.6} />    
-    </g>
-  );
-}
 
 function ServerRack({ x, y, w = 120, h = 240 }: { x: number; y: number; w?: number; h?: number }) {
   return (
@@ -79,13 +71,15 @@ export default function SceneTechShelf() {
 
   return (
     <div className="scene" style={{ position: "relative", width: "100%", paddingBottom: 54 }}>
+      <div className="border-2">
+        
+      </div>
       <svg
         style={{ position: "absolute", bottom: 54, left: 0, width: "100%", overflow: "visible" }}
         viewBox="0 0 1400 315"
         preserveAspectRatio="xMidYMax meet"
       >
         <Plant x={112} y={178} />
-        {/* <Mug x={58} y={238} /> */}
         <CricketBat x={1030} y={220} angle={14} />
         <CricketBall x={50} y={280} />
         <ServerRack x={1085} y={74} />

@@ -18,18 +18,6 @@ export default function SceneHero() {
         >
           VANSH.
         </h1>
-        {/* <p
-          style={{
-            fontFamily: "var(--font-courier-prime), monospace",
-            fontSize: 14,
-            color: INK,
-            opacity: 0.52,
-            marginTop: 16,
-            letterSpacing: "0.12em",
-          }}
-        >
-          (a hack-shaped portfolio)
-        </p> */}
         <p
           style={{
             fontFamily: "var(--font-courier-prime), monospace",

@@ -76,13 +76,30 @@ export function Desk({ x = 0, y = 0, w = 1400 }: { x?: number; y?: number; w?: n
 }
 
 export function MonitorSVG({
-  x, y, w, h, standX, label, sublabel, blinkDelay, onClick,
+  x,
+  y,
+  w,
+  h,
+  standX,
+  standY: standYProp,
+  label,
+  sublabel,
+  blinkDelay,
+  onClick,
 }: {
-  x: number; y: number; w: number; h: number; standX: number;
-  label: string; sublabel: string; blinkDelay: string;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  standX: number;
+  standY?: number;
+  label: string;
+  sublabel: string;
+  blinkDelay: string;
   onClick: () => void;
 }) {
   const cx = x + w / 2;
+  const standY = Math.max(standYProp ?? 220, y + h + 18);
   return (
     <g onClick={onClick} style={{ cursor: "pointer" }}>
       <rect x={x} y={y} width={w} height={h} rx={4} fill="var(--bg,#fff)" stroke={INK} strokeWidth={SW} />
@@ -103,17 +120,22 @@ export function MonitorSVG({
         fontFamily="monospace" fontSize={9} opacity={0.55}>
         {sublabel}
       </text>
-      <line x1={standX} y1={y + h} x2={standX} y2={220} stroke={INK} strokeWidth={SW} />
-      <line x1={standX - 28} y1={220} x2={standX + 28} y2={220} stroke={INK} strokeWidth={SW} />
+      <line x1={standX} y1={y + h} x2={standX} y2={standY} stroke={INK} strokeWidth={SW} />
+      <line x1={standX - 28} y1={standY} x2={standX + 28} y2={standY} stroke={INK} strokeWidth={SW} />
       <circle cx={standX} cy={y} r={4.5} fill={INK}
         style={{ animation: `blink 1.1s ease-in-out infinite ${blinkDelay}` }} />
     </g>
   );
 }
 
-export function Keyboard({ x, y, w = 220, h = 60 }: { x: number; y: number; w?: number; h?: number }) {
+export function Keyboard({ x, y, w = 248, h = 68 }: { x: number; y: number; w?: number; h?: number }) {
+  const BASE_W = 248;
+  const BASE_H = 68;
+  const s = Math.min(w / BASE_W, h / BASE_H);
+  const dx = (w - BASE_W * s) / 2;
+  const dy = (h - BASE_H * s) / 2;
   return (
-    <g transform="translate(478,252)">
+    <g transform={`translate(${x + dx},${y + dy}) scale(${s})`}>
       <rect x={0} y={-4} width={248} height={68} rx={8} fill="none" stroke={INK} strokeWidth={SW} />
       {[4, 20, 36].map(rowY =>
         Array.from({ length: rowY === 36 ? 9 : 12 }).map((_, col) => (
@@ -176,16 +198,12 @@ export function CricketBat({ x, y, angle = -12 }: { x: number; y: number; angle?
   );
 }
 
-export function CricketBall({ x, y, r = 22 }: { x: number; y: number; r?: number }) {
+export function CricketBall({ x, y }: { x: number; y: number }) {
   return (
-    <g transform="translate(1290,220)">
-          <circle cx={0} cy={0} r={16} fill="none" stroke={INK} strokeWidth={SW} />
-          <path d="M-16,0 Q-8,-8 0,0 Q8,8 16,0" fill="none" stroke={INK} strokeWidth={1.6} />
-          <path d="M-16,0 Q-8,8 0,0 Q8,-8 16,0" fill="none" stroke={INK} strokeWidth={1.6} />
-          <circle cx={-5} cy={-2} r={1.2} fill={INK} />
-          <circle cx={0} cy={2} r={1.2} fill={INK} />
-          <circle cx={5} cy={-2} r={1.2} fill={INK} />
-        </g>
+    <g transform={`translate(${x},${y})`}>
+      <circle cx={0} cy={0} r={15} fill="none" stroke={INK} strokeWidth={SW} />
+      <path d="M-15,0 Q-7,-7 0,0 Q7,7 15,0" fill="none" stroke={INK} strokeWidth={1.6} />    
+    </g>
   );
 }
 

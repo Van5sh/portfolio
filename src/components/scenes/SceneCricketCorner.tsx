@@ -68,15 +68,13 @@ export default function SceneCricketCorner() {
         <CricketStumps x={525} y={308} scale={1} />
         <CricketStumps x={875} y={308} scale={1} />
         <CricketBat x={740} y={252} angle={-18} />
-        <CricketBall x={960} y={290} r={18} />
-        {/* laptop */}
+        <CricketBall x={960} y={290}/>
         <rect x={175} y={242} width={155} height={95} rx={4} fill="none" stroke={INK} strokeWidth={SW} />
         <rect x={175} y={337} width={155} height={10} rx={2} fill="none" stroke={INK} strokeWidth={SW} />
         <rect x={184} y={250} width={138} height={80} fill="none" stroke={INK} strokeWidth={1.4} />
         <text x={194} y={274} fill={INK} fontFamily="monospace" fontSize="9">$ git push origin</text>
         <text x={194} y={289} fill={INK} fontFamily="monospace" fontSize="9">  main --force</text>
         <text x={194} y={310} fill={INK} fontFamily="monospace" fontSize="9" opacity={0.5}># brb batting</text>
-        {/* pennant */}
         <line x1={1085} y1={148} x2={1085} y2={310} stroke={INK} strokeWidth={SW} />
         <path d="M1085,148 L1195,178 L1085,208 Z" fill="none" stroke={INK} strokeWidth={SW} />
         <text x={1098} y={183} fill={INK} fontFamily="monospace" fontSize="9" letterSpacing=".1em">IND</text>

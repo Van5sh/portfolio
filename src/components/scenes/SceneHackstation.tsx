@@ -16,10 +16,10 @@ const MONITORS = [
   { x: 924, y: 40, w: 190, h: 134, standX: 1019 },
 ];
 
-const CABLE_PATHS = ["M247,220 L247,232 L490,232 L490,248",
-  "M500,220 L500,228 L570,228 L570,248",
-  "M770,220 L770,228 L636,228 L636,248",
-  "M1019,220 L1019,232 L726,232 L726,248"
+const CABLE_PATHS = ["M247,220 L247,232 L490,232 L490,276 M400,276",
+  "M500,220 L500,228 L570,228 L570,274",
+  "M770,220 L770,228 L636,228 L636,274",
+  "M1019,220 L1019,232 L726,232 L726,274"
 ];
 const BLINK_DELAYS = ["0s", "0.28s", "0.56s", "0.84s"];
 const CABLE_DELAYS = ["0s", "-0.25s", "-0.5s", "-0.75s"];
@@ -86,7 +86,7 @@ export default function SceneHackstation({ projects, onProjectClick }: Props) {
         />
         <Paper x={200} y={260} scale={0.8} />
         <Mug x={1080} y={280} scale={0.72} />
-        <Keyboard x={KEYBOARD_X + 120} y={220} />
+        <Keyboard x={KEYBOARD_X} y={278} />
       </svg >
     </div >
   );
