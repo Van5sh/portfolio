@@ -242,10 +242,8 @@ export function Whiteboard({ x, y, w = 360, h = 200 }: { x: number; y: number; w
       <line x1={x + 10} y1={y + 80} x2={x + w - 10} y2={y + 80} stroke={INK} strokeWidth={1} strokeDasharray="3,3" />
       <line x1={x + 10} y1={y + 120} x2={x + w - 10} y2={y + 120} stroke={INK} strokeWidth={1} strokeDasharray="3,3" />
       <line x1={x + 10} y1={y + 160} x2={x + w - 10} y2={y + 160} stroke={INK} strokeWidth={1} strokeDasharray="3,3" />
-      <text x={x + 14} y={y + 26} fill={INK} fontFamily="monospace" fontSize="10">2022 ─── TechCorp Intern</text>
+      <text x={x + 14} y={y + 26} fill={INK} fontFamily="monospace" fontSize="10">2024 ─── AI Core Solutions SDE Intern</text>
       <text x={x + 14} y={y + 66} fill={INK} fontFamily="monospace" fontSize="10">2023 ─── Freelance Full Stack</text>
-      <text x={x + 14} y={y + 106} fill={INK} fontFamily="monospace" fontSize="10">2024 ─── Full Stack @ DevHouse</text>
-      <text x={x + 14} y={y + 146} fill={INK} fontFamily="monospace" fontSize="10">2025 ─── Senior Dev @ StackLabs</text>
       <line x1={x + 14} y1={y + 175} x2={x + 14} y2={y + 195} stroke={INK} strokeWidth={2} strokeLinecap="round" />
       <path d={`M${x + 8},${y + 188} L${x + 14},${y + 198} L${x + 20},${y + 188}`}
         fill="none" stroke={INK} strokeWidth={2} strokeLinecap="round" />

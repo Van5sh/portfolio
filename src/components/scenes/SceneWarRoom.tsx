@@ -11,7 +11,7 @@ export default function SceneWarRoom() {
         viewBox="0 0 1400 315"
         preserveAspectRatio="xMidYMax meet"
       >
-        <Whiteboard x={60} y={10} w={380} h={210} />
+        <Whiteboard x={60} y={20} w={380} h={210} />
         <MonitorSVG x={1090} y={115} w={195} h={125} standX={1190} standY={310} label="Monitor" sublabel="Tech Stack" blinkDelay="0s" onClick={() => {}} />
         <Keyboard x={890} y={250} w={270} h={60} />
         <Plant x={1335} y={229} scale={0.62} />
