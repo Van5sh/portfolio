@@ -39,18 +39,22 @@ export const PROJECTS: Project[] = [
 
 export const NAV_ITEMS = [
   { label: "* INTRO", scene: 0 },
+  { label: "* WELCOME", scene: 1 },
   { label: "* THE HACKSTATION", scene: 2 },
   { label: "* TECH SHELF", scene: 3 },
   { label: "* WAR ROOM", scene: 4 },
-  { label: "* CRICKET CORNER", scene: 5 },
-  { label: "* SIDE QUESTS", scene: 6 },
-  { label: "* TERMINAL", scene: 7 },
-  { label: "* LATER", scene: 8 },
+  { label: "* TERMINAL", scene: 5 },
+  { label: "* LATER", scene: 6 },
 ];
 
 export const SCENE_NAMES = [
-  "Hero", "Welcome", "Hackstation", "Tech Shelf",
-  "War Room","Terminal", "Final",
+  "Hero",
+  "Welcome",
+  "Hackstation",
+  "Tech Shelf",
+  "War Room",
+  "Terminal",
+  "Final",
 ];
 
 export interface WarRoomInternshipModalData {

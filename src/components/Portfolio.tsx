@@ -7,8 +7,6 @@ import SceneHackstation from "@/components/scenes/SceneHackstation";
 import { Download } from 'lucide-react';
 import SceneTechShelf from "@/components/scenes/SceneTechShelf";
 import SceneWarRoom from "@/components/scenes/SceneWarRoom";
-import SceneCricketCorner from "@/components/scenes/SceneCricketCorner";
-import SceneSideQuests from "@/components/scenes/SceneSideQuests";
 import SceneTerminal from "@/components/scenes/SceneTerminal";
 import SceneFinal from "@/components/scenes/SceneFinal";
 import { ProjectModal, MenuModal } from "@/components/Modals";
@@ -25,7 +23,7 @@ export default function Portfolio() {
   const [playing, setPlaying] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const TOTAL = 9;
+  const TOTAL = 7;
 
   // Detect mobile
   useEffect(() => {
@@ -40,8 +38,12 @@ export default function Portfolio() {
     try {
       const s = localStorage.getItem("vansh-scene");
       if (s !== null) {
+        const parsed = parseInt(s);
+        if (!Number.isFinite(parsed)) return;
+        // If the user finished the tour (Terminal/Final), always restart from Hero on refresh.
+        if (parsed >= TOTAL - 2) return;
         // eslint-disable-next-line react-hooks/set-state-in-effect
-        setCur(Math.min(parseInt(s), TOTAL - 1));
+        setCur(Math.min(parsed, TOTAL - 1));
       }
     } catch {}
   }, []);
@@ -78,11 +80,25 @@ export default function Portfolio() {
     if (playRef.current) clearInterval(playRef.current);
     if (playing) {
       playRef.current = setInterval(() => {
-        setCur(s => (s >= TOTAL - 1 ? 0 : s + 1));
+        setCur((s) => {
+          if (s >= TOTAL - 1) {
+            setPlaying(false);
+            try { localStorage.setItem("vansh-scene", "0"); } catch {}
+            return 0;
+          }
+          const next = s + 1;
+          try { localStorage.setItem("vansh-scene", String(next)); } catch {}
+          return next;
+        });
       }, 4500);
     }
     return () => { if (playRef.current) clearInterval(playRef.current); };
   }, [playing]);
+
+  const onToggleAutoplay = () => {
+    if (!playing && cur >= TOTAL - 1) goTo(0);
+    setPlaying((p) => !p);
+  };
 
   const scenes = [
     <SceneHero key={0} />,
@@ -92,8 +108,6 @@ export default function Portfolio() {
     />,
     <SceneTechShelf key={3} />,
     <SceneWarRoom key={4} />,
-    // <SceneCricketCorner key={5} />,
-    // <SceneSideQuests key={5} />,
     <SceneTerminal key={5} onNavigate={goTo} />,
     <SceneFinal key={6} />,
   ];
@@ -126,7 +140,7 @@ export default function Portfolio() {
         <div className="b-nav">
           <button
             className="bnb"
-            onClick={() => setPlaying(p => !p)}
+            onClick={onToggleAutoplay}
             title="Autoplay"
           >
             {playing ? "⏸" : "▶"}

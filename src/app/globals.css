@@ -7,17 +7,17 @@
 }
 
 :root {
-  /* Blue + Red + Orange + Butter palette (from provided image) */
-  --bg: #FFF3A6;
-  --ink: #1A1B45;
-  --primary: #3E45B2;
-  --accent: #FF8A3E;
-  --muted: #D63E2B;
-  --border: #FFD27A;
+  /* Custom palette */
+  --bg: #F2F0EF;
+  --ink: #733E24;
+  --primary: #245F73;
+  --accent: #733E24;
+  --muted: #BBBDBC;
+  --border: #BBBDBC;
 
   /* For alpha blends (CSS Color 4) */
-  --bg-rgb: 255 243 166;
-  --ink-rgb: 26 27 69;
+  --bg-rgb: 242 240 239;
+  --ink-rgb: 115 62 36;
 }
 
 html, body {
