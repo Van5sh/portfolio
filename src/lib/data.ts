@@ -50,7 +50,7 @@ export const NAV_ITEMS = [
 
 export const SCENE_NAMES = [
   "Hero", "Welcome", "Hackstation", "Tech Shelf",
-  "War Room", "Cricket Corner", "Side Quests", "Terminal", "Final",
+  "War Room","Terminal", "Final",
 ];
 
 export interface WarRoomInternshipModalData {

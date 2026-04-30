@@ -94,7 +94,7 @@ export default function Portfolio() {
     <SceneWarRoom key={4} />,
     // <SceneCricketCorner key={5} />,
     // <SceneSideQuests key={5} />,
-    <SceneTerminal key={5} />,
+    <SceneTerminal key={5} onNavigate={goTo} />,
     <SceneFinal key={6} />,
   ];
 
