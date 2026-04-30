@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import SceneHero from "@/components/scenes/SceneHero";
 import SceneWelcome from "@/components/scenes/SceneWelcome";
 import SceneHackstation from "@/components/scenes/SceneHackstation";
+import { Download } from 'lucide-react';
 import SceneTechShelf from "@/components/scenes/SceneTechShelf";
 import SceneWarRoom from "@/components/scenes/SceneWarRoom";
 import SceneCricketCorner from "@/components/scenes/SceneCricketCorner";
@@ -12,6 +13,7 @@ import SceneTerminal from "@/components/scenes/SceneTerminal";
 import SceneFinal from "@/components/scenes/SceneFinal";
 import { ProjectModal, MenuModal } from "@/components/Modals";
 import { PROJECTS, SCENE_NAMES, Project } from "@/lib/data";
+import { Button } from "./ui/button";
 
 const INK = "var(--ink)";
 const BG = "var(--bg)";
@@ -61,7 +63,6 @@ export default function Portfolio() {
     return () => window.removeEventListener("keydown", h);
   }, [cur, goTo]);
 
-  // Touch / swipe
   const touchStartX = useRef<number | null>(null);
   const onTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -91,10 +92,10 @@ export default function Portfolio() {
     />,
     <SceneTechShelf key={3} />,
     <SceneWarRoom key={4} />,
-    <SceneCricketCorner key={5} />,
-    <SceneSideQuests key={6} />,
-    <SceneTerminal key={7} />,
-    <SceneFinal key={8} />,
+    // <SceneCricketCorner key={5} />,
+    // <SceneSideQuests key={5} />,
+    <SceneTerminal key={5} />,
+    <SceneFinal key={6} />,
   ];
 
   return (
@@ -109,13 +110,10 @@ export default function Portfolio() {
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      {/* Top Nav */}
       <nav className="t-nav">
         <span className="t-nav-logo" onClick={() => goTo(0)}>VANSH.</span>
-        {/* <span className="t-nav-sub">(a hack-shaped portfolio)</span> */}
+        <Button><Download/> Download Resume</Button>
       </nav>
-
-      {/* Scenes track */}
       <div className="track-outer">
         <div
           className="track"
@@ -124,8 +122,6 @@ export default function Portfolio() {
           {scenes}
         </div>
       </div>
-
-      {/* Bottom Nav — desktop only */}
       {!isMobile && (
         <div className="b-nav">
           <button
@@ -149,8 +145,6 @@ export default function Portfolio() {
           <button className="bnb" onClick={() => goTo(cur + 1)} disabled={cur === TOTAL - 1}>→</button>
         </div>
       )}
-
-      {/* Dot indicators — desktop only */}
       {!isMobile && (
         <div className="dots">
           {scenes.map((_, i) => (
@@ -163,8 +157,6 @@ export default function Portfolio() {
           ))}
         </div>
       )}
-
-      {/* Mobile: simple bottom tab for menu */}
       {isMobile && (
         <div
           style={{
@@ -199,8 +191,6 @@ export default function Portfolio() {
           </button>
         </div>
       )}
-
-      {/* Modals */}
       {menu && <MenuModal onClose={() => setMenu(false)} onNavigate={goTo} />}
       {proj && <ProjectModal project={proj} onClose={() => setProj(null)} />}
     </div>

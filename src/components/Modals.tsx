@@ -84,14 +84,98 @@ export function MenuModal({ onClose, onNavigate }: MenuModalProps) {
             {item.label}
           </div>
         ))}
-        <hr style={{ border: "none", borderTop: "1px dashed rgb(var(--bg-rgb) / 0.25)", margin: "12px 0" }} />
-        <div style={{ textAlign: "center", fontSize: 11 }}>
-          <div style={{ letterSpacing: "0.12em", opacity: 0.75 }}>BUILT WITH ♥ AND CRICKET</div>
-          <div style={{ opacity: 0.35, marginTop: 4 }}>VANSH. 2025</div>
-          <div style={{ marginTop: 10, letterSpacing: "0.06em", opacity: 0.25, fontSize: 12 }}>
-            ▐▌▐▌▐▌▐▌▐▌▐▌▐▌▐▌▐▌
+      </div>
+    </div>
+  );
+}
+
+interface DetailModalAction {
+  label: string;
+  href: string;
+}
+
+export interface DetailModalData {
+  title: string;
+  subtitle?: string;
+  body?: string;
+  tags?: string[];
+  action?: DetailModalAction;
+  eyebrow?: string;
+}
+
+interface DetailModalProps {
+  data: DetailModalData;
+  onClose: () => void;
+}
+
+export function DetailModal({ data, onClose }: DetailModalProps) {
+  return (
+    <div className="overlay" onClick={onClose}>
+      <div className="pcard" onClick={(e) => e.stopPropagation()}>
+        <button className="xbtn" onClick={onClose}>
+          ×
+        </button>
+        {data.eyebrow && (
+          <div
+            style={{
+              fontSize: 11,
+              letterSpacing: "0.15em",
+              opacity: 0.45,
+              marginBottom: 6,
+            }}
+          >
+            {data.eyebrow}
           </div>
-        </div>
+        )}
+        <h2
+          style={{
+            fontFamily: "var(--font-syne), sans-serif",
+            fontWeight: 800,
+            fontSize: 30,
+            letterSpacing: "-0.01em",
+            marginBottom: 10,
+            color: INK,
+          }}
+        >
+          {data.title}
+        </h2>
+        {data.subtitle && (
+          <div style={{ fontSize: 13, opacity: 0.75, marginBottom: 10 }}>
+            {data.subtitle}
+          </div>
+        )}
+        <div style={{ width: 38, height: 2, background: INK, marginBottom: 18 }} />
+        {data.body && (
+          <p style={{ fontSize: 14, lineHeight: 1.78, marginBottom: 20 }}>
+            {data.body}
+          </p>
+        )}
+        {data.tags && data.tags.length > 0 && (
+          <div style={{ marginBottom: data.action ? 20 : 0 }}>
+            {data.tags.map((t) => (
+              <span key={t} className="tag">
+                {t}
+              </span>
+            ))}
+          </div>
+        )}
+        {data.action && (
+          <a
+            href={data.action.href}
+            target="_blank"
+            rel="noreferrer noopener"
+            style={{
+              fontFamily: "var(--font-courier-prime), monospace",
+              fontSize: 12,
+              color: INK,
+              letterSpacing: "0.12em",
+              textDecoration: "none",
+              opacity: 0.7,
+            }}
+          >
+            {data.action.label} →
+          </a>
+        )}
       </div>
     </div>
   );

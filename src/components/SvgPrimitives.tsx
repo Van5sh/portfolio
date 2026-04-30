@@ -234,16 +234,67 @@ export function Chair({ x, y }: { x: number; y: number }) {
   );
 }
 
-export function Whiteboard({ x, y, w = 360, h = 200 }: { x: number; y: number; w?: number; h?: number }) {
+export interface WhiteboardEntry {
+  id: string;
+  text: string;
+}
+
+export function Whiteboard({
+  x,
+  y,
+  w = 360,
+  h = 200,
+  entries,
+  onEntryClick,
+}: {
+  x: number;
+  y: number;
+  w?: number;
+  h?: number;
+  entries?: WhiteboardEntry[];
+  onEntryClick?: (id: string) => void;
+}) {
+  const lineYs = [26, 66, 106, 146].map((dy) => y + dy);
+  const safeEntries = entries?.slice(0, lineYs.length) ?? [
+    { id: "aicore", text: "2025 ─── AI Core Solutions · SDE Intern" },
+    { id: "zeepty", text: "2025 ─── Zeepty · App Dev Intern" },
+  ];
+
   return (
-    <g>
+    <g style={{ pointerEvents: "auto" }}>
       <rect x={x} y={y} width={w} height={h} rx={4} fill="none" stroke={INK} strokeWidth={SW} />
       <line x1={x + 10} y1={y + 40} x2={x + w - 10} y2={y + 40} stroke={INK} strokeWidth={1} strokeDasharray="3,3" />
       <line x1={x + 10} y1={y + 80} x2={x + w - 10} y2={y + 80} stroke={INK} strokeWidth={1} strokeDasharray="3,3" />
       <line x1={x + 10} y1={y + 120} x2={x + w - 10} y2={y + 120} stroke={INK} strokeWidth={1} strokeDasharray="3,3" />
       <line x1={x + 10} y1={y + 160} x2={x + w - 10} y2={y + 160} stroke={INK} strokeWidth={1} strokeDasharray="3,3" />
-      <text x={x + 14} y={y + 26} fill={INK} fontFamily="monospace" fontSize="10">2024 ─── AI Core Solutions SDE Intern</text>
-      <text x={x + 14} y={y + 66} fill={INK} fontFamily="monospace" fontSize="10">2023 ─── Freelance Full Stack</text>
+      {safeEntries.map((entry, idx) => (
+        <g
+          key={entry.id}
+          onClick={onEntryClick ? () => onEntryClick(entry.id) : undefined}
+          style={{
+            cursor: onEntryClick ? "pointer" : "default",
+          }}
+        >
+          <rect
+            x={x + 10}
+            y={lineYs[idx] - 12}
+            width={w - 20}
+            height={18}
+            fill="transparent"
+            style={{ pointerEvents: "all" }}
+          />
+          <text
+            x={x + 14}
+            y={lineYs[idx]}
+            fill={INK}
+            fontFamily="monospace"
+            fontSize="10"
+            style={{ userSelect: "none", pointerEvents: "none" }}
+          >
+            {entry.text}
+          </text>
+        </g>
+      ))}
       <line x1={x + 14} y1={y + 175} x2={x + 14} y2={y + 195} stroke={INK} strokeWidth={2} strokeLinecap="round" />
       <path d={`M${x + 8},${y + 188} L${x + 14},${y + 198} L${x + 20},${y + 188}`}
         fill="none" stroke={INK} strokeWidth={2} strokeLinecap="round" />

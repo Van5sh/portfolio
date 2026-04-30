@@ -135,6 +135,25 @@ a:hover {
   flex-shrink: 0;
 }
 
+/* War Room: experience/certs palette */
+.exp-certs-root {
+  --color-background-primary: rgb(var(--bg-rgb) / 0.92);
+  --color-background-secondary: rgb(var(--bg-rgb) / 0.55);
+  --color-background-tertiary: rgb(var(--bg-rgb) / 0.35);
+  --color-background-info: rgb(var(--ink-rgb) / 0.06);
+  --color-background-success: color-mix(in srgb, var(--accent) 16%, transparent);
+  --color-background-warning: color-mix(in srgb, var(--border) 26%, transparent);
+  --color-text-primary: var(--ink);
+  --color-text-secondary: rgb(var(--ink-rgb) / 0.72);
+  --color-text-tertiary: rgb(var(--ink-rgb) / 0.52);
+  --color-text-info: var(--primary);
+  --color-text-success: var(--accent);
+  --color-text-warning: var(--muted);
+  --color-border-tertiary: rgb(var(--ink-rgb) / 0.14);
+  --color-border-secondary: rgb(var(--ink-rgb) / 0.26);
+  --color-border-info: var(--primary);
+}
+
 /* Dots */
 .dots {
   position: fixed;
