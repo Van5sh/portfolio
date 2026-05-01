@@ -9,31 +9,31 @@ export interface Project {
 export const PROJECTS: Project[] = [
   {
     id: 1,
-    name: "CricketStats",
+    name: "ACMOne App",
     status: "Live",
-    desc: "Real-time cricket analytics platform. Live match data, player heat-maps, Duckworth-Lewis projections and a predictive scoring engine built on historical IPL datasets.",
-    tech: ["React", "Node.js", "WebSocket", "PostgreSQL", "D3.js"],
+    desc: "Official mobile app for ACM-VIT serving as a unified platform for event registrations, announcements, and member engagement. Features secure Firebase Authentication with role-based access (members, board, admins), token-based sessions, and 10+ fully cross-platform screens with production deployment on Play Store and App Store.",
+    tech: ["React Native", "TypeScript", "NestJS", "Firebase"],
   },
   {
     id: 2,
-    name: "DevConnect",
-    status: "Beta",
-    desc: "Networking platform for developers to find collaborators, post bounties, and ship side-projects together. Think LinkedIn but actually useful.",
-    tech: ["Next.js", "MongoDB", "GraphQL", "AWS", "Tailwind"],
+    name: "Cryptic Hunt App",
+    status: "Live Event",
+    desc: "Real-time treasure hunt platform designed for 500+ participants featuring NFC-triggered puzzle unlocks, dynamic clue progression, and live leaderboards. Backend built with GoFiber to handle 1000+ concurrent requests with low latency, integrated with Firebase for real-time updates and notifications.",
+    tech: ["React Native", "TypeScript", "Firebase", "Go", "GoFiber", "NFC"],
   },
   {
     id: 3,
-    name: "ShopFlow",
-    status: "Live",
-    desc: "Full-stack e-commerce engine with real-time inventory sync, Stripe payments, abandoned-cart recovery and a merchant analytics dashboard.",
-    tech: ["React", "Express", "Stripe", "Redis", "Docker"],
+    name: "GitHub Open Source Parse",
+    status: "Active",
+    desc: "Developer tooling platform that parses public GitHub repositories into structured ASTs using Tree-sitter. Visualizes file hierarchies, dependencies, and symbol references with collaborative annotations. Includes OAuth 2.0 authentication and MongoDB-backed repository snapshots.",
+    tech: ["Next.js", "GitHub API", "MongoDB", "Tree-sitter", "OAuth"],
   },
   {
     id: 4,
-    name: "AiChat",
-    status: "In Dev",
-    desc: "AI-powered customer support chatbot with multi-turn context, intent classification, and seamless human hand-off. Plugs into any product via a script tag.",
-    tech: ["Python", "FastAPI", "OpenAI", "Docker", "React"],
+    name: "Apex Market",
+    status: "Production",
+    desc: "Full-stack e-commerce platform with NestJS backend and Prisma over PostgreSQL. Features RBAC, JWT authentication, AWS S3 media storage, and SES email integration. Frontend built with Next.js using Server Actions and React Server Components.",
+    tech: ["NestJS", "Next.js", "AWS", "Prisma", "PostgreSQL", "JWT"],
   },
 ];
 
@@ -69,13 +69,22 @@ export const WAR_ROOM_INTERNSHIP_MODAL_DATA = {
     title: "Zeepty",
     sub: "App Developer Intern · May 2025 – Jul 2025 · Remote",
     tags: ["React Native", "TypeScript", "CI/CD", "GitHub Actions"],
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    body:
+      "Joined as one of the first engineering interns at an early-stage startup, taking end-to-end ownership of multiple core product features including real-time push notifications, in-app alert systems, and critical user flows built in React Native (TypeScript). " +
+      "Improved app performance by reducing cold-start load time through component-level lazy loading and optimised asset bundling. " +
+      "Designed and implemented CI/CD pipelines using GitHub Actions, automating build, lint, test, and deployment workflows, which reduced production crash rates and eliminated manual release overhead. " +
+      "Worked closely with the founding team in a high-ownership environment, contributing to product roadmap discussions and adapting quickly to evolving priorities.",
   },
+
   aicore: {
     title: "AI Core Solutions",
-    sub: "SDE Intern · May 2025 – Aug 2025 · Remote",
-    tags: ["React Native", "Socket.IO", "AI APIs", "Real-time"],
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    sub: "Software Development Engineer Intern · May 2025 – Aug 2025 · Remote",
+    tags: ["React Native", "Socket.IO", "AI APIs", "Real-time Systems"],
+    body:
+      "Served as the sole mobile developer at an AI-focused startup, building a production-grade React Native application from scratch used by 500+ users to access AI-powered services. " +
+      "Architected a Socket.IO-based real-time communication layer enabling bidirectional event streaming, live AI output updates, and session synchronisation, significantly reducing perceived latency compared to REST polling. " +
+      "Integrated multiple AI backend APIs with robust async data pipelines, implementing retry logic, graceful error handling, and responsive loading states to maintain a seamless user experience under varying network conditions. " +
+      "Collaborated directly with founders to translate high-level product ideas into well-defined technical deliverables, demonstrating strong ownership in a fast-paced startup environment.",
   },
 } satisfies Record<string, WarRoomInternshipModalData>;
 

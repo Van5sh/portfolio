@@ -246,6 +246,7 @@ export function Whiteboard({
   h = 200,
   entries,
   onEntryClick,
+  onBoardClick,
 }: {
   x: number;
   y: number;
@@ -253,6 +254,7 @@ export function Whiteboard({
   h?: number;
   entries?: WhiteboardEntry[];
   onEntryClick?: (id: string) => void;
+  onBoardClick?: () => void;
 }) {
   const lineYs = [26, 66, 106, 146].map((dy) => y + dy);
   const safeEntries = entries?.slice(0, lineYs.length) ?? [
@@ -262,7 +264,18 @@ export function Whiteboard({
 
   return (
     <g style={{ pointerEvents: "auto" }}>
-      <rect x={x} y={y} width={w} height={h} rx={4} fill="none" stroke={INK} strokeWidth={SW} />
+      <rect
+        x={x}
+        y={y}
+        width={w}
+        height={h}
+        rx={4}
+        fill="transparent"
+        stroke={INK}
+        strokeWidth={SW}
+        onClick={onBoardClick}
+        style={{ cursor: onBoardClick ? "pointer" : "default" }}
+      />
       <line x1={x + 10} y1={y + 40} x2={x + w - 10} y2={y + 40} stroke={INK} strokeWidth={1} strokeDasharray="3,3" />
       <line x1={x + 10} y1={y + 80} x2={x + w - 10} y2={y + 80} stroke={INK} strokeWidth={1} strokeDasharray="3,3" />
       <line x1={x + 10} y1={y + 120} x2={x + w - 10} y2={y + 120} stroke={INK} strokeWidth={1} strokeDasharray="3,3" />
@@ -337,18 +350,20 @@ export function FlatBook({
   label: string;
   fontSize?: number;
 }) {
+  const flatInk = "var(--flatbook-ink, var(--ink))";
+  const flatFill = "var(--flatbook-fill, transparent)";
   return (
     <g>
-      <rect x={x} y={y} width={w} height={h} rx={2} fill="none" stroke={INK} strokeWidth={2} />
+      <rect x={x} y={y} width={w} height={h} rx={2} fill={flatFill} stroke={flatInk} strokeWidth={2} />
       {/* spine line along top edge */}
-      <line x1={x} y1={y + 8} x2={x + w} y2={y + 8} stroke={INK} strokeWidth={1.2} />
+      <line x1={x} y1={y + 8} x2={x + w} y2={y + 8} stroke={flatInk} strokeWidth={1.2} />
       <text
         x={x + w / 2}
         y={y + h / 2 + 5}
         fontFamily="monospace"
         fontSize={fontSize}
         fontWeight="bold"
-        fill={INK}
+        fill={flatInk}
         textAnchor="middle"
         letterSpacing="0.08em"
       >

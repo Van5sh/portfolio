@@ -32,16 +32,18 @@ export default function SceneWarRoom() {
   const [activeInternshipId, setActiveInternshipId] =
     useState<WarRoomInternshipId | null>(null);
   const [activeCertId, setActiveCertId] = useState<string | null>(null);
-  const [openInternship,setOpenInternship] = useState(false);
+
   const activeInternship = activeInternshipId
     ? WAR_ROOM_INTERNSHIP_MODAL_DATA[activeInternshipId] ?? null
     : null;
+
   const activeCert = activeCertId
     ? WAR_ROOM_CERTS.find((c) => c.id === activeCertId) ?? null
     : null;
 
   return (
     <div className="scene">
+      {/* ---------------- CERTIFICATES ---------------- */}
       <div
         className="exp-certs-root"
         style={{
@@ -100,36 +102,97 @@ export default function SceneWarRoom() {
                   marginBottom: 10,
                 }}
               />
-              <p
-                style={{
-                  fontSize: 12,
-                  fontWeight: 600,
-                  color: "var(--color-text-primary)",
-                  marginBottom: 4,
-                }}
-              >
-                {cert.name}
-              </p>
-              <p
-                style={{
-                  fontSize: 11,
-                  color: "var(--color-text-secondary)",
-                  marginBottom: 8,
-                }}
-              >
+              <p style={{ fontSize: 12, fontWeight: 600 }}>{cert.name}</p>
+              <p style={{ fontSize: 11, color: "var(--color-text-secondary)" }}>
                 {cert.issuer}
               </p>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* ---------------- INTERNSHIP TABLE ---------------- */}
+      <div
+        style={{
+          position: "absolute",
+          left: 70,
+          top: 60,
+          width: 420,
+          zIndex: 5,
+          background: "var(--color-background-primary)",
+          border: "1px solid var(--color-border-tertiary)",
+          borderRadius: 14,
+          padding: "14px",
+          boxShadow: "0 20px 40px rgba(0,0,0,0.05)",
+          pointerEvents: "auto",
+        }}
+      >
+        {/* Header */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "70px 1fr 120px",
+            fontSize: 11,
+            fontWeight: 600,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            color: "var(--color-text-tertiary)",
+            marginBottom: 8,
+            padding: "0 8px",
+          }}
+        >
+          <span>Year</span>
+          <span>Company</span>
+          <span style={{ textAlign: "right" }}>Role</span>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+          {WAR_ROOM_INTERNSHIPS.map((internship, i) => (
+            <button
+              key={internship.id}
+              onClick={() => setActiveInternshipId(internship.id)}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "70px 1fr 120px",
+                alignItems: "center",
+                padding: "10px",
+                borderRadius: 10,
+                cursor: "pointer",
+                background:
+                  i % 2 === 0
+                    ? "rgba(150,194,219,0.06)"
+                    : "transparent",
+                border: "1px solid rgba(150,194,219,0.15)",
+                transition: "all 0.15s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "rgba(150,194,219,0.15)";
+                e.currentTarget.style.transform = "translateX(4px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background =
+                  i % 2 === 0
+                    ? "rgba(150,194,219,0.06)"
+                    : "transparent";
+                e.currentTarget.style.transform = "none";
+              }}
+            >
+              <span style={{ fontSize: 11, fontWeight: 600 }}>
+                2025
+              </span>
+
+              <span style={{ fontSize: 13, fontWeight: 600 }}>
+                {internship.company}
+              </span>
+
               <span
                 style={{
-                  fontSize: 10,
-                  padding: "2px 7px",
-                  borderRadius: 999,
-                  background: "var(--color-background-secondary)",
-                  border: "0.5px solid var(--color-border-tertiary)",
-                  color: "var(--color-text-tertiary)",
+                  fontSize: 11,
+                  textAlign: "right",
+                  color: "var(--color-text-secondary)",
                 }}
               >
-                Click to view
+                {formatInternshipRole(internship.role)}
               </span>
             </button>
           ))}
@@ -143,44 +206,31 @@ export default function SceneWarRoom() {
           width: "100%",
           overflow: "visible",
           zIndex: 1,
-          pointerEvents: "auto",
         }}
         viewBox="0 0 1400 315"
         preserveAspectRatio="xMidYMax meet"
       >
-        <Whiteboard
-          x={60}
-          y={20}
-          w={380}
-          h={210}
-          entries={WAR_ROOM_INTERNSHIPS.map((internship) => ({
-            id: internship.id,
-            text: `2025 ─── ${internship.company} · ${formatInternshipRole(
-              internship.role,
-            )}`,
-          }))}
-          onEntryClick={(id) => setActiveInternshipId(id as WarRoomInternshipId)}
-        />
         <g style={{ pointerEvents: "none" }}>
           <Desk x={600} y={210} w={700} />
-          {/* <MonitorSVG
-            x={1090}
-            y={115}
-            w={195}
-            h={125}
-            standX={1190}
-            standY={310}
-            label="Monitor"
-            sublabel="Tech Stack"
-            blinkDelay="0s"
-            onClick={() => {}}
-          /> */}
-          {/* <Keyboard x={900} y={246} w={270} h={60} /> */}
           <Mug x={840} y={174} scale={0.62} />
           <Plant x={1335} y={229} scale={0.62} />
           <FloorLine />
         </g>
       </svg>
+
+      {/* ---------------- MODAL ---------------- */}
+      {activeInternship && (
+        <DetailModal
+          data={{
+            eyebrow: "INTERNSHIP",
+            title: activeInternship.title,
+            subtitle: activeInternship.sub,
+            body: activeInternship.body,
+            tags: activeInternship.tags,
+          }}
+          onClose={() => setActiveInternshipId(null)}
+        />
+      )}
     </div>
   );
 }
