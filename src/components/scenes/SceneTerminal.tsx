@@ -18,6 +18,7 @@ interface TerminalLine {
 
 export interface SceneTerminalProps {
   onNavigate?: (scene: number) => void;
+  active?: boolean;
 }
 
 function makeId() {
@@ -28,7 +29,7 @@ function formatSceneName(name: string) {
   return name.toLowerCase().replace(/\s+/g, "");
 }
 
-export default function SceneTerminal({ onNavigate }: SceneTerminalProps) {
+export default function SceneTerminal({ onNavigate, active = false }: SceneTerminalProps) {
   const [lines, setLines] = useState<TerminalLine[]>(() => [
     { id: makeId(), kind: "sys", text: "VANSH.SH — TERMINAL" },
     {
@@ -239,8 +240,9 @@ export default function SceneTerminal({ onNavigate }: SceneTerminalProps) {
   );
 
   useEffect(() => {
+    if (!active) return;
     inputRef.current?.focus();
-  }, []);
+  }, [active]);
 
   return (
     <div className="scene">

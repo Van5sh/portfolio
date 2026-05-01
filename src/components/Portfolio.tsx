@@ -108,7 +108,7 @@ export default function Portfolio() {
     />,
     <SceneTechShelf key={3} />,
     <SceneWarRoom key={4} />,
-    <SceneTerminal key={5} onNavigate={goTo} />,
+    <SceneTerminal key={5} onNavigate={goTo} active={cur === 5} />,
     <SceneFinal key={6} />,
   ];
 
