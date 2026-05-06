@@ -124,7 +124,7 @@ export const WAR_ROOM_CERTS: WarRoomCertData[] = [
     name: "DevOps, Agile & Design Thinking",
     issuer: "IBM",
     badge: "Certified",
-    url: "https://www.ibm.com/training",
+    url: "https://courses.vit.skillsnetwork.site/certificates/7554e7ae1701443eb8345968e50a1c31",
   },
   {
     id: "c2",
@@ -132,7 +132,7 @@ export const WAR_ROOM_CERTS: WarRoomCertData[] = [
     issuer: "Deloitte Australia · Forage",
     date: "Issued Oct 2025 · ID: 9hDhpQenLAM9miZ2h",
     badge: "Verified",
-    url: "https://www.theforage.com",
+    url: "https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/udmxiyHeqYQLkTPvf_9PBTqmSxAf6zZTseP_68fa050e8db112cab1b5c99c_1761283887014_completion_certificate.pdf",
   },
   {
     id: "c3",
@@ -140,7 +140,7 @@ export const WAR_ROOM_CERTS: WarRoomCertData[] = [
     issuer: "Udemy",
     date: "Issued Jan 2025",
     badge: "Credential",
-    url: "https://www.udemy.com",
+    url: "https://www.udemy.com/certificate/UC-809fdb9a-190f-4895-9e77-02b60b635861/",
   },
   // {
   //   id: "c4",
