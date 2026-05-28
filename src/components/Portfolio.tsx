@@ -33,25 +33,9 @@ export default function Portfolio() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // Restore scene from localStorage
-  useEffect(() => {
-    try {
-      const s = localStorage.getItem("vansh-scene");
-      if (s !== null) {
-        const parsed = parseInt(s);
-        if (!Number.isFinite(parsed)) return;
-        // If the user finished the tour (Terminal/Final), always restart from Hero on refresh.
-        if (parsed >= TOTAL - 2) return;
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setCur(Math.min(parsed, TOTAL - 1));
-      }
-    } catch {}
-  }, []);
-
   const goTo = useCallback((n: number) => {
     const nx = Math.max(0, Math.min(TOTAL - 1, n));
     setCur(nx);
-    try { localStorage.setItem("vansh-scene", String(nx)); } catch {}
   }, []);
 
   // Keyboard navigation
@@ -83,11 +67,9 @@ export default function Portfolio() {
         setCur((s) => {
           if (s >= TOTAL - 1) {
             setPlaying(false);
-            try { localStorage.setItem("vansh-scene", "0"); } catch {}
             return 0;
           }
           const next = s + 1;
-          try { localStorage.setItem("vansh-scene", String(next)); } catch {}
           return next;
         });
       }, 4500);

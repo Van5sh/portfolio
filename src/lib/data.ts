@@ -142,12 +142,4 @@ export const WAR_ROOM_CERTS: WarRoomCertData[] = [
     badge: "Credential",
     url: "https://www.udemy.com/certificate/UC-809fdb9a-190f-4895-9e77-02b60b635861/",
   },
-  // {
-  //   id: "c4",
-  //   name: "Full Stack Web Development",
-  //   issuer: "freeCodeCamp",
-  //   date: "Issued Mar 2024",
-  //   badge: "Verified",
-  //   url: "https://www.freecodecamp.org",
-  // }
 ];
