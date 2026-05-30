@@ -8,18 +8,19 @@
 
 :root {
   /* Permanent palette */
-  --bg: rgb(245 231 198);
-  --surface: #FFE4D1;
-  --ink: #222222;
-  --primary: #F28A2E;
-  --accent: #FFB07C;
-  --muted: #4A3A32;
-  --border: #FFD5BA;
+  /* Rose Gold */
+  --bg: #FFF1F2;          /* blush */
+  --surface: #FBCFE8;     /* soft rose */
+  --ink: #1F2937;         /* charcoal (font color) */
+  --primary: #E11D48;     /* rose */
+  --accent: #F59E0B;      /* gold */
+  --muted: #6B7280;       /* slate */
+  --border: color-mix(in srgb, var(--ink) 14%, var(--surface));
 
   /* For alpha blends (CSS Color 4) */
-  --bg-rgb: 245 231 198;
-  --surface-rgb: 255 228 209;
-  --ink-rgb: 34 34 34;
+  --bg-rgb: 255 241 242;
+  --surface-rgb: 251 207 232;
+  --ink-rgb: 31 41 55;
 }
 
 html, body {
