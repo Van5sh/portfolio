@@ -3,7 +3,7 @@
 import { createPortal } from "react-dom";
 import { Project, NAV_ITEMS } from "@/lib/data";
 
-const INK = "var(--ink)";ww
+const INK = "var(--ink)";
 
 function ModalPortal({ children }: { children: React.ReactNode }) {
   if (typeof document === "undefined") return null;
