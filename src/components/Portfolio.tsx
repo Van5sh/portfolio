@@ -12,6 +12,7 @@ import SceneFinal from "@/components/scenes/SceneFinal";
 import { ProjectModal, MenuModal } from "@/components/Modals";
 import { PROJECTS, SCENE_NAMES, Project } from "@/lib/data";
 import { Button } from "./ui/button";
+import SceneSideQuests from "./scenes/SceneSideQuests";
 
 const INK = "var(--ink)";
 const BG = "var(--bg)";
@@ -23,9 +24,8 @@ export default function Portfolio() {
   const [playing, setPlaying] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const TOTAL = 7;
+  const TOTAL = 8;
 
-  // Detect mobile
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 700);
     check();
@@ -85,13 +85,14 @@ export default function Portfolio() {
   const scenes = [
     <SceneHero key={0} />,
     <SceneWelcome key={1} />,
-    <SceneHackstation key={2} projects={PROJECTS} 
-      onProjectClick={(p: Project) => setProj(p)} 
+    <SceneHackstation key={2} projects={PROJECTS}
+      onProjectClick={(p: Project) => setProj(p)}
     />,
     <SceneTechShelf key={3} />,
     <SceneWarRoom key={4} />,
-    <SceneTerminal key={5} onNavigate={goTo} active={cur === 5} />,
-    <SceneFinal key={6} />,
+    <SceneSideQuests key={5} />,
+    <SceneTerminal key={6} onNavigate={goTo} active={cur === 6} />,
+    <SceneFinal key={7} />,
   ];
 
   return (
@@ -109,7 +110,7 @@ export default function Portfolio() {
       <nav className="t-nav">
         <span className="t-nav-logo" onClick={() => goTo(0)}>VANSH.</span>
         <Button className="t-nav-button" onClick={() => window.open("/MyResume.pdf", "_blank", "noopener,noreferrer")}>
-          <Download/> Resume
+          <Download /> Resume
         </Button>
       </nav>
       <div className="track-outer">

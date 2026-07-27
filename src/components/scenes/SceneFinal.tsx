@@ -48,7 +48,7 @@ export default function SceneFinal() {
           <a href="https://github.com/Van5sh" target="_blank" rel="noopener noreferrer">
             Van5sh
           </a>{"  "}
-          <a href="www.linkedin.com/in/vansh-dhir-686b5028b" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/in/vansh-dhir-686b5028b/" target="_blank" rel="noopener noreferrer">
             Vansh
           </a>
         </p>
