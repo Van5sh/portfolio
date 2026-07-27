@@ -7,26 +7,25 @@
 }
 
 :root {
-  /* Permanent palette */
-  /* Rose Gold */
-  --bg: #FFF1F2;          /* blush */
-  --surface: #FBCFE8;     /* soft rose */
-  --ink: #1F2937;         /* charcoal (font color) */
-  --primary: #E11D48;     /* rose */
-  --accent: #F59E0B;      /* gold */
-  --muted: #6B7280;       /* slate */
-  --border: color-mix(in srgb, var(--ink) 14%, var(--surface));
+  --bg: #f4efe3;
+  --surface: #efe3cf;
+  --ink: #183a37;
+  --primary: #d1603d;
+  --accent: #d6a419;
+  --muted: #5d6c67;
+  --border: color-mix(in srgb, var(--ink) 18%, var(--surface));
 
-  /* For alpha blends (CSS Color 4) */
-  --bg-rgb: 255 241 242;
-  --surface-rgb: 251 207 232;
-  --ink-rgb: 31 41 55;
+  --bg-rgb: 244 239 227;
+  --surface-rgb: 239 227 207;
+  --ink-rgb: 24 58 55;
 }
 
 html, body {
   width: 100%;
   height: 100%;
-  background: var(--bg);
+  background:
+    radial-gradient(circle at top, rgb(var(--surface-rgb) / 0.9), transparent 42%),
+    linear-gradient(180deg, #faf5ea 0%, var(--bg) 58%, #ede1ca 100%);
   color: var(--ink);
   overflow: hidden;
 }
@@ -50,7 +49,7 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 36px;
+  padding: 20px 32px;
   pointer-events: none;
 }
 
@@ -65,13 +64,18 @@ a:hover {
 }
 
 .t-nav-button {
+  border: 1px solid rgb(var(--ink-rgb) / 0.12);
+  background: rgb(var(--bg-rgb) / 0.72);
+  box-shadow: 0 12px 28px rgb(var(--ink-rgb) / 0.08);
+  backdrop-filter: blur(10px);
   font-family: var(--font-syne), sans-serif;
   font-weight: 800;
-  font-size: 20px;
+  font-size: 16px;
   color: var(--ink);
   cursor: pointer;
   pointer-events: all;
   letter-spacing: -0.02em;
+  border-radius: 999px;
 }
 
 .t-nav-sub {
@@ -91,7 +95,8 @@ a:hover {
   z-index: 200;
   display: flex;
   align-items: center;
-  background: var(--ink);
+  background: rgb(var(--ink-rgb) / 0.92);
+  box-shadow: 0 16px 42px rgb(var(--ink-rgb) / 0.2);
   border-radius: 100px;
   padding: 10px 6px;
   gap: 2px;
@@ -147,6 +152,7 @@ a:hover {
   justify-content: center;
   overflow: hidden;
   flex-shrink: 0;
+  padding: 104px 24px 110px;
 }
 
 /* War Room: experience/certs palette */
@@ -198,7 +204,7 @@ a:hover {
   position: fixed;
   inset: 0;
   z-index: 500;
-  background: rgb(var(--ink-rgb) / 0.18);
+  background: rgb(var(--ink-rgb) / 0.28);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -219,14 +225,16 @@ a:hover {
 .receipt {
   background: var(--surface, var(--bg));
   color: var(--ink);
-  width: 320px;
+  width: min(320px, calc(100vw - 32px));
+  max-height: min(78vh, 720px);
+  overflow-y: auto;
   padding: 28px 24px;
   font-family: var(--font-courier-prime), monospace;
   font-size: 13px;
   line-height: 1.9;
   animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   border: 1px solid rgb(var(--ink-rgb) / 0.12);
-  box-shadow: 0 24px 90px rgb(0 0 0 / 0.35);
+  box-shadow: 0 24px 90px rgb(var(--ink-rgb) / 0.22);
 }
 
 .rni {
@@ -242,20 +250,24 @@ a:hover {
   background: var(--surface, var(--bg));
   color: var(--ink);
   width: min(640px, 94vw);
+  max-height: min(82vh, 860px);
+  overflow-y: auto;
   padding: 40px 36px;
-  border: 2px solid var(--ink);
+  border: 1px solid rgb(var(--ink-rgb) / 0.18);
   position: relative;
   font-family: var(--font-courier-prime), monospace;
   animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 24px 90px rgb(var(--ink-rgb) / 0.18);
 }
 
 .tag {
   display: inline-block;
-  border: 1.5px solid var(--ink);
+  border: 1px solid rgb(var(--ink-rgb) / 0.22);
   padding: 3px 11px;
   font-size: 11px;
   letter-spacing: 0.1em;
   margin: 3px 3px 0 0;
+  background: rgb(var(--bg-rgb) / 0.45);
 }
 
 .xbtn {
@@ -308,10 +320,17 @@ a:hover {
 
 .bnb:hover { opacity: 1; background: rgb(var(--bg-rgb) / 0.1); }
 
+.final-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 18px;
+}
+
 /* Tech Shelf */
 .tech-shelf-root .tech-shelf-wrap {
   position: absolute;
-  left: 40%;
+  left: 50%;
   transform: translateX(-50%);
   top: 110px;
   width: min(640px, calc(100% - 72px));
@@ -412,9 +431,28 @@ a:hover {
 
 /* Mobile */
 @media (max-width: 700px) {
+  html, body {
+    height: auto;
+    min-height: 100%;
+  }
+
   body {
     overflow-y: auto;
     overflow-x: hidden;
+  }
+
+  .t-nav {
+    padding: 16px 18px;
+    align-items: flex-start;
+  }
+
+  .t-nav-logo {
+    font-size: 18px;
+  }
+
+  .t-nav-button {
+    font-size: 14px;
+    padding-inline: 14px;
   }
 
   .track-outer {
@@ -435,6 +473,9 @@ a:hover {
 
   .scene {
     min-height: 100svh;
+    height: auto;
+    padding: 110px 18px 96px;
+    justify-content: center;
   }
 
   .slabel {
@@ -442,5 +483,57 @@ a:hover {
     top: 80px;
     left: 24px;
     right: 24px;
+  }
+
+  .receipt {
+    padding: 22px 18px;
+  }
+
+  .pcard {
+    width: calc(100vw - 24px);
+    padding: 28px 20px;
+  }
+
+  .tech-shelf-root .tech-shelf-wrap {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .tech-shelf-root .tech-shelf-section {
+    grid-template-columns: 1fr;
+  }
+
+  .tech-shelf-root .tech-shelf-tag {
+    writing-mode: horizontal-tb;
+    transform: none;
+    width: fit-content;
+    padding: 6px 10px;
+  }
+
+  .tech-shelf-root .tech-shelf-books {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .t-nav {
+    gap: 12px;
+  }
+
+  .t-nav-button {
+    min-height: 38px;
+  }
+
+  .final-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tech-shelf-root .tech-shelf-books {
+    grid-template-columns: 1fr;
   }
 }

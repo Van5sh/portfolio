@@ -40,10 +40,9 @@ export default function SceneTerminal({ onNavigate, active = false }: SceneTermi
   ]);
   const [input, setInput] = useState("");
   const [history, setHistory] = useState<string[]>([]);
-  const [historyCursor, setHistoryCursor] = useState<number | null>(null);
-
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const historyCursorRef = useRef<number | null>(null);
 
   const scenesByKey = useMemo(() => {
     return new Map(
@@ -192,7 +191,7 @@ export default function SceneTerminal({ onNavigate, active = false }: SceneTermi
     const cmd = input;
     setInput("");
     setHistory((h) => [...h, cmd]);
-    setHistoryCursor(null);
+    historyCursorRef.current = null;
     await runCommand(cmd);
   }, [input, runCommand]);
 
@@ -213,27 +212,27 @@ export default function SceneTerminal({ onNavigate, active = false }: SceneTermi
       if (e.key === "ArrowUp") {
         e.preventDefault();
         if (history.length === 0) return;
-        setHistoryCursor((cur) => {
-          const next = cur === null ? history.length - 1 : Math.max(0, cur - 1);
-          setInput(history[next] ?? "");
-          return next;
-        });
+        const next =
+          historyCursorRef.current === null
+            ? history.length - 1
+            : Math.max(0, historyCursorRef.current - 1);
+        historyCursorRef.current = next;
+        setInput(history[next] ?? "");
         return;
       }
 
       if (e.key === "ArrowDown") {
         e.preventDefault();
         if (history.length === 0) return;
-        setHistoryCursor((cur) => {
-          if (cur === null) return null;
-          const next = cur + 1;
-          if (next >= history.length) {
-            setInput("");
-            return null;
-          }
-          setInput(history[next] ?? "");
-          return next;
-        });
+        if (historyCursorRef.current === null) return;
+        const next = historyCursorRef.current + 1;
+        if (next >= history.length) {
+          historyCursorRef.current = null;
+          setInput("");
+          return;
+        }
+        historyCursorRef.current = next;
+        setInput(history[next] ?? "");
       }
     },
     [clearTerminal, history, onSubmit],
@@ -248,16 +247,25 @@ export default function SceneTerminal({ onNavigate, active = false }: SceneTermi
     <div className="scene">
       <p className="slabel">GET IN TOUCH — THE TERMINAL</p>
 
-      <div style={{ position: "relative", zIndex: 10, width: "100%", maxWidth: 900, padding: "0 28px" }}>
+      <div
+        style={{
+          position: "relative",
+          zIndex: 10,
+          width: "100%",
+          maxWidth: 900,
+          padding: "0 20px",
+        }}
+      >
         <div
           style={{
             background: INK,
             color: BG,
-            padding: "38px 42px",
-            borderRadius: 8,
+            padding: "clamp(22px, 4vw, 38px)",
+            borderRadius: 18,
             fontFamily: "var(--font-courier-prime), monospace",
             fontSize: 15,
             lineHeight: 2.05,
+            boxShadow: "0 20px 56px rgb(var(--ink-rgb) / 0.16)",
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 20 }}>
@@ -271,7 +279,7 @@ export default function SceneTerminal({ onNavigate, active = false }: SceneTermi
           <div
             ref={scrollRef}
             style={{
-              maxHeight: 450,
+              maxHeight: "min(450px, 48vh)",
               overflowY: "auto",
               paddingRight: 8,
               marginBottom: 16,

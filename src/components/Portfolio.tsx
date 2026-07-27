@@ -12,7 +12,6 @@ import SceneFinal from "@/components/scenes/SceneFinal";
 import { ProjectModal, MenuModal } from "@/components/Modals";
 import { PROJECTS, SCENE_NAMES, Project } from "@/lib/data";
 import { Button } from "./ui/button";
-import SceneSideQuests from "./scenes/SceneSideQuests";
 
 const INK = "var(--ink)";
 const BG = "var(--bg)";
@@ -24,7 +23,7 @@ export default function Portfolio() {
   const [playing, setPlaying] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const TOTAL = 8;
+  const TOTAL = 7;
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 700);
@@ -90,9 +89,8 @@ export default function Portfolio() {
     />,
     <SceneTechShelf key={3} />,
     <SceneWarRoom key={4} />,
-    <SceneSideQuests key={5} />,
-    <SceneTerminal key={6} onNavigate={goTo} active={cur === 6} />,
-    <SceneFinal key={7} />,
+    <SceneTerminal key={5} onNavigate={goTo} active={cur === 5} />,
+    <SceneFinal key={6} />,
   ];
 
   return (

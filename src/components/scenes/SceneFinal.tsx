@@ -5,7 +5,16 @@ const INK = "var(--ink)";
 export default function SceneFinal() {
   return (
     <div className="scene">
-      <div style={{ textAlign: "center", position: "relative", zIndex: 10 }}>
+      <div
+        style={{
+          textAlign: "center",
+          position: "relative",
+          zIndex: 10,
+          width: "100%",
+          maxWidth: 860,
+          padding: "0 20px",
+        }}
+      >
         <div
           style={{
             fontFamily: "var(--font-courier-prime), monospace",
@@ -22,7 +31,7 @@ export default function SceneFinal() {
           style={{
             fontFamily: "var(--font-syne), sans-serif",
             fontWeight: 800,
-            fontSize: "clamp(44px,8vw,108px)",
+            fontSize: "clamp(36px,6.5vw,84px)",
             color: INK,
             lineHeight: 1,
             letterSpacing: "-0.02em",
@@ -33,6 +42,7 @@ export default function SceneFinal() {
           SOMETHING.
         </h2>
         <p
+          className="final-links"
           style={{
             fontFamily: "var(--font-courier-prime), monospace",
             fontSize: 14,
@@ -56,7 +66,7 @@ export default function SceneFinal() {
           style={{
             marginTop: 28,
             fontFamily: "var(--font-courier-prime), monospace",
-            fontSize: 11,
+            fontSize: "clamp(10px, 2.3vw, 11px)",
             opacity: 0.28,
             letterSpacing: "0.1em",
             color: INK,

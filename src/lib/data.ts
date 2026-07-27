@@ -67,9 +67,8 @@ export const NAV_ITEMS = [
   { label: "* THE HACKSTATION", scene: 2 },
   { label: "* TECH SHELF", scene: 3 },
   { label: "* WAR ROOM", scene: 4 },
-  { label: "* SIDE QUESTS", scene: 5 },
-  { label: "* TERMINAL", scene: 6 },
-  { label: "* LATER", scene: 7 },
+  { label: "* TERMINAL", scene: 5 },
+  { label: "* LATER", scene: 6 },
 ];
 
 export const SCENE_NAMES = [
@@ -78,7 +77,6 @@ export const SCENE_NAMES = [
   "Hackstation",
   "Tech Shelf",
   "War Room",
-  "Side Quests",
   "Terminal",
   "Final",
 ];

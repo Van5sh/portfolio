@@ -9,17 +9,17 @@ export default function SceneWelcome() {
         style={{
           textAlign: "center",
           zIndex: 10,
-          maxWidth: 1200,
-          padding: "0 32px",
+          maxWidth: 980,
+          padding: "0 20px",
         }}
       >
         <p
           style={{
             fontFamily: "var(--font-courier-prime), monospace",
-            fontSize: "clamp(16px,2.2vw,22px)",
+            fontSize: "clamp(15px,2.1vw,21px)",
             color: INK,
             letterSpacing: "0.04em",
-            lineHeight: 1.75,
+            lineHeight: 1.9,
           }}
         >
           I’m a third-year Computer Science and Engineering student at Vellore Institute of Technology, with a strong interest in building impactful software and continuously learning new technologies.

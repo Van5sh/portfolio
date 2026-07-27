@@ -12,10 +12,7 @@ import {
 import {
   Whiteboard,
   Desk,
-  Chair,
   Mug,
-  MonitorSVG,
-  Keyboard,
   Plant,
   FloorLine,
 } from "@/components/SvgPrimitives";
@@ -31,12 +28,8 @@ function formatInternshipRole(role: string) {
 export default function SceneWarRoom() {
   const [activeInternshipId, setActiveInternshipId] =
     useState<WarRoomInternshipId | null>(null);
-  const [activeCertId, setActiveCertId] = useState<string | null>(null);
   const activeInternship = activeInternshipId
     ? WAR_ROOM_INTERNSHIP_MODAL_DATA[activeInternshipId] ?? null
-    : null;
-  const activeCert = activeCertId
-    ? WAR_ROOM_CERTS.find((c) => c.id === activeCertId) ?? null
     : null;
 
   return (
@@ -45,9 +38,9 @@ export default function SceneWarRoom() {
         className="exp-certs-root"
         style={{
           position: "absolute",
-          right: 70,
-          top: 70,
-          width: 420,
+          right: "clamp(20px, 5vw, 70px)",
+          top: "clamp(92px, 9vw, 70px)",
+          width: "min(420px, calc(100vw - 40px))",
           zIndex: 5,
           pointerEvents: "auto",
           fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
@@ -67,7 +60,13 @@ export default function SceneWarRoom() {
           Certificates on the wall
         </p>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+            gap: 10,
+          }}
+        >
           {WAR_ROOM_CERTS.map((cert, idx) => (
             <button
               key={cert.id}

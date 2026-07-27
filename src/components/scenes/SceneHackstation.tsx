@@ -1,8 +1,7 @@
-import { Plant, Mug, Keyboard, Desk, CricketBall, MonitorSVG, Paper } from "@/components/SvgPrimitives";
+import { Plant, Mug, Keyboard, Desk, MonitorSVG, Paper } from "@/components/SvgPrimitives";
 import type { Project } from "@/lib/data";
 
 const INK = "var(--ink)";
-const SW = 2.2;
 
 interface Props {
   projects: Project[];
