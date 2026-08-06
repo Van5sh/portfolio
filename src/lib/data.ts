@@ -30,20 +30,20 @@ export const PROJECTS: Project[] = [
       "NFC",
     ],
   },
-  {
-    id: 3,
-    name: "GitHub Open Source Parse",
-    status: "Active",
-    desc:
-      "Developer tooling platform that parses public GitHub repositories into structured ASTs using Tree-sitter. Visualizes file hierarchies, dependencies, and symbol references with collaborative annotations. Includes OAuth 2.0 authentication and MongoDB-backed repository snapshots.",
-    tech: [
-      "Next.js",
-      "GitHub API",
-      "MongoDB",
-      "Tree-sitter",
-      "OAuth",
-    ],
-  },
+  // {
+  //   id: 3,
+  //   name: "GitHub Open Source Parse",
+  //   status: "Active",
+  //   desc:
+  //     "Developer tooling platform that parses public GitHub repositories into structured ASTs using Tree-sitter. Visualizes file hierarchies, dependencies, and symbol references with collaborative annotations. Includes OAuth 2.0 authentication and MongoDB-backed repository snapshots.",
+  //   tech: [
+  //     "Next.js",
+  //     "GitHub API",
+  //     "MongoDB",
+  //     "Tree-sitter",
+  //     "OAuth",
+  //   ],
+  // },
   {
     id: 4,
     name: "Apex Market",
