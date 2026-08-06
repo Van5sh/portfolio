@@ -25,7 +25,7 @@ export default function SceneHero() {
             letterSpacing: "-0.02em",
           }}
         >
-          VANSH.
+          VANSH
         </h1>
         <p
           style={{

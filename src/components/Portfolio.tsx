@@ -106,7 +106,7 @@ export default function Portfolio() {
       onTouchEnd={onTouchEnd}
     >
       <nav className="t-nav">
-        <span className="t-nav-logo" onClick={() => goTo(0)}>VANSH.</span>
+        <span className="t-nav-logo" onClick={() => goTo(0)}>VANSH</span>
         <Button className="t-nav-button" onClick={() => window.open("/MyResume.pdf", "_blank", "noopener,noreferrer")}>
           <Download /> Resume
         </Button>
