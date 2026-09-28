@@ -37,8 +37,8 @@ export const PROJECTS: Project[] = [
     desc:
       "MindMesh is a full-stack AI-powered knowledge management and collaboration platform built as a long-term project to combine document management, semantic search, AI chat, flowcharts, and project collaboration into a unified workspace. It serves as a hands-on learning vehicle for AI, ML, Deep Learning, and Large Language Models, with features such as intelligent document retrieval, Retrieval-Augmented Generation (RAG), knowledge graph generation, automated summarization, and AI-assisted workflows planned as the platform evolves. Current development focuses on backend architecture, authentication and authorization, project and file management, AI service integration, vector search, LLM-powered chat and document understanding, and scalable cloud deployment.",
     tech: [
-      "Next.js",
       "Go",
+      "Next.js",
       "PostgreSQL",
       "GraphQL",
       "AI/ML",
@@ -67,8 +67,9 @@ export const NAV_ITEMS = [
   { label: "* THE HACKSTATION", scene: 2 },
   { label: "* TECH SHELF", scene: 3 },
   { label: "* WAR ROOM", scene: 4 },
-  { label: "* TERMINAL", scene: 5 },
-  { label: "* LATER", scene: 6 },
+  { label: "* SIDE QUESTS", scene: 5 },
+  { label: "* TERMINAL", scene: 6 },
+  { label: "* LATER", scene: 7 },
 ];
 
 export const SCENE_NAMES = [
@@ -77,6 +78,7 @@ export const SCENE_NAMES = [
   "Hackstation",
   "Tech Shelf",
   "War Room",
+  "Side Quests",
   "Terminal",
   "Final",
 ];

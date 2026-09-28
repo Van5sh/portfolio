@@ -1,5 +1,6 @@
 import { Plant, Mug, Keyboard, Desk, MonitorSVG, Paper } from "@/components/SvgPrimitives";
 import type { Project } from "@/lib/data";
+import SceneHeading from "@/components/SceneHeading";
 
 const INK = "var(--ink)";
 
@@ -28,6 +29,12 @@ export default function SceneHackstation({ projects, onProjectClick }: Props) {
 
   return (
     <div className="scene">
+      <SceneHeading
+        index={3}
+        eyebrow="projects"
+        title="The Hackstation"
+        hint="Click a screen to open the project."
+      />
       <style>{`
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.15} }
         @keyframes flow  { from{stroke-dashoffset:24} to{stroke-dashoffset:0} }
@@ -35,6 +42,7 @@ export default function SceneHackstation({ projects, onProjectClick }: Props) {
       `}</style>
 
       <svg
+        className="hack-desk"
         style={{
           position: "absolute",
           top: "28%",

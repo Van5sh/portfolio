@@ -31,12 +31,17 @@ export default function SceneHero() {
           style={{
             fontFamily: "var(--font-courier-prime), monospace",
             color: INK,
-            marginTop: 24,
-            letterSpacing: "0.08em",
-            fontSize: "clamp(12px,2.5vw,15px)",
+            marginTop: 18,
+            letterSpacing: "0.18em",
+            fontSize: "clamp(11px,2vw,13px)",
+            textTransform: "uppercase",
+            opacity: 0.7,
           }}
         >
-          navigate with arrows or ← → keys
+          Full Stack Developer · Builder · Cricketer
+        </p>
+        <p className="hero-hint">
+          navigate with <kbd className="kbd">←</kbd> <kbd className="kbd">→</kbd> keys
         </p>
       </div>
       <svg

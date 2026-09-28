@@ -1,3 +1,5 @@
+import { Mail } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { Cloud } from "@/components/SvgPrimitives";
 
 const INK = "var(--ink)";
@@ -41,25 +43,15 @@ export default function SceneFinal() {
           <br />
           SOMETHING.
         </h2>
-        <p
-          className="final-links"
-          style={{
-            fontFamily: "var(--font-courier-prime), monospace",
-            fontSize: 14,
-            marginTop: 20,
-            opacity: 0.5,
-            letterSpacing: "0.06em",
-            color: INK,
-          }}
-        >
-          <a href="mailto:vansh05dhir@gmail.com" target="_blank" rel="noopener noreferrer">
-            vansh05dhir@gmail.com
-          </a>{"  "}
-          <a href="https://github.com/Van5sh" target="_blank" rel="noopener noreferrer">
-            Van5sh
-          </a>{"  "}
-          <a href="https://www.linkedin.com/in/vansh-dhir-686b5028b/" target="_blank" rel="noopener noreferrer">
-            Vansh
+        <p className="final-links" style={{ marginTop: 28 }}>
+          <a className="final-link final-link--primary" href="mailto:vansh05dhir@gmail.com" target="_blank" rel="noopener noreferrer">
+            <Mail size={15} /> vansh05dhir@gmail.com
+          </a>
+          <a className="final-link" href="https://github.com/Van5sh" target="_blank" rel="noopener noreferrer">
+            <FaGithub size={15} /> GitHub
+          </a>
+          <a className="final-link" href="https://www.linkedin.com/in/vansh-dhir-686b5028b/" target="_blank" rel="noopener noreferrer">
+            <FaLinkedin size={15} /> LinkedIn
           </a>
         </p>
         <div

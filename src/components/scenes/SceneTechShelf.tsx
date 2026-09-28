@@ -1,4 +1,5 @@
 import { FlatBook, Plant, CricketBat, CricketBall } from "../SvgPrimitives";
+import SceneHeading from "@/components/SceneHeading";
 
 const INK = "var(--ink)";
 const SW = 2.2;
@@ -67,6 +68,13 @@ export default function SceneTechShelf() {
         ["--tech-shelf-sw" as never]: `${SW}px`,
       }}
     >
+      <SceneHeading
+        index={4}
+        eyebrow="skills"
+        title="Tech Shelf"
+        hint="Everything I reach for, sorted by shelf."
+        side
+      />
       <div className="tech-shelf-wrap">
         <div className="tech-shelf-sections">
           {SECTIONS.map((section) => (

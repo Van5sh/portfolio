@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { PROJECTS, SCENE_NAMES } from "@/lib/data";
 import { Plant, Keyboard, FloorLine } from "@/components/SvgPrimitives";
+import SceneHeading from "@/components/SceneHeading";
 
 const INK = "var(--ink)";
 const BG = "var(--bg)";
@@ -240,12 +241,13 @@ export default function SceneTerminal({ onNavigate, active = false }: SceneTermi
 
   useEffect(() => {
     if (!active) return;
-    inputRef.current?.focus();
+    // preventScroll: focusing would otherwise scroll the track to this scene early
+    inputRef.current?.focus({ preventScroll: true });
   }, [active]);
 
   return (
     <div className="scene">
-      <p className="slabel">GET IN TOUCH — THE TERMINAL</p>
+      <SceneHeading index={7} eyebrow="get in touch" title="The Terminal" side />
 
       <div
         style={{
@@ -269,12 +271,27 @@ export default function SceneTerminal({ onNavigate, active = false }: SceneTermi
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 20 }}>
-            <div style={{ width: 11, height: 11, borderRadius: "50%", background: BG, opacity: 0.25 }} />
-            <div style={{ width: 11, height: 11, borderRadius: "50%", background: BG, opacity: 0.25 }} />
-            <div style={{ width: 11, height: 11, borderRadius: "50%", background: BG, opacity: 0.25 }} />
-            <span style={{ marginLeft: 12, fontSize: 11, letterSpacing: "0.12em", opacity: 0.4 }}>
+            <div style={{ width: 11, height: 11, borderRadius: "50%", background: "var(--primary)" }} />
+            <div style={{ width: 11, height: 11, borderRadius: "50%", background: "var(--accent)" }} />
+            <div style={{ width: 11, height: 11, borderRadius: "50%", background: BG, opacity: 0.35 }} />
+            <span style={{ marginLeft: 12, fontSize: 11, letterSpacing: "0.12em", opacity: 0.5 }}>
               VANSH.SH — TERMINAL
             </span>
+          </div>
+          <div className="term-chips">
+            {["help", "whoami", "projects", "scenes"].map((c) => (
+              <button
+                key={c}
+                type="button"
+                className="term-chip"
+                onClick={() => {
+                  void runCommand(c);
+                  inputRef.current?.focus({ preventScroll: true });
+                }}
+              >
+                {c}
+              </button>
+            ))}
           </div>
           <div
             ref={scrollRef}
@@ -290,7 +307,7 @@ export default function SceneTerminal({ onNavigate, active = false }: SceneTermi
                 key={l.id}
                 style={{
                   opacity: l.kind === "sys" ? 0 : l.kind === "err" ? 0.85 : 1,
-                  color: l.kind === "err" ? "rgb(var(--bg-rgb) / 0.92)" : BG,
+                  color: l.kind === "err" ? "var(--accent)" : l.kind === "in" ? "rgb(var(--bg-rgb) / 0.6)" : BG,
                   fontSize: l.kind === "sys" ? 11 : 14,
                   letterSpacing: l.kind === "sys" ? "0.1em" : undefined,
                   marginBottom: l.kind === "sys" ? 10 : 0,

@@ -18,6 +18,11 @@ import {
 } from "@/components/SvgPrimitives";
 
 import { DetailModal } from "@/components/Modals";
+import SceneHeading from "@/components/SceneHeading";
+
+function internshipYear(id: WarRoomInternshipId) {
+  return WAR_ROOM_INTERNSHIP_MODAL_DATA[id].sub.match(/\b20\d\d\b/)?.[0] ?? "";
+}
 
 function formatInternshipRole(role: string) {
   if (role === "Software Development Engineer Intern") return "SDE Intern";
@@ -34,6 +39,12 @@ export default function SceneWarRoom() {
 
   return (
     <div className="scene">
+      <SceneHeading
+        index={5}
+        eyebrow="experience"
+        title="War Room"
+        hint="Internships on the whiteboard — click one for details. Certificates pinned on the wall."
+      />
       <div
         className="exp-certs-root"
         style={{
@@ -43,7 +54,7 @@ export default function SceneWarRoom() {
           width: "min(420px, calc(100vw - 40px))",
           zIndex: 5,
           pointerEvents: "auto",
-          fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+          fontFamily: "var(--font-courier-prime), monospace",
         }}
       >
         <p
@@ -76,16 +87,8 @@ export default function SceneWarRoom() {
                   window.open(cert.url, "_blank", "noopener,noreferrer");
                 }
               }}
-              style={{
-                cursor: "pointer",
-                textAlign: "left",
-                background: "var(--color-background-primary)",
-                border: "0.5px solid var(--color-border-tertiary)",
-                borderRadius: 12,
-                padding: "0.85rem 0.9rem",
-                boxShadow: "0 16px 30px rgb(var(--ink-rgb) / 0.10)",
-                transform: `rotate(${idx % 2 === 0 ? -1.2 : 1.1}deg)`,
-              }}
+              className="cert-card"
+              style={{ ["--tilt" as never]: `${idx % 2 === 0 ? -1.2 : 1.1}deg` }}
             >
               <div
                 style={{
@@ -100,8 +103,9 @@ export default function SceneWarRoom() {
               />
               <p
                 style={{
-                  fontSize: 12,
-                  fontWeight: 600,
+                  fontSize: 12.5,
+                  fontWeight: 700,
+                  lineHeight: 1.35,
                   color: "var(--color-text-primary)",
                   marginBottom: 4,
                 }}
@@ -117,17 +121,8 @@ export default function SceneWarRoom() {
               >
                 {cert.issuer}
               </p>
-              <span
-                style={{
-                  fontSize: 10,
-                  padding: "2px 7px",
-                  borderRadius: 999,
-                  background: "var(--color-background-secondary)",
-                  border: "0.5px solid var(--color-border-tertiary)",
-                  color: "var(--color-text-tertiary)",
-                }}
-              >
-                Click to view
+              <span className="cert-badge">
+                {cert.badge} <span aria-hidden>↗</span>
               </span>
             </button>
           ))}
@@ -153,7 +148,7 @@ export default function SceneWarRoom() {
           h={210}
           entries={WAR_ROOM_INTERNSHIPS.map((internship) => ({
             id: internship.id,
-            text: `2025 ─── ${internship.company} · ${formatInternshipRole(
+            text: `${internshipYear(internship.id)} ─── ${internship.company} · ${formatInternshipRole(
               internship.role,
             )}`,
           }))}
