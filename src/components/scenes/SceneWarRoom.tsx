@@ -88,6 +88,8 @@ export default function SceneWarRoom() {
                 }
               }}
               className="cert-card"
+              data-cursor="Verify ↗"
+              data-cursor-sub={cert.issuer.split(" · ")[0]}
               style={{ ["--tilt" as never]: `${idx % 2 === 0 ? -1.2 : 1.1}deg` }}
             >
               <div
@@ -151,6 +153,8 @@ export default function SceneWarRoom() {
             text: `${internshipYear(internship.id)} ─── ${internship.company} · ${formatInternshipRole(
               internship.role,
             )}`,
+            cursorLabel: "Details",
+            cursorSub: internship.company,
           }))}
           onEntryClick={(id) => setActiveInternshipId(id as WarRoomInternshipId)}
           onBoardClick={() => setActiveInternshipId(WAR_ROOM_INTERNSHIPS[0]?.id ?? null)}

@@ -450,6 +450,111 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
+/* Masking cursor (see components/Cursor.tsx) */
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
+html.has-cursor input,
+html.has-cursor textarea {
+  cursor: text !important;
+}
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  display: none;
+}
+
+/* Blend on the fixed layer itself: it is the compositing group, so a blend
+   mode on its children would only mix with each other, not the page. */
+.cursor--lens {
+  mix-blend-mode: difference;
+}
+
+html.has-cursor .cursor { display: block; }
+
+.cursor-blob,
+.cursor-bubble {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(var(--s, 1));
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease;
+}
+
+/* inverting lens */
+.cursor-blob {
+  width: 390px;
+  height: 390px;
+  background: #fff;
+  --s: 0.24;
+}
+
+.cursor.is-link .cursor-blob { --s: 1; }
+.cursor.is-label .cursor-blob { --s: 0; opacity: 0; }
+.cursor.is-down .cursor-blob { --s: 0.18; }
+.cursor.is-link.is-down .cursor-blob { --s: 0.8; }
+
+/* data bubble */
+.cursor-bubble {
+  width: 570px;
+  height: 570px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 66px;
+  text-align: center;
+  background: var(--ink);
+  color: var(--bg);
+  box-shadow: 0 0 0 1px rgb(var(--bg-rgb) / 0.35), 0 14px 34px rgb(var(--ink-rgb) / 0.3);
+  --s: 0;
+  opacity: 0;
+}
+
+.cursor.is-label .cursor-bubble { --s: 1; opacity: 1; }
+.cursor.is-label.is-down .cursor-bubble { --s: 0.9; }
+
+.cursor-label {
+  font-family: var(--font-syne), sans-serif;
+  font-weight: 800;
+  font-size: 72px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.cursor-sub {
+  font-family: var(--font-courier-prime), monospace;
+  font-size: 40px;
+  line-height: 1.25;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.cursor-sub:empty { display: none; }
+
+.cursor.is-hidden .cursor-blob,
+.cursor.is-hidden .cursor-bubble,
+.cursor.is-away .cursor-blob,
+.cursor.is-away .cursor-bubble {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-blob,
+  .cursor-bubble { transition: opacity 0.2s ease; }
+}
+
 /* Mobile bottom bar */
 .m-nav {
   position: fixed;

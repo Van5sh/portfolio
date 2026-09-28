@@ -1,4 +1,9 @@
+"use client";
+
+import { useState } from "react";
+
 import { FloorLine, Plant } from "@/components/SvgPrimitives";
+import { DetailModal } from "@/components/Modals";
 
 const INK = "var(--ink)";
 
@@ -38,7 +43,11 @@ const QUESTS = [
 // active job.
 const COMMITS_X = [1000, 1050, 1090, 1140, 1175, 1225, 1265];
 
+type Quest = (typeof QUESTS)[number];
+
 export default function SceneCricketCorner() {
+  const [active, setActive] = useState<Quest | null>(null);
+
   return (
     <div className="scene">
       <style>{`
@@ -129,6 +138,10 @@ export default function SceneCricketCorner() {
           transform-origin: top;
           transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
         }
+        .quest-card:focus-visible {
+          outline: 2px solid var(--primary);
+          outline-offset: 3px;
+        }
         .quest-card:hover {
           border-color: rgb(var(--ink-rgb) / 0.4);
           transform: translateY(-3px);
@@ -176,6 +189,10 @@ export default function SceneCricketCorner() {
           margin-bottom: 8px;
         }
         .quest-body {
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 3;
+          overflow: hidden;
           font-family: var(--font-courier-prime), monospace;
           font-size: 12.5px;
           line-height: 1.65;
@@ -238,7 +255,21 @@ export default function SceneCricketCorner() {
         </div>
         <div className="sq-grid">
           {QUESTS.map((quest, i) => (
-            <article key={quest.title} className="quest-card">
+            <article
+              key={quest.title}
+              className="quest-card"
+              role="button"
+              tabIndex={0}
+              data-cursor="Read"
+              data-cursor-sub={quest.status}
+              onClick={() => setActive(quest)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setActive(quest);
+                }
+              }}
+            >
               <div className="quest-top">
                 <span className="quest-num">Q.{String(i + 1).padStart(2, "0")}</span>
                 <span
@@ -301,6 +332,17 @@ export default function SceneCricketCorner() {
         </text>
         <FloorLine />
       </svg>
+      {active && (
+        <DetailModal
+          data={{
+            eyebrow: `SIDE QUEST · ${active.status.toUpperCase()}`,
+            title: active.title,
+            body: active.body,
+            tags: active.tag,
+          }}
+          onClose={() => setActive(null)}
+        />
+      )}
     </div>
   );
 }

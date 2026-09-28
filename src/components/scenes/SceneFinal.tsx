@@ -44,13 +44,13 @@ export default function SceneFinal() {
           SOMETHING.
         </h2>
         <p className="final-links" style={{ marginTop: 28 }}>
-          <a className="final-link final-link--primary" href="mailto:vansh05dhir@gmail.com" target="_blank" rel="noopener noreferrer">
+          <a className="final-link final-link--primary" data-cursor="Say hi" data-cursor-sub="email me" href="mailto:vansh05dhir@gmail.com" target="_blank" rel="noopener noreferrer">
             <Mail size={15} /> vansh05dhir@gmail.com
           </a>
-          <a className="final-link" href="https://github.com/Van5sh" target="_blank" rel="noopener noreferrer">
+          <a className="final-link" data-cursor="GitHub ↗" data-cursor-sub="Van5sh" href="https://github.com/Van5sh" target="_blank" rel="noopener noreferrer">
             <FaGithub size={15} /> GitHub
           </a>
-          <a className="final-link" href="https://www.linkedin.com/in/vansh-dhir-686b5028b/" target="_blank" rel="noopener noreferrer">
+          <a className="final-link" data-cursor="LinkedIn ↗" data-cursor-sub="connect" href="https://www.linkedin.com/in/vansh-dhir-686b5028b/" target="_blank" rel="noopener noreferrer">
             <FaLinkedin size={15} /> LinkedIn
           </a>
         </p>

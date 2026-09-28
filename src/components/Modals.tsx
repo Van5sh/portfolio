@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Project, NAV_ITEMS } from "@/lib/data";
 
@@ -159,6 +160,13 @@ interface DetailModalProps {
 }
 
 export function DetailModal({ data, onClose }: DetailModalProps) {
+  // Scene-owned modal, so it handles its own Escape
+  useEffect(() => {
+    const h = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", h);
+    return () => window.removeEventListener("keydown", h);
+  }, [onClose]);
+
   return (
     <ModalPortal>
       <div className="overlay" onClick={onClose}>

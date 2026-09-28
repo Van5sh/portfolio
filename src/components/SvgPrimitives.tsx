@@ -86,6 +86,8 @@ export function MonitorSVG({
   sublabel,
   blinkDelay,
   onClick,
+  cursorLabel,
+  cursorSub,
 }: {
   x: number;
   y: number;
@@ -97,11 +99,13 @@ export function MonitorSVG({
   sublabel: string;
   blinkDelay: string;
   onClick: () => void;
+  cursorLabel?: string;
+  cursorSub?: string;
 }) {
   const cx = x + w / 2;
   const standY = Math.max(standYProp ?? 220, y + h + 18);
   return (
-    <g onClick={onClick} style={{ cursor: "pointer" }}>
+    <g onClick={onClick} style={{ cursor: "pointer" }} data-cursor={cursorLabel} data-cursor-sub={cursorSub}>
       <rect x={x} y={y} width={w} height={h} rx={4} fill="var(--bg,#fff)" stroke={INK} strokeWidth={SW} />
       <rect x={x} y={y} width={w} height={26} rx={4} fill="none" stroke={INK} strokeWidth={SW} />
       <line x1={x} y1={y + 26} x2={x + w} y2={y + 26} stroke={INK} strokeWidth={SW} />
@@ -237,6 +241,8 @@ export function Chair({ x, y }: { x: number; y: number }) {
 export interface WhiteboardEntry {
   id: string;
   text: string;
+  cursorLabel?: string;
+  cursorSub?: string;
 }
 
 export function Whiteboard({
@@ -284,6 +290,8 @@ export function Whiteboard({
         <g
           key={entry.id}
           onClick={onEntryClick ? () => onEntryClick(entry.id) : undefined}
+          data-cursor={entry.cursorLabel}
+          data-cursor-sub={entry.cursorSub}
           style={{
             cursor: onEntryClick ? "pointer" : "default",
           }}

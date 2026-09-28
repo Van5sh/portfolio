@@ -68,6 +68,8 @@ export default function SceneHackstation({ projects, onProjectClick }: Props) {
             sublabel={projects[i]?.tech[0] ?? ""}
             blinkDelay={BLINK_DELAYS[i]}
             onClick={() => onProjectClick(projects[i])}
+            cursorLabel="Open"
+            cursorSub={projects[i] ? `${projects[i].status} · ${projects[i].tech.length} tech` : undefined}
           />
         ))}
         {CABLE_PATHS.map((d, i) => (

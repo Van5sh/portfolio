@@ -13,6 +13,7 @@ import SceneFinal from "@/components/scenes/SceneFinal";
 import { ProjectModal, MenuModal } from "@/components/Modals";
 import { PROJECTS, SCENE_NAMES, Project } from "@/lib/data";
 import { Button } from "./ui/button";
+import Cursor from "./Cursor";
 
 const BG = "var(--bg)";
 
@@ -49,7 +50,8 @@ export default function Portfolio() {
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
       if (e.key === "Escape") { setMenu(false); setProj(null); return; }
-      if (modalOpen) return;
+      // any open modal (including ones owned by a scene) blocks scene navigation
+      if (modalOpen || document.querySelector(".overlay")) return;
       // Let arrows move the caret while typing in a field that has text
       const t = e.target as HTMLElement | null;
       if (t instanceof HTMLInputElement || t instanceof HTMLTextAreaElement) {
@@ -216,6 +218,7 @@ export default function Portfolio() {
       )}
       {menu && <MenuModal current={cur} onClose={() => setMenu(false)} onNavigate={onMenuNavigate} />}
       {proj && <ProjectModal project={proj} onClose={() => setProj(null)} />}
+      <Cursor />
     </div>
   );
 }
